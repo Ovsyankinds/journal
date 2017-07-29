@@ -1,0 +1,63 @@
+#table_journal_of_breakdowns {
+	margin: 0 auto;
+}
+
+#table_journal_of_breakdowns td{
+	border: 1px solid black;
+	padding: 2px 2px;
+}
+	
+/* стили для таблицы Журнала поломок*/
+.journal_header_table{
+	font-size: 9px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: blue;
+}
+
+#table_journal_of_breakdowns{
+	border-spacing: 2px 2px;
+}
+
+#table_journal_of_breakdowns td {
+	padding: 10px 10px;
+	text-align: center;
+	font-size: 9px;
+}
+
+/* конец стилей для таблицы журнала поломок */
+
+
+#signature_div{
+	width: 1200px;
+	height: 50px;
+	font-size: 15px;
+	margin: 15px auto;
+	
+}
+
+.signature{
+	float: left;
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+#submit_print{
+	width: 350px;
+	height: 55px;
+	/*border: 1px solid red;*/
+	margin: 10px auto;
+}
+
+#submit_print input{
+	margin: 5px 55px;
+}
+
+
+
+
+
+
+
+
+
+

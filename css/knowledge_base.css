@@ -1,0 +1,297 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+th{
+	background: #D0D0D0;
+}
+
+th,td {
+	text-align: center;
+	vertical-align: top;
+	padding: 5px;
+	border-spacing: 10px;
+	margin: 1px 1px;
+	background: #0D0D0;
+}
+
+/* стили для списка номеров цеха */
+#menu_select_number_workshop{ /* div со списком номеров цеха */
+	width: 500px;
+	height: 35px;
+	margin: 15px auto;
+	/*border: 1px solid red;*/
+}
+
+#menu_select_number_workshop ul{
+	/*border: 1px solid blue;*/
+}
+
+#menu_select_number_workshop ul li{
+	float: left;
+	font-size: 25px;
+	/*border: 1px solid grey;*/
+	margin-left: 45px;
+	padding: 5px 10px;
+}
+/*  */
+
+/* стили для списка машин */
+#wrap_ul_name_machine{ /* стили для div'a */
+	width: 950px;
+	margin: 0 auto;
+	height: auto;
+	/*border: 1px solid red;*/
+}
+
+#ul_name_machine_1{
+	margin: 10px 0;
+}
+
+#ul_name_machine_1 li{
+	border: 1px solid grey;
+	margin: 10px 0;
+	text-align: center;
+}
+
+#ul_name_machine_1 .ul_machine_option li{
+	width: 300px;
+	display: inline-block;
+	border: none;
+}
+
+#ul_name_machine_1 .ul_machine_option li:nth-child(1){
+	margin-left: -12px;
+}
+
+#ul_name_machine_2{
+	margin: 10px 0;
+	display: none;
+}
+
+#ul_name_machine_2 li{
+	border: 1px solid grey;
+	margin: 10px 0;
+	text-align: center;
+}
+
+#ul_name_machine_2 .ul_machine_option li{
+	width: 200px;
+	display: inline-block;
+	border: none;
+}
+
+#ul_name_machine_3{
+	margin: 10px 0;
+	display: none;
+}
+
+#ul_name_machine_3 li{
+	border: 1px solid grey;
+	margin: 10px 0;
+	text-align: center;
+}
+
+#ul_name_machine_3 .ul_machine_option li{
+	width: 200px;
+	display: inline-block;
+	border: none;
+}
+
+/* */
+
+#header_knowledge_base{
+	width: 500px;
+	margin: 15px auto;
+	/*border: 1px solid red;*/
+}
+
+#header_knowledge_base h1{
+	text-align: center;
+	font-size: 24px;
+}
+
+#header_knowledge_base a{
+	text-align: center;
+	font-size: 24px;
+}
+
+/* стили для таблицы */
+#knowledge_base_table{
+	width: 100%;
+	margin: 10px auto;
+}
+
+#knowledge_base_table td{
+	background-color: #DDDDDD;
+}
+
+#knowledge_base_table tr td:nth-child(1){
+	width: 10px;
+}
+
+#knowledge_base_table tr td:nth-child(2){
+	width: 200px;
+}
+
+#knowledge_base_table tr td:nth-child(3){
+	width: 100px;
+}
+
+#knowledge_base_table tr td:nth-child(4){
+	
+}
+
+#knowledge_base_table tr td:nth-child(5){
+	width: 500px;
+}
+
+/*******/
+
+/* стили для формы добавления записи в таблицу*/
+#knowledge_form{
+	width: 70%;
+	margin: 10px auto;
+	background: #BBB;
+	padding: 20px 0;
+	/*border: 1px solid red;*/
+}
+
+#knowledge_form p{
+	margin: 10px auto;
+	/*border: 1px solid red;*/
+}
+
+#knowledge_form p:nth-child(1){
+	width: 400px;
+}
+
+#knowledge_form p:nth-child(2){
+	width: 400px;
+}
+
+#knowledge_form p:nth-child(3){
+	width: 400px;
+}
+
+#knowledge_form p select{
+	width: 140px;
+	/*border: 1px solid green;*/
+}
+
+#knowledge_form p label{
+	width: 120px;
+	display: inline-block;
+	margin-right: 15px;
+	/*border: 1px solid green;*/
+}
+
+#label_select_num_knowledge_note{
+	width: 300px;
+	display: block;
+	margin: 0 auto;
+	/*border: 1px solid red;*/
+}
+
+
+#knowledge_form input[type="file"]{
+	display: block;
+	width: 230px;
+	margin: 5px auto;
+	/*border: 1px solid red;*/
+}
+
+#knowledge_form input[type="submit"]{
+	display: block;
+	width: 200px;
+	margin: 5px auto;
+	/*border: 1px solid red;*/
+}
+
+#select_num_knowledge_note{
+	display: block;
+	width: 35px;
+	margin: 5px auto;
+}
+
+/*****/
+
+/* Стили для вывода ошибки*/
+#error{
+	display: block;
+	width: 300px;
+	/*border: 1px solid green;*/
+	margin: 15px auto;
+	color: red;
+	text-align: center;
+}
+
+#error span{
+	display: block;
+	/*border: 1px solid green;*/
+}
+
+#not_note{
+	display: block;
+	width: 300px;
+	/*border: 1px solid green;*/
+	margin: 0 auto;
+	color: red;
+	text-align: center;
+}
+
+/*****/
+
+#back_to_general{
+	width: 300px;
+	margin: 15px auto;
+	/*border: 1px solid green;*/
+	text-decoration: none;
+	text-align: center;
+}
+
+
+
+.img{
+	width: 100px;
+}
+
+.img_open{
+	display: block;
+	width: 500px;
+}
+
+
+
+
+

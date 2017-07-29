@@ -1,0 +1,203 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+th,td {
+	text-align: center;
+	padding: 5px;
+	border-spacing: 10px;
+	margin: 1px 1px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#top_menu_change_note{
+	width: 350px;
+	/*border: 1px solid red;*/
+	margin: 25px auto;
+}
+
+#top_menu_change_note ul li{
+	display: inline;
+	padding-right: 10px;
+	/*border: 1px solid red;*/
+}
+
+.table_change tr th{
+	background: #D0D0D0;
+	border: 1px solid #EEE5DE;
+	border-radius: 15px;
+	padding-bottom: 25px;
+}
+
+.table_change tr th:last-child{ /* берем последний элемент th (изменение записи) в таблице и делаем отступы */
+	padding-top: 41px;
+}
+
+.table_change a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 10px auto;
+  width: 200px;
+  display: table-cell;
+}
+
+.elemFormChangeNote {
+	width: 75px;
+	display: none;
+}
+
+#select_login_engineer{
+	position: absolute;
+	top: 250px;
+	display: table-cell;
+}
+
+/* стили для выпадающего списка в таблице, в столбце Сменный инженер */
+#select_login_engineer_change_note{
+	display: none;
+}
+#select_shift_change_note{
+	display: none;
+}
+/* конец стил для выпадающего списка в таблице, в столбце Сменный инженер */
+
+/* конец стилей таблицы */
+
+.top_row .bottom_row{
+	width: 1000px;
+}
+
+
+
+/* блок стиля для формы с id - form_change_note */
+
+#form_change_note{
+	width: 700px;
+	margin: 55px auto;
+	padding: 5px 5px;
+	/*width: 850px;*/
+	background: #BDB76B;
+}
+
+#form_change_note p {
+	/*width: 400px;*/
+	margin: 5px auto;
+	padding: 8px 20px;
+	font: 17px Verdana, Geneva, sans-serif;
+	border: 1px solid #fff;
+}
+
+#form_change_note p label{
+	display: block;
+	width: 300px;
+	margin: 5px auto;
+	line-height: 20px;
+	letter-spacing: 1px;
+	text-align: center;
+	/*border: 1px solid red;*/
+}
+
+#form_change_note p textarea{
+	display: block;
+	width: 555px;
+	margin: 5px auto;
+	text-align: left;
+	/*border: 1px solid green;*/
+}
+
+#form_change_note p textarea:hover{
+	background: #EEE8AA;
+}
+
+#form_change_note input[type="submit"]{
+	width: 100px;
+	display: block;
+	margin: 25px auto;
+	border-radius: 25px;
+	background: #EEE8AA;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* конец блок стиля для формы с id - form_change_note */
+
+#errors{
+	display: block;
+	width: 200px;
+	background: red;
+	margin: 10px auto;
+	/*border: 1px solid red;*/
+}
+
+
+
