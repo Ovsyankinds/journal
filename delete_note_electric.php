@@ -1,7 +1,7 @@
 <!-- Блок кода для удаления записей из таблицы -->
 <div id = "delete_message_of_journal_breackdowns">
-	<form name = "delete_message" method = "POST" action = "delete_message_of_journal_breackdowns_electric.php">
-		<select size = "1" name = "id_delete">
+	<form name = "delete_message" method = "POST" action = "delete_message_of_journal_breackdowns_electric.php" class="form-inline">
+		<select size = "1" name = "id_delete" class="form-control">
 			<?php
 				$array_id_count = count($array_id);
 														
@@ -15,7 +15,7 @@
 				}					
 			?>	
 		</select>
-		<input type = "submit" name = "delete_message_of_journal_electric" value = "Удалить выбранную запись" />
+		<input type = "submit" name = "delete_message_of_journal_electric" value = "Удалить выбранную запись" class="btn btn-default" />
 	</form>
 </div>
 <!-- Конец блока кода удаления записей из таблицы -->

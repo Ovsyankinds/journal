@@ -13,7 +13,7 @@
 			$engineerLogin = $checked_variable[0];
 			$engineerPassword = $checked_variable[1];
 			mysqli_query($link_DB, "SET NAMES 'utf8'");
-			$query = "SELECT login, sername, password FROM registered_users WHERE login = '$engineerLogin' AND password = '$engineerPassword'";
+			$query = "SELECT login, sername, password, id_status FROM registered_users WHERE login = '$engineerLogin' AND password = '$engineerPassword'";
 			$result_mysql = mysqli_query($link_DB, $query);
 		
 			if(mysqli_num_rows($result_mysql) == 1){
@@ -21,8 +21,10 @@
 					$id = $row['id'];
 					$login = $row['sername'];
 					$password = $row['password'];
+					$id_status = $row['id_status'];
 					setcookie('user_id', $id, time() + (60*60*24*30));
 					setcookie('user_login', $login, time() + (60*60*24*30));
+					setcookie('id_status', $id_status, time() + (60*60*24*30));
 					$general_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 'general.php';
 					header('Location: ' . $general_url);
 					}	
@@ -501,6 +503,7 @@
 			
 	//-----функция note_of_journal - по представлению таблицы, выборки из БД с параметрами
 	//-----$link - переменная для соединения с БД;
+	//-----$name_select_table - выбираем таблицу
 	//-----$selection_note - переменная для сортировки записей по столбцам;
 	//-----$journal_print - переменная-флаг, используемая для печати журнала без определенных (ненужных) столбцов;
 	//-----$limits - перемення, тип - массив, содержащая в себе число выводимых строк в таблице;

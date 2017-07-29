@@ -36,14 +36,40 @@ th{
 	background: #D0D0D0;
 }
 
-th,td {
-	text-align: center;
-	vertical-align: top;
-	padding: 5px;
-	border-spacing: 10px;
-	margin: 1px 1px;
+#header_journal_of_breakdowns{
+  text-align: center;
+  width: 200px;
+  /*border: 1px solid green;*/
+  margin: 25px auto;
+  text-shadow: grey 3px 3px 15px;
+  font: normal small-caps 35px/14px fantasy;
+}
+
+#header_journal_of_breakdowns:first-letter{
+  color: #363636;
 }
 
 .table-responsive #table-for-electric tr th{
+  padding: 10px 10px;
+}
+
+.table-responsive #table-for-electric tr th, td{
   border: 1px solid #EEE5DE;
+  text-align: center;
+  font-size: 17px;
+}
+
+.table-responsive #table-for-electric a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 10px auto;
+  width: 200px;
+  display: table-cell;
+}
+
+#menu {
+  width: 500px;
+  height: 50px;
+  margin: 10px auto;
+  /*border: 1px solid blue;*/
 }

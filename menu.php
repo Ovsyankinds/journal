@@ -1,10 +1,9 @@
 <!-- меню -->
 	<div id = "menu">
-		<ul>
-			<!-- Ссылка на страницу logout/выхода из системы -->
-			<li> <a href = "general.php"> Назад на главную страницу </a> </li>
-			<!-- Конец кода ссылки на страницу logout/выхода из системы -->
-			<li> <a href = "print_journal.php?
+
+		<ul class="nav nav-pills">
+			  <li role="presentation"><a href = "general.php"> Назад на главную страницу </a></li>
+			  <li role="presentation"><a href = "print_journal.php?
 			<?php 
 			
 				/*код для формирования Get-запроса и перехода на страницу печати

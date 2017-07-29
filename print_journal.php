@@ -14,6 +14,19 @@
 
 <body>
 
+	<?php
+		 $user_status = $_COOKIE['id_status'];
+		 switch($user_status){
+		 	case 0:
+		 		$name_data_base = "journal_of_breakdowns_electric";
+		 		$back_to_journal = "journal_of_breakdowns_electric.php";
+		 		break;
+ 			default:
+ 				$name_data_base = "journal_of_breakdowns";
+ 				$back_to_journal = "journal_of_breakdowns.php";
+		 }
+	?>
+
 <table id = "table_journal_of_breakdowns">
 		<tr>
 			<td> <span class = "journal_header_table"> № </span> </td>
@@ -38,7 +51,7 @@
 				$limits = explode("-", $_GET['lines']);
 				
 				//функция по выборке из БД записей и формированию таблицы;
-				$array_id = note_of_journal($link, $_GET['val'], 1, $limits, 
+				$array_id = note_of_journal($link, $name_data_base, $_GET['val'], 1, $limits, 
 								0, 0, 0, 0 ); 
 			}
 			
@@ -103,7 +116,7 @@
 
 <div id = "submit_print">
 	<input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
-	<a href = "journal_of_breakdowns.php" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
+	<a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
 </div>
 
 

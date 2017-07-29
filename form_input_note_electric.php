@@ -1,17 +1,29 @@
 <!-- Кнопка для вывода формы добавления записей в журнал -->
 <div class = "add_new_message">
 	<p> Для добавления записи выберите номер цеха: </p>
-	<form name = "add_new_message_electric" method = "POST" action = "journal_of_breakdowns_electric.php">
-		<p>
+	<form name = "add_new_message_electric" method = "POST" action = "journal_of_breakdowns_electric.php" class="form-horizontal">
+	
+		<label class="radio-inline">
 			<input type = "radio" name = "number_workshop" value = "1" class = "number_workshop"/> Цех №1
+		</label>
+	
+		<label class="radio-inline"hidden="">		
 			<input type = "radio" name = "number_workshop" value = "2" class = "number_workshop"/> Цех №2
+		</label>
+
+		<label class="radio-inline">
 			<input type = "radio" name = "number_workshop" value = "3" class = "number_workshop"/> Цех №3 
-			
-			<p id ="number_workshop_else" >
-			<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое 
-			</p>
-		</p>
-		<input type = "submit" name = "show_form_add_new_message_to_journal_electric" value = "Добавить новую запись"/>
+		</label>
+
+		<label class="radio-inline">
+			<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое
+		</label>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type = "submit" name = "show_form_add_new_message_to_journal_electric" value = "Добавить новую запись" class="btn btn-default"/>
+			</div>
+		</div>
 	</form>
 </div>
 <!-- Конец кода для кнопки вывода формы добавления записей в журнал -->

@@ -45,7 +45,7 @@
 			</th>
 			
 			<th>
-				<span> Сменный инженер ЭТ </span>
+				<span> Сменный электрик </span>
 			</th>
 			
 			<th>
@@ -182,6 +182,9 @@
 
 	<?php
 		require_once "menu.php"; // код меню (назад на главную, распечатать 
+								// журнал)
+
+		//require_once "menu.php"; // код меню (назад на главную, распечатать 
 								// журнал)
 		//require_once "/home/homeel/homeelectrical.ru/docs/menu.php";
 		require_once "form_input_note_electric.php"; //код для добавления записей в
