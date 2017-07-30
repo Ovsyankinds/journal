@@ -67,9 +67,37 @@ th{
   display: table-cell;
 }
 
-#menu {
-  width: 500px;
-  height: 50px;
-  margin: 10px auto;
-  /*border: 1px solid blue;*/
+/*стили для меню*/
+
+#menu{
+  margin-top: 15px;
 }
+
+#menu .nav-pills{
+  width: 30%;
+  margin: 0 auto;
+  /*border: 1px solid red;*/
+}
+
+#menu .nav-pills li{
+  /*border: 1px solid grey;*/
+}
+
+/*конец стилей для меню*/
+
+/*стили кнопки выбора номера цеха*/
+
+#button-select-workshop{
+  margin-top: 15px;
+}
+
+/*конец стилей для кнопки выбора номера цеха*/
+
+/*стили для формы добавления записи в таблицу*/
+
+#form-add-note .form-control{
+  width: 50% !important;
+  margin: 0 auto;
+}
+
+/*конец стилей для формы добавления записи в таблицу*/

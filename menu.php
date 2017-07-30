@@ -1,6 +1,6 @@
 <!-- меню -->
-	<div id = "menu">
-
+<div class="row well" id="menu">
+	<div class="col-md-12">
 		<ul class="nav nav-pills">
 			  <li role="presentation"><a href = "general.php"> Назад на главную страницу </a></li>
 			  <li role="presentation"><a href = "print_journal.php?
@@ -81,4 +81,5 @@
 			">Распечатать журнал </a> </li>
 		</ul>
 	</div>
+</div>
 <!-- конец блока меню -->
