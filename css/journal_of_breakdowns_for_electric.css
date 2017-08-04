@@ -36,11 +36,21 @@ th{
 	background: #D0D0D0;
 }
 
+.container-fluid{
+  
+}
+
+/*Стили для выпадающего списка для печати выбранных записей*/
+.select-for-print-note .form-group{
+  margin-right: 15px !important;
+}
+/**/
+
 #header_journal_of_breakdowns{
   text-align: center;
   width: 200px;
   /*border: 1px solid green;*/
-  margin: 25px auto;
+  margin: 80px auto 35px auto;
   text-shadow: grey 3px 3px 15px;
   font: normal small-caps 35px/14px fantasy;
 }

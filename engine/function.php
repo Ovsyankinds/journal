@@ -416,20 +416,27 @@
 	}
 	//-----конец функции
 	
-	//----- функция по созданию выпадающего списка по дежурному инженеру ЭТ
-		function select_login_engineer($link, $id_or_class){
-			$query_select_from_registration_DB = "SELECT sername FROM registered_users";
+	//----- функция по созданию выпадающего списка по зарегистрированному пользователю
+	//----- последнее изменение 04.08.2017
+		function select_login_engineer($link, $id_or_class, $id_status){
+			if($id_status){
+					$query_select_from_registration_DB = "SELECT sername FROM registered_users";	
+			}else{
+				$query_select_from_registration_DB = "SELECT sername FROM registered_users WHERE id_status = $id_status";
+			}
+
 			$result_select_from_registration_DB = mysqli_query($link, $query_select_from_registration_DB);
 			echo "<select size = '1' name = 'select_login_engineer' 
-							class = '$id_or_class'>";
+							class = '$id_or_class' id='select'>";
 						echo "<option value = ''> </option>";
 			while( $row = mysqli_fetch_array($result_select_from_registration_DB) ){
 					$engineer_name = $row['sername'];
-					echo "<option value = '$engineer_name'> $engineer_name </option>";		
+					echo "<option value = '$engineer_name'> $engineer_name </option>";	
 			}
+
 			echo "</select>";
-		}
-	//-----конец функции
+	}
+	//-----конец функции по созданию выпадающего списка по зарегистрированному пользователю
 	
 	
 	//----- функция по созданию выпадающего списка по дежурному инженеру ЭТ использующая

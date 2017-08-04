@@ -12,51 +12,110 @@
 <head>
 	<title> Регистрация нового пользователя </title>
 	<meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
-	<link rel = 'stylesheet' href = 'css/registration.css'>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/registration.css" rel="stylesheet">
 </head>
 
 <body>
-	<form name = "registration" method = "POST" action = "registration.php" class = "login" > 
-		<p>
-			<label for="login">Логин:</label>
-			<input type="text" name="engineerLogin" id="login">
-		</p>
+	<div class="container">
+		
+		<h1 class="header-text text-center"> Форма регистрации </h1>
 
-		<p>
-			<label for="position">Должность:</label>
-			<input type="text" name="position" id="position">
-		</p>
+		<form name = "registration" method = "POST" action = "registration.php" class = "form-horizontal" > 
+			
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label for="login" class="col-md-3 control-label">Логин:</label>
+				<div class="col-md-4">
+					<input type="text" name="engineerLogin" class="form-control" id="login" placeholder="Введите Ваш логин">
+				</div>
+			</div>
+		
 
-		<p>
-			<label for="password">Пароль:</label>
-			<input type="password" name="engineerPassword" id="password">
-		</p>
-		
-		<p>
-			<label for="password"> Повторите пароль:</label>
-			<input type="password" name="repeat_engineer_password" id="password">
-		</p>
-		
-		<p>
-			<label for="sername">Фамилия:</label>
-			<input type="text" name="engineerSername" id="sername">
-		</p>
-		
-		<p>
-			<label for="name">Имя:</label>
-			<input type="text" name="engineerName" id="name">
-		</p>
-		
-		<p>
-			<label for="patronymic">Отчество:</label>
-			<input type="text" name="engineerPatronymic" id="patronymic">
-		</p>
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label class="col-md-3 control-label">Должность:</label>
+				<!-- <input type="text" name="position" id="position"> -->
 
-		<p class="registration-submit">
-			<button type="submit" class="registration-button" name = "send"> Зарегистрироваться </button>
-		</p>
-		
-	</form>
+				<div class="col-md-4">
+				<label class="radio-inline">
+				  <input type="radio" name="position" id="registration-position-engineer" value="engineer"> инженер ЭТ
+				</label>
+
+				<label class="radio-inline">
+				  <input type="radio" name="position" id="registration-position-electric" value="electric"> электрик
+				</label>
+
+				<label class="radio-inline">
+				  <input type="radio" name="position" id="registration-position-technologist" value="technologist"> технолог
+				  <input type="hidden" name="idStatus" value="2">
+				</label>
+
+				<label class="radio-inline">
+				  <input type="radio" name="position" id="registration-position-chief" value="chief"> Начальник
+				  <input type="hidden" name="idStatus" value="3">
+				</label>
+				</div>
+
+			</div>
+
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label for="password" class="col-md-3 control-label">Пароль:</label>
+				<div class="col-md-4">
+					<input type="password" name="engineerPassword" class="form-control" id="password" placeholder="Введите Ваш пароль">	
+				</div>
+			</div>
+			
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>	
+				<label for="repeat-password" class="col-md-3 control-label"> Повторите пароль:</label>
+				<div class="col-md-4">
+					<input type="password" name="repeat_engineer_password" class="form-control" id="repeat-password" placeholder="Повторите Ваш пароль">
+				</div>
+			</div>
+			
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label for="sername" class="col-md-3 control-label">Фамилия:</label>
+				<div class="col-md-4">
+					<input type="text" name="engineerSername" class="form-control" id="sername" placeholder="Введите Вашу фамилию">
+				</div>
+			</div>
+			
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label for="name" class="col-md-3 control-label">Имя:</label>
+				<div class="col-md-4">
+					<input type="text" name="engineerName" class="form-control" id="name" placeholder="Введите Ваше имя">
+				</div>
+			</div>
+			
+			<div class="form-group text-center">
+				<div class="col-md-1">
+				</div>
+				<label for="patronymic" class="col-md-3 control-label">Отчество:</label>
+				<div class="col-md-4">
+					<input type="text" name="engineerPatronymic" class="form-control" id="patronymic" placeholder="Введите Ваше отчество">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-4">
+				</div>
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-default" name = "send"> Зарегистрироваться </button>
+				</div>
+			</div>
+			
+		</form>
+	</div>
 	
 <?php
 	}
@@ -69,6 +128,26 @@
 		$engineerSername = trim(strip_tags($_POST['engineerSername']));
 		$engineerName = trim(strip_tags($_POST['engineerName']));
 		$engineerPatronymic = trim(strip_tags($_POST['engineerPatronymic']));
+		switch($position){
+			case "electric":
+				$idStatus = 0;
+				break;
+
+			case "engineer":
+				$idStatus = 1;
+				break;
+
+			case "technologist":
+				$idStatus = 2;
+				break;
+
+			case "chief":
+				$idStatus = 3;
+				break;
+
+			default:
+				$idStatus = 00;
+		}
 		
 		if($engineerPassword === $repeat_engineer_password && !empty($engineerPassword)){
 			$query_check_login = "SELECT login FROM registered_users WHERE login = '$engineerLogin'";
@@ -82,7 +161,7 @@
 			else{
 				$query = "INSERT INTO registered_users (login, position, sername, name, patronymic, password, user_color, id_status) 
 							VALUE ('$engineerLogin', '$position', '$engineerSername', '$engineerName', 
-							'$engineerPatronymic', '$engineerPassword', 'ffffff', '0')";
+							'$engineerPatronymic', '$engineerPassword', 'ffffff', '$idStatus')";
 				$query_insert_new_user = mysqli_query($link, $query)
 				or die("Не удается выполнить запрос 1 |||" . mysqli_error($link));
 
@@ -98,7 +177,10 @@
 	}
 ?>
 	
-	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

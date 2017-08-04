@@ -22,12 +22,22 @@
 
 <body>
 
-<div class="container-fluid">
-
 	<?php
+		switch($_COOKIE['id_status']){
+			case 0: 
+				require_once "journal_for_electric/menu_for_electric.php";
+				break;
+			
+			default:
+				require_once "menu.php";
+		}
+
 		require_once "header.php"; //надпись журнала
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";
-	?>
+
+	?>	
+
+<div class="container-fluid">
 
 <!-- таблица с заголовками и с стрелками для сортировки по столбцам -->
 
@@ -184,7 +194,7 @@
 
 
 	<?php
-	require_once "menu.php"; // код меню (назад на главную, распечатать 
+	//require_once "menu.php"; // код меню (назад на главную, распечатать 
 						// журнал)
 
 	//require_once "menu.php"; // код меню (назад на главную, распечатать 
