@@ -6,6 +6,8 @@
 			<input type = "radio" name = "number_workshop" value = "1" class = "number_workshop"/> Цех №1
 			<input type = "radio" name = "number_workshop" value = "2" class = "number_workshop"/> Цех №2
 			<input type = "radio" name = "number_workshop" value = "3" class = "number_workshop"/> Цех №3 
+			<input type = "radio" name = "number_workshop" value = "5" class = "number_workshop"/> Цех №5
+			<input type = "radio" name = "number_workshop" value = "7" class = "number_workshop"/> Цех №7 
 			
 			<p id ="number_workshop_else" >
 			<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое 
@@ -53,7 +55,7 @@
 		<p>
 			<label for = "caller_FIO"> Вызов сделал </label>
 			<input type = "text" name = "caller_FIO" id = "caller_FIO" 
-				value = "оператор"/> 
+				value = "Мастер"/> 
 		</p>
 		
 		<p>

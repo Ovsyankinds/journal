@@ -15,7 +15,11 @@
 												'Ванна сшивки', 'Кран балка 5Т эм-кат','Кран балка 5Т', 'Компрессор Atlas Copco 1', 
 												'Печь отжига');
 												
-	$array_name_machines_for_workshop = array('РМЦ');
+	$array_name_machines_for_workshop = array('РМЦ', "Общее", "ОТК");
+
+	$array_name_machines_five_workshop = array("Бронерезка", "Перемотка 1", "Перемотка 2");
+
+	$array_name_machines_seven_workshop = array("Ошланговка", "Протон", "Экран", "Наклонка");
 	
 	
 	foreach($array_name_machines_first_workshop as $name_machines_first_workshop){
@@ -43,6 +47,24 @@
 		
 		$query_add_name_machines_for_workshop = "INSERT INTO list_of_machines (name_machine, number_workshop) 
 														VALUES ('$name_machines_for_workshop', '4')";
+		$result_query = mysqli_query($link, $query_add_name_machines_for_workshop)
+			or die("Не удается выполнить запрос  |||" . mysqli_error($link));
+
+	}
+
+		foreach($array_name_machines_five_workshop as $name_machines_for_workshop){
+		
+		$query_add_name_machines_for_workshop = "INSERT INTO list_of_machines (name_machine, number_workshop) 
+														VALUES ('$name_machines_for_workshop', '5')";
+		$result_query = mysqli_query($link, $query_add_name_machines_for_workshop)
+			or die("Не удается выполнить запрос  |||" . mysqli_error($link));
+
+	}
+
+		foreach($array_name_machines_seven_workshop as $name_machines_for_workshop){
+		
+		$query_add_name_machines_for_workshop = "INSERT INTO list_of_machines (name_machine, number_workshop) 
+														VALUES ('$name_machines_for_workshop', '7')";
 		$result_query = mysqli_query($link, $query_add_name_machines_for_workshop)
 			or die("Не удается выполнить запрос  |||" . mysqli_error($link));
 

@@ -531,7 +531,7 @@
 		global $breakdown;
 		global $removal_breakdown;
 		global $used_teh_mat_values;
-				
+						
 		
 		switch($selection_note){
 

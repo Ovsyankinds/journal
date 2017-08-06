@@ -18,6 +18,14 @@
 							</label>
 
 							<label class="radio-inline">
+								<input type = "radio" name = "number_workshop" value = "5" class = "number_workshop"/> Цех №5
+							</label>
+
+							<label class="radio-inline">
+								<input type = "radio" name = "number_workshop" value = "7" class = "number_workshop"/> Цех №7
+							</label>
+
+							<label class="radio-inline">
 								<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое
 							</label>
 						</div>
@@ -66,7 +74,7 @@
 	
 				<label for = "caller_FIO"> Вызов сделал </label>
 				<input type = "text" name = "caller_FIO" id = "caller_FIO" 
-					value = "оператор" class="form-control"/> 
+					value = "Мастер" class="form-control"/> 
 
 				<label for = "call_time"> Время вызова </label>
 				<input type = "time" name = "call_time" value = "00:00" class="form-control" />

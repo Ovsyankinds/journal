@@ -35,6 +35,8 @@
 		require_once "header.php"; //надпись журнала
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";
 
+		echo $marker;
+
 	?>	
 
 <div class="container-fluid">
