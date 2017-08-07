@@ -37,13 +37,23 @@ th{
 }
 
 .container-fluid{
-  
+
 }
 
 /*Стили для выпадающего списка для печати выбранных записей*/
-.select-for-print-note .form-group{
-  margin-right: 15px !important;
+
+#select-electric .row{
+  margin-bottom: 25px;
 }
+
+#select-electric .row .form-group label{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/*#select-electric .row .col-md-3, .col-md-2, .col-md-7{
+  border: 1px solid red !important;
+}*/
 /**/
 
 #header_journal_of_breakdowns{

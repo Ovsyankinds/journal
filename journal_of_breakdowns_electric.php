@@ -16,8 +16,8 @@
 <head>
 	<title> Главная страница журнала </title>
 	<meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
-	<link rel = "stylesheet" href = "/css/journal_of_breakdowns_for_electric.css">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link rel = "stylesheet" href = "/css/journal_of_breakdowns_for_electric.css">
 </head>
 
 <body>
