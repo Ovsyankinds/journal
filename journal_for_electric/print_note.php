@@ -1,18 +1,4 @@
 <?php
-  if( isset($_POST['printElectrictNote']) ){
-    if(!empty($_POST['select_login_engineer']) && (!empty($_POST['selectedFirstDate']) || !empty($_POST['selectedLastDate']) )){
-      $selectedElectric = trim(strip_tags( $_POST['select_login_engineer'] ));
-      $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
-      $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
-
-      echo "Выбрали электрика $selectedElectric записи от $selectedFirstDate до $selectedLastDate";
-    }else{
-      echo "Ничего не выбрали";
-    }
-  } 
-?>
-
-<?php
   require_once "../engine/connectToDB.php";
   require_once "../engine/function.php";
   mysqli_query($link, "SET NAMES 'utf8'");
@@ -24,6 +10,8 @@
   <title> Главная страница журнала </title>
   <meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
   <link rel = 'stylesheet' type = 'text/css' href = 'css/print.css' >
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel = "stylesheet" href = "/css/journal_of_breakdowns_for_electric.css">
 </head>
 
 <body>
@@ -32,16 +20,22 @@
      $user_status = $_COOKIE['id_status'];
      switch($user_status){
       case 0:
-        $name_data_base = "journal_of_breakdowns_electric";
-        $back_to_journal = "journal_of_breakdowns_electric.php";
+        $nameDataBaseTable = "journal_of_breakdowns_electric";
+        $back_to_journal = $_SERVER['HTTP_ORIGIN'] . "/journal_of_breakdowns_electric.php";
         break;
       default:
-        $name_data_base = "journal_of_breakdowns";
+        $nameDataBaseTable = "journal_of_breakdowns";
         $back_to_journal = "journal_of_breakdowns.php";
      }
   ?>
 
-<table id = "table_journal_of_breakdowns">
+<div class="container-fluid">
+
+<!-- таблица с заголовками и с стрелками для сортировки по столбцам -->
+
+  <div class="row">
+   <div class="table-responsive">
+    <table class="table">
     <tr>
       <td> <span class = "journal_header_table"> № </span> </td>
       <td> <span class = "journal_header_table"> Д </span> </td>
@@ -59,62 +53,34 @@
     </tr>
       
     <?php
-      $_GET['val'] = 0;
-      
-      if(!empty($_GET['lines'])){
-        $limits = explode("-", $_GET['lines']);
-        
-        //функция по выборке из БД записей и формированию таблицы;
-        $array_id = note_of_journal($link, $name_data_base, $_GET['val'], 1, $limits, 
-                0, 0, 0, 0 ); 
-      }
-      
-      elseif(!empty($_GET['name_engineer_shift'])){
-        $name_engineer_shift = $_GET['name_engineer_shift'];
-        $array_id = note_of_journal($link, $_GET['val'], 1, 
-                0, $name_engineer_shift, 0, 0, 0); 
-      }
-      
-      elseif(!empty($_GET['name_engineer_shift']) && 
-        !empty($_GET['select_date_shift']) &&
-        !empty($_GET['select_date_shift_two'])){
-        
-        $name_engineer_shift = $_GET['name_engineer_shift'];
-        $select_date_shift = $_GET['select_date_shift'];
-        $select_date_shift_two = $_GET['select_date_shift_two'];
-        $array_id = note_of_journal($link, $_GET['val'], 1, 
-                0, $name_engineer_shift, $select_date_shift, 
-                $select_date_shift_two, 0);
-        
-      }
-      
-      elseif(empty($_GET['name_engineer_shift']) && 
-        !empty($_GET['select_date_shift']) &&
-        !empty($_GET['select_date_shift_two'])){
-        
-        $select_date_shift = $_GET['select_date_shift'];
-        $select_date_shift_two = $_GET['select_date_shift_two'];
-        $array_id = note_of_journal($link, $_GET['val'], 1, 
-                0, 0, $select_date_shift, 
-                $select_date_shift_two, 0);
-        
-      }
-      
-      elseif(!empty($_GET['name_machine'])){
-        $name_machine = $_GET['name_machine'];
-        $array_id = note_of_journal($link, $_GET['val'], 1, 
-                0, 0, 0, 
-                0, $name_machine);
-        
-      }
+      if( isset($_POST['printElectrictNote']) ){
+       if($_POST['selectOptionPrintDate'] == 1){
+          $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
+          $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
+
+          //echo $selectedFirstDate . "/////" . $selectedLastDate;
+          printElectricNote($link, $nameDataBaseTable, $selectedFirstDate, $selectedLastDate);
+        }else{
+          echo "Вы не подтвердили выбор";
+        }
+      } 
     
     ?>
 </table>
+  </div>
+</div>
 
-<div id = "signature_div">
-  <p class = "signature" id = "signature_pass"> Смену и инструмент сдал:  ______________________ </p>
-  <p class = "signature" id = "signature_take"> Смену и инструмент принял:______________________ </p>
-  <p class = "signature" id = "signature_nach"> Начальник отдела ПЭ       ______________________ </p>
+<div class="row">
+  <div class="col-md-12">
+    <span class = "signature" id = "signature_pass"> Смену и инструмент сдал:  ______________________ </span>
+    <span class = "signature" id = "signature_take"> Смену и инструмент принял:______________________ </span>
+    <span class = "signature" id = "signature_nach"> Начальник отдела ПЭ       ______________________ </span>
+  </div>
+
+  <div class="col-md-12">
+    <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
+    <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
+  </div>
 </div>
 
 <script>
@@ -125,16 +91,9 @@
     a.style.display = 'none';
      window.print();
   }
-  
 </script>
 
-<div id = "submit_print">
-  <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
-  <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
 </div>
-
-
-
 </body>
 
 </html>

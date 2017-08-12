@@ -40,7 +40,11 @@ th{
 
 }
 
-/*Стили для выпадающего списка для печати выбранных записей*/
+/*Стили для выпадающего списка для печати выбранных записей mark-2*/
+
+#collapseExample{
+  /*width: 600px !important;*/
+}
 
 #select-electric .row{
   margin-bottom: 25px;
@@ -51,10 +55,20 @@ th{
   margin-left: 10px;
 }
 
+.col-md-2,.col-md-4{
+  border: 1px solid red !important;
+}
+
+.row-in-collapse-menu{
+  /*background-color: #ffaaaa;*/
+ /*border: 1px solid white;*/
+}
+
 /*#select-electric .row .col-md-3, .col-md-2, .col-md-7{
   border: 1px solid red !important;
 }*/
-/**/
+
+/*Конец mark-2*/
 
 #header_journal_of_breakdowns{
   text-align: center;

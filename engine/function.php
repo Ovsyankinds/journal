@@ -1,5 +1,80 @@
 <?php
 	
+/*****
+	Функция для отрисовки таблицы электриков с записями выбранными для распечатывания
+	Дата создания 11.08.2017
+	$nameSelectTable - имя таблицы, откуда происходит выборка
+*****/
+	function printElectricNote($link, $nameSelectTable, $selectedFirstDate, $selectedLastDate ){
+		
+		if($selectedFirstDate != 0 && $selectedLastDate == 0){
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+						name_engineer, number_workshop,	name_machine, caller_FIO, 
+						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+						used_teh_mat_values FROM $nameSelectTable WHERE date_shift ='$selectedFirstDate'
+						ORDER BY id DESC"; //LIMIT $limits
+
+		}elseif($selectedLastDate != 0 && $selectedFirstDate == 0){
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable WHERE date_shift ='$selectedLastDate'
+									ORDER BY id DESC"; //LIMIT $limits
+		}elseif($selectedFirstDate != 0 && $selectedLastDate != 0){
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
+									and date_shift <= '$selectedLastDate'
+									ORDER BY id DESC"; //LIMIT $limits
+		}else{
+			echo "Вы не указали дату";
+		}
+
+		$resultQuery = mysqli_query($link, $query);
+
+		$numberOfRows = mysqli_num_rows($resultQuery);
+
+		while($numberOfRows){
+			while( $row = mysqli_fetch_array($resultQuery) ){
+				$numberId = $numberOfRows;
+				
+				//начало кода выделения цветом строки таблицы
+				if($numberId%2 !=0){
+					$background_tr = "#5FAFFF";
+				}
+				else{
+					$background_tr = "#FF6969";
+				}//конец кода выделения цветом строки таблицы
+				
+				$realId = $row['id'];
+				echo "<tr style = 'background: $background_tr'>" .
+							"<td><span>" . $numberId . "</span></td>" .
+							"<td><span>" . $date_shift = $row['date_shift'] . "</span></td>" .
+							"<td><span>" . $shift = $row['shift'] . "</span></td>" .
+							"<td><span>" . $name_engineer = $row['name_engineer'] . "</span></td>" .
+							"<td><span>" . $number_workshop = $row['number_workshop'] . "</span></td>" .
+							"<td><span>" . $name_machine = $row['name_machine'] . "</span></td>" .
+							"<td><span>" . $caller_FIO = $row['caller_FIO'] . "</span></td>" .
+							"<td><span>" . $call_time = $row['call_time'] . "</span></td>" .
+							"<td><span>" . $end_of_work = $row['end_of_work'] . "</span></td>" .
+							"<td><span>" . $repair_time = $row['repair_time'] . "</span></td>" .
+							"<td><span>" . $breakdown = $row['breakdown'] . "</span></td>" .
+							"<td><span>" . $removal_breakdown = $row['removal_breakdown'] . "</span></td>" . 
+							"<td><span>" . $used_teh_mat_values = $row['used_teh_mat_values'] . "</span></td>" .
+							"<td> <a href = 'change_note.php?change_id=$real_id'> Изменить запись </a></td>" . 
+					 "</tr>";
+						 
+					$numberOfRows--;
+			}
+		}
+	}
+
+/*end*/
+
+
+
+
 	function check_variable($checked_var_one, $checked_var_two){ // проверка введенных данных
 		$result_checked_one_var = trim(strip_tags($checked_var_one));
 		$result_checked_two_var = trim(strip_tags($checked_var_two));
@@ -521,7 +596,7 @@
 								$select_date_shift_two, $name_machine){ 
 		
 		//require_once '/home/homeel/homeelectrical.ru/docs/engine/connectToDB.php';
-		require_once 'engine/connectToDB.php';
+		require_once $_SERVER['DOCUMENT_ROOT'] . '/engine/connectToDB.php';
 				
 		global $number_id;
 		global $user;
