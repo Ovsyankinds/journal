@@ -54,17 +54,53 @@
       
     <?php
       if( isset($_POST['printElectrictNote']) ){
-       if($_POST['selectOptionPrintDate'] == 1){
-          $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
-          $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
+        /*foreach ($selectOption as $value) {
+          $selectOption = (integer) trim(strip_tags( $_POST['selectOption'] ));
+        }*/
 
-          //echo $selectedFirstDate . "/////" . $selectedLastDate;
-          printElectricNote($link, $nameDataBaseTable, $selectedFirstDate, $selectedLastDate);
+        //print_r($_POST['selectOption']);
+        $paramArrayKeys = ["Начальная дата", "Конечная дата", "Число строк"];
+        $paramArray = array();
+        $selectOption = $_POST['selectOption'];
+
+        $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
+        $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
+        $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
+        
+        if($selectOption[0] == 1 && $selectOption[1] != 2){
+          array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
+          $result = array_combine($paramArrayKeys, $paramArray);
+        }elseif($selectOption[0] == 2){ 
+          array_push($paramArray, 0, 0, $selectedLineCount);
+          $result = array_combine($paramArrayKeys, $paramArray);
+        }elseif($selectOption[0] == 1 && $selectOption[1] == 2){
+          array_push($paramArray, $selectedFirstDate, $selectedLastDate, $selectedLineCount);
+          $result = array_combine($paramArrayKeys, $paramArray);
         }else{
-          echo "Вы не подтвердили выбор";
+          echo "Не выбрана ни одна из опций";
         }
-      } 
-    
+
+        /*switch($selectOption){
+          case 1:
+            $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
+            $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
+            array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
+            $result = array_combine($paramArrayKeys, $paramArray);
+            break;
+
+          case 2:
+            $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
+            array_push($paramArray, 0, 0, $selectedLineCount);
+            $result = array_combine($paramArrayKeys, $paramArray);
+            break;
+
+          default:
+            echo "Вы не подтвердили выбор"; 
+        }*/
+
+        //print_r($result);
+        printElectricNote($link, $nameDataBaseTable, $result);
+      }    
     ?>
 </table>
   </div>

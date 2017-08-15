@@ -5,29 +5,69 @@
 	Дата создания 11.08.2017
 	$nameSelectTable - имя таблицы, откуда происходит выборка
 *****/
-	function printElectricNote($link, $nameSelectTable, $selectedFirstDate, $selectedLastDate ){
-		
-		if($selectedFirstDate != 0 && $selectedLastDate == 0){
+	function printElectricNote($link, $nameSelectTable, $paramArray){
+		$selectedFirstDate = $paramArray['Начальная дата'];
+		$selectedLastDate = $paramArray['Конечная дата'];
+		$lineCount = $paramArray['Число строк'];
+
+		if($selectedFirstDate != 0 && $selectedLastDate == 0 && $lineCount == 0){
+			//Если первая дата существует, вторая дата равна нулю и число линий равно 0
 			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
 						name_engineer, number_workshop,	name_machine, caller_FIO, 
 						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
 						used_teh_mat_values FROM $nameSelectTable WHERE date_shift ='$selectedFirstDate'
 						ORDER BY id DESC"; //LIMIT $limits
 
-		}elseif($selectedLastDate != 0 && $selectedFirstDate == 0){
+		}elseif($selectedFirstDate == 0 && $selectedLastDate != 0 && $lineCount == 0){
+			//Если первая дата не выбрана, вторая дата выбрана и число линий не выбрано
+			$startData = "2015-01-01";
 			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable WHERE date_shift ='$selectedLastDate'
-									ORDER BY id DESC"; //LIMIT $limits
-		}elseif($selectedFirstDate != 0 && $selectedLastDate != 0){
+						name_engineer, number_workshop,	name_machine, caller_FIO, 
+						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+						used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$startData' and  date_shift <= '$selectedLastDate'
+						ORDER BY id DESC"; //LIMIT $limits
+
+		}elseif($selectedFirstDate != 0 && $selectedLastDate != 0 && $lineCount == 0){
+			//Если первая дата существует, вторая дата существует и число линий равно 0
 			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
 									name_engineer, number_workshop,	name_machine, caller_FIO, 
 									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
 									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
 									and date_shift <= '$selectedLastDate'
 									ORDER BY id DESC"; //LIMIT $limits
-		}else{
+
+		}elseif($lineCount != 0 && $selectedFirstDate == 0 && $selectedLastDate == 0){
+			//Если число линий не равно нулю, первая и вторая даты не выбраны
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable ORDER BY id DESC LIMIT $lineCount"; //LIMIT $limits
+
+		}elseif($lineCount != 0 && $selectedFirstDate != 0 && $selectedLastDate == 0){
+			//Если число линий не равно нулю, первая дата не равна нулю, а вторая дата не выбрана
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
+									ORDER BY id DESC LIMIT $lineCount";
+
+		}elseif($lineCount != 0 && $selectedFirstDate == 0 && $selectedLastDate != 0){
+			//Если число линий не равно нулю, первая дата не выбрана, а вторая дата выбрана
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$startData' and date_shift <= '$selectedLastDate'
+									ORDER BY id DESC LIMIT $lineCount";
+
+		}elseif($lineCount != 0 && $selectedFirstDate != 0 && $selectedLastDate != 0){
+			//Если число линий выбрано, и выбраны обе даты
+			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+									name_engineer, number_workshop,	name_machine, caller_FIO, 
+									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
+									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
+									and date_shift <= '$selectedLastDate' ORDER BY id ASC LIMIT $lineCount";
+
+		}else{ 
 			echo "Вы не указали дату";
 		}
 

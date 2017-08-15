@@ -22,18 +22,35 @@
           <div class="col-md-12 text-center row-in-collapse-menu">
             <div class="form-group">
               <label for="first-data-shift">Выбор по дате c</label>
-              <input type="date" name="selectedFirstDate" class="form-control" id="first-data-shift" placeholder="Начальная ДД:ММ:ГГ">
+              <input type="date" name="selectedFirstDate" class="form-control" id="first-data-shift" value="2017-08-01">
               <label for="last-data-shift"> до</label>
-              <input type="date" name="selectedLastDate" class="form-control" id="last-data-shift" placeholder="Конечная ДД:ММ:ГГ">
+              <input type="date" name="selectedLastDate" class="form-control" id="last-data-shift" 
+                    value="2017-08-28">
             </div>
 
             <div class="form-group text-left">
               <label>
-                <input type="checkbox" name="selectOptionPrintDate" value="1"> Включить
+                <input type="checkbox" name="selectOption[]" value="1"> Включить
               </label>
             </div>
           </div>
         </div> <!--Конец DZ-->
+
+
+        <div class="row">  <!--Строка для выбора по числу линий LC-->
+          <div class="col-md-12 text-center row-in-collapse-menu">
+            <div class="form-group">
+              <label for="first-data-shift">Выбор по числу линий</label>
+              <input type="text" name="lineCount" class="form-control" id="line-count" placeholder="Введите число линий">
+            </div>
+
+            <div class="form-group text-left">
+              <label>
+                <input type="checkbox" name="selectOption[]" value="2"> Включить
+              </label>
+            </div>
+          </div>
+        </div> <!--Конец LC-->
 
         <div class="row"> <!--Строка для выбора по смене для распечатывания журнала-->
           <div class="col-md-12 text-center row-in-collapse-menu">
@@ -83,7 +100,7 @@
               </label>
             </div>
 
-             <div class="form-group">
+           <div class="form-group">
               <label for="electic-shift" class="control-label">Выбор по линии</label>
               <? select_login_engineer($link,"form-control", $_COOKIE['id_status']); ?>
             </div>
