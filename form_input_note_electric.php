@@ -1,40 +1,45 @@
 <!-- Кнопка для вывода формы добавления записей в журнал -->
-<div class = "row well">
-	<div class="col-md-12 select-workshop">
-				<p class="text-center"> Для добавления записи выберите номер цеха: </p>
-				<form name = "add_new_message_electric" method = "POST" action = "journal_of_breakdowns_electric.php" class="form-horizontal">
-					<div class="form-group text-center">
-						<div class="col-md-12">
-							<label class="radio-inline">
-								<input type = "radio" name = "number_workshop" value = "1" class = "number_workshop"/> Цех №1
-							</label>
-						
-							<label class="radio-inline"hidden="">		
-								<input type = "radio" name = "number_workshop" value = "2" class = "number_workshop"/> Цех №2
-							</label>
+<div class = "row select-workshop">
+	<div class="col-md-3">
+	</div>
+	<div class="col-md-6 well">
+		<p class="text-center"> Для добавления записи выберите номер цеха: </p>
+		<form name = "add_new_message_electric" method = "POST" action = "journal_of_breakdowns_electric.php" class="form-horizontal">
+			<div class="form-group text-center">
+				<div class="col-md-12">
+					<label class="radio-inline">
+						<input type = "radio" name = "number_workshop" value = "1" class = "number_workshop"/> Цех №1
+					</label>
+				
+					<label class="radio-inline"hidden="">		
+						<input type = "radio" name = "number_workshop" value = "2" class = "number_workshop"/> Цех №2
+					</label>
 
-							<label class="radio-inline">
-								<input type = "radio" name = "number_workshop" value = "3" class = "number_workshop"/> Цех №3 
-							</label>
+					<label class="radio-inline">
+						<input type = "radio" name = "number_workshop" value = "3" class = "number_workshop"/> Цех №3 
+					</label>
 
-							<label class="radio-inline">
-								<input type = "radio" name = "number_workshop" value = "5" class = "number_workshop"/> Цех №5
-							</label>
+					<label class="radio-inline">
+						<input type = "radio" name = "number_workshop" value = "5" class = "number_workshop"/> Цех №5
+					</label>
 
-							<label class="radio-inline">
-								<input type = "radio" name = "number_workshop" value = "7" class = "number_workshop"/> Цех №7
-							</label>
+					<label class="radio-inline">
+						<input type = "radio" name = "number_workshop" value = "7" class = "number_workshop"/> Цех №7
+					</label>
 
-							<label class="radio-inline">
-								<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое
-							</label>
-						</div>
+					<label class="radio-inline">
+						<input type = "radio" name = "number_workshop" value = "4" class = "number_workshop" /> Другое
+					</label>
+				</div>
 
-						<div class="col-md-12">
-							<input type = "submit" name = "show_form_add_new_message_to_journal_electric" value = "Добавить новую запись" class="btn btn-default" id="button-select-workshop"/>
-						</div>
-					</div>
-				</form>
+				<div class="col-md-12">
+					<input type = "submit" name = "show_form_add_new_message_to_journal_electric" value = "Добавить новую запись" class="btn btn-default" id="button-select-workshop"/>
+				</div>
+			</div>
+		</form>
+		</div>
+
+		<div class="col-md-3">
 		</div>
 	</div>
 <!-- Конец кода для кнопки вывода формы добавления записей в журнал -->
@@ -53,34 +58,42 @@
 ?>
 <!-- Код вывода формы для добавления записей в журнал -->
 <div class = "row" id="form-add-note">
-	<div class="col-md-12">
 
 	<?php 
-		echo "</br><p class='text-center'> $message_number_workshop </p>"; 
+		echo "</br><p class='text-center header-in-form-add-note'> $message_number_workshop </p>"; 
 	?>
 
-		<form name = "add_new_message_electric" method = "POST" action = "add_new_message_to_journal_electric.php" onsubmit = "valid_form_add_mess(this)" class="form-horizontal">
-			<div class="form-group text-center">
-				<label for = "name_machine"> Название линии </label>
-				<select size = "1" name = "name_machine" id = "name_machine" class="form-control"> 
-					<?php
-						while($row_two = mysqli_fetch_array($result_query_select_name_machine)){
-							$name_machine = $row_two['name_machine'];
-							echo "<option value = '$name_machine'>" . $name_machine . "</option>";
-						}
-					?>
-				</select> 
+		<form name = "add_new_message_electric" method = "POST" 
+		action = "add_new_message_to_journal_electric.php" onsubmit = "valid_form_add_mess(this)" 
+		class="form-horizontal">
+			<div class="form-row">
+				<div class="col-md-3 text-center">
+					<label for = "name_machine" class="col-form-label"> Название линии </label>
+					<select size = "1" name = "name_machine" id = "name_machine" class="form-control"> 
+						<?php
+							while($row_two = mysqli_fetch_array($result_query_select_name_machine)){
+								$name_machine = $row_two['name_machine'];
+								echo "<option value = '$name_machine'>" . $name_machine . "</option>";
+							}
+						?>
+					</select> 
+				</div>
 			
-	
-				<label for = "caller_FIO"> Вызов сделал </label>
-				<input type = "text" name = "caller_FIO" id = "caller_FIO" 
-					value = "Мастер" class="form-control"/> 
+				<div class="col-md-3 text-center">
+					<label for = "caller_FIO" class="col-form-label"> Вызов сделал </label>
+					<input type = "text" name = "caller_FIO" id = "caller_FIO" 
+						value = "Мастер" class="form-control"/> 
+				</div>
 
-				<label for = "call_time"> Время вызова </label>
-				<input type = "time" name = "call_time" value = "00:00" class="form-control" />
+				<div class="col-md-3 text-center">
+					<label for = "call_time" class="col-from-label"> Время вызова </label>
+					<input type = "time" name = "call_time" value = "00:00" class="form-control" />
+				</div>
 
-				<label for = "end_of_work"> Окончание работы </label>
-				<input type = "time" name = "end_of_work" value = "00:00" class="form-control" /> 
+				<div class="col-md-3 text-center">
+					<label for = "end_of_work" class="col-form-label"> Окончание работы </label>
+					<input type = "time" name = "end_of_work" value = "00:00" class="form-control" /> 
+				</div>
 		
 				<label for = "breakdown" class = "label_breakdown"> Ошибка или причина поломки </label> 
 				<textarea cols = "45" rows = "10" wrap = "hard" name = "breakdown" id ="breakdown" 
@@ -155,7 +168,6 @@
 				<input type = "submit" name = "add_new_message_to_journal_electric" class="form-control btn btn-default">
 				</div>
 		</form>
-	</div>
 </div>
 <!-- конец кода для добавленя записи в журнал -->
 

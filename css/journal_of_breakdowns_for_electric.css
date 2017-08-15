@@ -56,7 +56,7 @@ th{
 }
 
 .col-md-2,.col-md-4{
-  border: 1px solid red !important;
+  /*border: 1px solid red !important;*/
 }
 
 .row-in-collapse-menu{
@@ -119,19 +119,26 @@ th{
 
 /*конец стилей для меню*/
 
-/*стили кнопки выбора номера цеха*/
+/*Стили для формы выбора номера цеха mark-select-workshop*/
+
+.select-workshop{
+  margin-top: 25px;
+}
 
 #button-select-workshop{
   margin-top: 15px;
 }
 
-/*конец стилей для кнопки выбора номера цеха*/
+/*mark-select-workshop*/
 
-/*стили для формы добавления записи в таблицу*/
+/*стили для формы добавления записи в таблицу mark-add-note*/
+.header-in-form-add-note{
+  margin-bottom: 15px;
+}
 
 #form-add-note .form-control{
   width: 50% !important;
   margin: 0 auto;
 }
 
-/*конец стилей для формы добавления записи в таблицу*/
+/*mark-add-note*/

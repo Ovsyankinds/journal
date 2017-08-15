@@ -9,6 +9,7 @@
 		$selectedFirstDate = $paramArray['Начальная дата'];
 		$selectedLastDate = $paramArray['Конечная дата'];
 		$lineCount = $paramArray['Число строк'];
+		$startData = "2015-01-01";
 
 		if($selectedFirstDate != 0 && $selectedLastDate == 0 && $lineCount == 0){
 			//Если первая дата существует, вторая дата равна нулю и число линий равно 0
@@ -20,7 +21,6 @@
 
 		}elseif($selectedFirstDate == 0 && $selectedLastDate != 0 && $lineCount == 0){
 			//Если первая дата не выбрана, вторая дата выбрана и число линий не выбрано
-			$startData = "2015-01-01";
 			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
 						name_engineer, number_workshop,	name_machine, caller_FIO, 
 						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
