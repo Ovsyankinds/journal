@@ -64,10 +64,9 @@
 	?>
 
 		<form name = "add_new_message_electric" method = "POST" 
-		action = "add_new_message_to_journal_electric.php" onsubmit = "valid_form_add_mess(this)" 
-		class="form-horizontal">
+		action = "add_new_message_to_journal_electric.php" onsubmit = "valid_form_add_mess(this)">
 			<div class="form-row">
-				<div class="col-md-3 text-center">
+				<div class=" form-group col-md-3 text-center well">
 					<label for = "name_machine" class="col-form-label"> Название линии </label>
 					<select size = "1" name = "name_machine" id = "name_machine" class="form-control"> 
 						<?php
@@ -79,50 +78,49 @@
 					</select> 
 				</div>
 			
-				<div class="col-md-3 text-center">
+				<div class="form-group col-md-3 text-center well">
 					<label for = "caller_FIO" class="col-form-label"> Вызов сделал </label>
 					<input type = "text" name = "caller_FIO" id = "caller_FIO" 
 						value = "Мастер" class="form-control"/> 
 				</div>
 
-				<div class="col-md-3 text-center">
+				<div class="form-group col-md-3 text-center well">
 					<label for = "call_time" class="col-from-label"> Время вызова </label>
 					<input type = "time" name = "call_time" value = "00:00" class="form-control" />
 				</div>
 
-				<div class="col-md-3 text-center">
+				<div class="form-group col-md-3 text-center well">
 					<label for = "end_of_work" class="col-form-label"> Окончание работы </label>
 					<input type = "time" name = "end_of_work" value = "00:00" class="form-control" /> 
 				</div>
-		
-				<label for = "breakdown" class = "label_breakdown"> Ошибка или причина поломки </label> 
-				<textarea cols = "45" rows = "10" wrap = "hard" name = "breakdown" id ="breakdown" 
-							onBlur = "foo(this.value)" class="form-control"> 
-				</textarea> 
+				
+				<div class="form-group col-md-4 well">
+					<label for = "breakdown" class = "col-form-label"> Ошибка или причина поломки </label> 
+					<textarea cols = "45" rows = "10" wrap = "hard" name = "breakdown" id ="breakdown" 
+								onBlur = "foo(this.value)" class="form-control"> 
+					</textarea> 
+				</div>
 	
 				<!-- <p> <div id = "hidden_message"> </div> </p> -->
 			
 				<!-- Блок кода для создания списка из checkbox'ов
 					для добавления автоматом записи в поле "Устранение поломки"-->
-				<div id = "checkbox_removal_breakdown"> 
-					<ul> 
-						<li>
-							<span> Исп.поля </span>
+				<!--<div class="form-group col-md-6 well">
+					<div class="form-check">
+						<label> Исп.поля
 							<input type = "checkbox" name = "checkbox_removal_breakdown[]"
-							value = "1" onclick = "checkbox(this)"/>
-						</li> 
-						<li>
-							<span> Исп.поля+обход </span>
+							value = "1" onclick = "checkbox(this)" class="form-check-input"/>
+						</label> 
+						<label> Исп.поля+обход
 							<input type = "checkbox" name = "checkbox_removal_breakdown[]"
-							value = "2" onclick = "checkbox(this)"/>
-						</li> 
-						<li> 
-							<span> Принтер </span>
+							value = "2" onclick = "checkbox(this)" class="form-check-input"/>
+						</label> 
+						<label>Принтер
 							<input type = "checkbox" name = "checkbox_removal_breakdown[]" 
-							value = "3" onclick = "checkbox(this)" /> 
-						</li> 
-					</ul>
-				</div>
+							value = "3" onclick = "checkbox(this)" class="form-check-input"> 
+						</label> 
+					</div>
+				</div> -->
 				<!-- конец блока для создания списка из checkbox'ов -->
 			
 			<script>
@@ -151,16 +149,35 @@
 					/*конец функции по добавлению записи в поле "Утсранение поломки"*/
 			</script>
 			
-				<p>
-					<label for = "removal_breakdown" class = "label_breakdown"> Устранение поломки </label>
+				<div class="form-group col-md-5 text-center well">
+					<label for = "removal_breakdown" class = "col-from-label"> Устранение поломки </label>
+						<div class="input-group">
+							<div class="form-check form-check-inline">
+								<label> Исп.поля
+									<input type = "checkbox" name = "checkbox_removal_breakdown[]"
+										value = "1" onclick = "checkbox(this)" class="form-check-input"/>
+								</label> 
+								<label> Исп.поля+обход
+									<input type = "checkbox" name = "checkbox_removal_breakdown[]"
+									value = "2" onclick = "checkbox(this)" class="form-check-input"/>
+								</label> 
+								<label>Принтер
+									<input type = "checkbox" name = "checkbox_removal_breakdown[]" 
+									value = "3" onclick = "checkbox(this)" class="form-check-input"> 
+								</label> 
+							</div>
+						</div>
+					
 					<textarea cols = "45" rows = "10" wrap = "hard" name = "removal_breakdown" id = "removal_breakdown" onclick = "fun_one(this)" 
 								onBlur = "foo(this.value)" class="form-control">
 					</textarea>
-				</p>
+				</div>
 				
-				<p>
-					<label for = "used_teh_mat_values" class = "label_breakdown"> Используемые ТМЦ </label>
-					<textarea cols = "45" rows = "10" wrap = "hard" name = "used_teh_mat_values" id = "used_teh_mat_values" onclick = "fun_one(this)" class="form-control">
+				<div class="form-group col-md-3 text-center well">
+					<label for = "used_teh_mat_values" class = "col-from-label"> Используемые ТМЦ </label>
+					<textarea cols = "45" rows = "10" wrap = "hard" 
+								name = "used_teh_mat_values" id = "used_teh_mat_values" 
+								onclick = "fun_one(this)" class="form-control">
 					</textarea>
 				</p>
 				
