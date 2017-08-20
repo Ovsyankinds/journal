@@ -136,8 +136,8 @@ th{
   margin-bottom: 15px;
 }
 
-#form-add-note .form-control{
-
+.label-form-input-note{
+  /*margin-bottom: 15px !important;*/
 }
 
 

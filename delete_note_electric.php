@@ -1,9 +1,7 @@
 <!-- Блок кода для удаления записей из таблицы -->
-<div class="row">
-	<div class="col-md-3">
-	</div>
-
-	<div class="col-md-6 text-center well">
+<div class="container">
+<div class="row justify-content-center">
+	<div class="col-md-4">
 		<form name = "delete_message" method = "POST" action = "delete_message_of_journal_breackdowns_electric.php" class="form-inline">
 			<select size = "1" name = "id_delete" class="form-control">
 				<?php
@@ -19,11 +17,9 @@
 					}					
 				?>	
 			</select>
-			<input type = "submit" name = "delete_message_of_journal_electric" value = "Удалить выбранную запись" class="btn btn-default" />
+			<input type = "submit" name = "delete_message_of_journal_electric" value = "Удалить выбранную запись" class="btn btn-secondary" />
 		</form>
-		</div>
-
-	<div class="col-md-3">
 	</div>
+</div>
 </div>
 <!-- Конец блока кода удаления записей из таблицы -->
