@@ -57,7 +57,6 @@
 <!-- Код вывода формы для добавления записей в журнал -->
 <div class="container">
 <div class = "row justify-content-center" id="form-add-note">
-	<div class="col-md-10">
 
 	<?php 
 		echo "</br><p class='text-center header-in-form-add-note'> $message_number_workshop </p>"; 
@@ -161,7 +160,6 @@
 		<input type = "radio" checked name = "add_number_workshop" hidden = "true" value = "<?php echo $number_workshop; ?>">
 		<input type = "submit" name = "add_new_message_to_journal_electric" class="form-control btn btn-default">
 	</form>
-	</div>
 </div>
 </div>
 <!-- конец кода для добавленя записи в журнал -->

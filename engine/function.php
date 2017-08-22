@@ -9,6 +9,11 @@
 		$selectedFirstDate = $paramArray['Начальная дата'];
 		$selectedLastDate = $paramArray['Конечная дата'];
 		$lineCount = $paramArray['Число строк'];
+		$shift = $paramArray['shift'];
+		$nameElectric = $paramArray['nameElectric'];
+		$numberWokshop = $paramArray['numberWorkshop'];
+		$nameLine = $paramArray['nameLine'];
+
 		$startData = "2015-01-01";
 
 		if($selectedFirstDate != 0 && $selectedLastDate == 0 && $lineCount == 0){

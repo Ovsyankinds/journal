@@ -59,15 +59,56 @@
         }*/
 
         //print_r($_POST['selectOption']);
-        $paramArrayKeys = ["Начальная дата", "Конечная дата", "Число строк"];
+        $paramArrayKeys = ["Начальная дата", "Конечная дата", "Число строк", "Смена"];
         $paramArray = array();
         $selectOption = $_POST['selectOption'];
+        $countSelectOption = count($selectOption);
 
         $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
         $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
         $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
+        $selectedShift = trim(strip_tags( $_POST['shift'] ));
         
-        if($selectOption[0] == 1 && $selectOption[1] != 2){
+
+        if( $countSelectOption ){
+          if($countSelectOption == 1){
+            switch( $selectOption[$countSelectOption - 1] ){
+              case 1:
+                array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0);
+                $result = array_combine($paramArrayKeys, $paramArray);
+                break;
+              case 2:
+                array_push($paramArray, 0, 0, $selectedLineCount, 0);
+                $result = array_combine($paramArrayKeys, $paramArray);
+                break;
+              case 3:
+                array_push($paramArray, 0, 0, 0, $selectedShift);
+                $result = array_combine($paramArrayKeys, $paramArray);
+                break;
+            }
+          }
+
+          /*if($countSelectOption == 2){
+            while($selectOption){
+              switch( $selectOption[$countSelectOption] ){
+                case 1:
+                  array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
+                  $result = array_combine($paramArrayKeys, $paramArray);
+                  break;
+                case 2:
+                  array_push($paramArray, 0, 0, $selectedLineCount);
+                  $result = array_combine($paramArrayKeys, $paramArray);
+                  break;
+                case 3:
+                  array_push($paramArray, 0, 0, 0, $selectedShift);
+                  $result = array_combine($paramArrayKeys, $paramArray);
+                  break;
+              }
+            }
+          }*/
+        }
+
+        /*if($selectOption[0] == 1 && $selectOption[1] != 2){
           array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
           $result = array_combine($paramArrayKeys, $paramArray);
         }elseif($selectOption[0] == 2){ 
@@ -76,9 +117,13 @@
         }elseif($selectOption[0] == 1 && $selectOption[1] == 2){
           array_push($paramArray, $selectedFirstDate, $selectedLastDate, $selectedLineCount);
           $result = array_combine($paramArrayKeys, $paramArray);
-        }else{
+        }elseif($selectOption[0] == 3){
+          array_push($paramArray, 0, 0, 0, $selectedShift);
+          $result = array_combine($paramArrayKeys, $paramArray);
+        }elseif($selectOption[0] == 1 && $selectOption[1] == 2){}
+        else{
           echo "Не выбрана ни одна из опций";
-        }
+        }*/
 
         /*switch($selectOption){
           case 1:
@@ -98,8 +143,11 @@
             echo "Вы не подтвердили выбор"; 
         }*/
 
-        //print_r($result);
-        printElectricNote($link, $nameDataBaseTable, $result);
+        print_r($selectOption);
+        print_r($result);
+        if($result){
+          //printElectricNote($link, $nameDataBaseTable, $result);
+        }
       }    
     ?>
 </table>
