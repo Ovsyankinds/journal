@@ -54,62 +54,45 @@
       
     <?php
       if( isset($_POST['printElectrictNote']) ){
-        /*foreach ($selectOption as $value) {
-          $selectOption = (integer) trim(strip_tags( $_POST['selectOption'] ));
-        }*/
 
-        //print_r($_POST['selectOption']);
-        $paramArrayKeys = ["Начальная дата", "Конечная дата", "Число строк", "Смена"];
+        $paramArrayKeys = ["firstDate", "lastDate", 
+                            "lineCount", "shift", "nameElectric", "numberWorkshop", "nameLine"];
         $paramArray = array();
         $selectOption = $_POST['selectOption'];
-        $countSelectOption = count($selectOption);
+        //$selectOptionWait = [1, 2, 3, 4, 5, 6,];
+        //$resultO = array_diff($selectOptionWait, $selectOption);
+
+        /*echo "<pre>";
+        print_r($selectOption);
+        echo "<pre>";
+
+        echo "<pre>";
+        print_r($resultO);
+        echo "<pre>";
+        $countSelectOption = count($selectOption) - 1;*/
+        //echo $countSelectOption;
 
         $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
         $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
         $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
         $selectedShift = trim(strip_tags( $_POST['shift'] ));
-        
+        $selectedNameElectric = "aaa";
+        $selectedNumberWorkshop = 1;
+        $selectedLineName = "FFF";
 
-        if( $countSelectOption ){
-          if($countSelectOption == 1){
-            switch( $selectOption[$countSelectOption - 1] ){
-              case 1:
-                array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0);
-                $result = array_combine($paramArrayKeys, $paramArray);
-                break;
-              case 2:
-                array_push($paramArray, 0, 0, $selectedLineCount, 0);
-                $result = array_combine($paramArrayKeys, $paramArray);
-                break;
-              case 3:
-                array_push($paramArray, 0, 0, 0, $selectedShift);
-                $result = array_combine($paramArrayKeys, $paramArray);
-                break;
+
+        /*foreach($selectOptionWait as $row){
+          foreach ($selectOption $value) {
+            if($row != $value){
+              array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0, 0, 0, 0);
+              $result = array_combine($paramArrayKeys, $paramArray);
             }
           }
+        }*/
 
-          /*if($countSelectOption == 2){
-            while($selectOption){
-              switch( $selectOption[$countSelectOption] ){
-                case 1:
-                  array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
-                  $result = array_combine($paramArrayKeys, $paramArray);
-                  break;
-                case 2:
-                  array_push($paramArray, 0, 0, $selectedLineCount);
-                  $result = array_combine($paramArrayKeys, $paramArray);
-                  break;
-                case 3:
-                  array_push($paramArray, 0, 0, 0, $selectedShift);
-                  $result = array_combine($paramArrayKeys, $paramArray);
-                  break;
-              }
-            }
-          }*/
-        }
 
-        /*if($selectOption[0] == 1 && $selectOption[1] != 2){
-          array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
+        if($selectOption[0] == 0 && $selectOption[1] != 1){
+          array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0, 0, 0, 0);
           $result = array_combine($paramArrayKeys, $paramArray);
         }elseif($selectOption[0] == 2){ 
           array_push($paramArray, 0, 0, $selectedLineCount);
@@ -123,28 +106,12 @@
         }elseif($selectOption[0] == 1 && $selectOption[1] == 2){}
         else{
           echo "Не выбрана ни одна из опций";
-        }*/
+        }
 
-        /*switch($selectOption){
-          case 1:
-            $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
-            $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
-            array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0);
-            $result = array_combine($paramArrayKeys, $paramArray);
-            break;
 
-          case 2:
-            $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
-            array_push($paramArray, 0, 0, $selectedLineCount);
-            $result = array_combine($paramArrayKeys, $paramArray);
-            break;
-
-          default:
-            echo "Вы не подтвердили выбор"; 
-        }*/
-
-        print_r($selectOption);
-        print_r($result);
+       //print_r($paramArray);
+        //print_r($selectOption);
+        //print_r($result);
         if($result){
           //printElectricNote($link, $nameDataBaseTable, $result);
         }

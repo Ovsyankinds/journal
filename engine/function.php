@@ -6,9 +6,9 @@
 	$nameSelectTable - имя таблицы, откуда происходит выборка
 *****/
 	function printElectricNote($link, $nameSelectTable, $paramArray){
-		$selectedFirstDate = $paramArray['Начальная дата'];
-		$selectedLastDate = $paramArray['Конечная дата'];
-		$lineCount = $paramArray['Число строк'];
+		$selectedFirstDate = $paramArray['firstDate'];
+		$selectedLastDate = $paramArray['lastDate'];
+		$lineCount = $paramArray['lineCount'];
 		$shift = $paramArray['shift'];
 		$nameElectric = $paramArray['nameElectric'];
 		$numberWokshop = $paramArray['numberWorkshop'];

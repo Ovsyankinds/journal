@@ -74,7 +74,7 @@
     <div class="row justify-content-center">
       <div class="col-md-5">
         <div class="form-group justify-content-center">
-          <label for="electic-shift" class="control-label">Выбор по электрику</label>
+          <label for="electic-shift" cselect_login_engineerlass="control-label">Выбор по электрику</label>
           <? select_login_engineer($link,"form-control", $_COOKIE['id_status']); ?>
   
           <label>
