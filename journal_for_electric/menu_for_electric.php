@@ -110,8 +110,8 @@
 
 
     <div class="row justify-content-center">
-    
-        <button type="submit" name="printElectrictNote" class="btn btn-secondary">Отправить на печать</button>
+        <input type="submit" name="printElectrictNote" class="btn btn-secondary" 
+               value="Отправить на печать"/>
     </div>
   </div>
   </form>

@@ -46,6 +46,10 @@ th{
 
 /*Стили для выпадающего списка для печати выбранных записей mark-2*/
 
+/*.row{
+  border: 1px solid red !important;
+}*/
+
 #collapseExample{
   margin-top: 15px !important;
 }
@@ -149,5 +153,18 @@ th{
   /*margin-bottom: 15px !important;*/
 }
 
+.textarea-add-note{
+ /*margin-top: 35px;*/
+}
+
+.checkbox-for-auto-added{
+  margin-top: 10px;  
+}
 
 /*mark-add-note*/
+
+/*стили для формы удаления записи из табилцы mark-delete-note*/
+.delete-note{
+  margin-top: 15px;
+}
+/*mark-delete-note*/

@@ -23,7 +23,7 @@
 	if( isset($_POST['show_form_add_new_message_to_journal']) ){ //если нажата кнопка "Добавить новую запись" выводим 
 		if( !empty($_POST['number_workshop']) ){
 		$number_workshop = $_POST['number_workshop'];
-		$query_select_name_machine = "SELECT name_machine FROM list_of_machines WHERE number_workshop = '$number_workshop'";
+		$query_select_name_machine = "SELECT id, name_machine FROM list_of_machines WHERE number_workshop = '$number_workshop' ORDER BY id DESC";
 		$result_query_select_name_machine = mysqli_query($link, $query_select_name_machine)
 								or die("Не удается выполнить запрос  |||" . mysqli_error($link));
 		$message_number_workshop = "Вы выбрали цех номер $number_workshop";

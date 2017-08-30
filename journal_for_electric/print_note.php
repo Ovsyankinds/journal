@@ -59,18 +59,7 @@
                             "lineCount", "shift", "nameElectric", "numberWorkshop", "nameLine"];
         $paramArray = array();
         $selectOption = $_POST['selectOption'];
-        //$selectOptionWait = [1, 2, 3, 4, 5, 6,];
-        //$resultO = array_diff($selectOptionWait, $selectOption);
-
-        /*echo "<pre>";
-        print_r($selectOption);
-        echo "<pre>";
-
-        echo "<pre>";
-        print_r($resultO);
-        echo "<pre>";
-        $countSelectOption = count($selectOption) - 1;*/
-        //echo $countSelectOption;
+        $countSelectOption = count($selectOption);
 
         $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
         $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
@@ -80,30 +69,37 @@
         $selectedNumberWorkshop = 1;
         $selectedLineName = "FFF";
 
+        /*$array = array(1, 2, 3, 4, 5, 6);
+        $a = array_diff($array, $selectOption);*/
 
-        /*foreach($selectOptionWait as $row){
-          foreach ($selectOption $value) {
-            if($row != $value){
-              array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0, 0, 0, 0);
-              $result = array_combine($paramArrayKeys, $paramArray);
+        echo "<pre>";
+        print_r($selectOption);
+        echo "</pre>";
+
+        /*echo "<pre>";
+        print_r($a);
+        echo "</pre>";*/
+
+        foreach ($a as $row) {
+          if($countSelectOption == 1){
+            switch($row){
+              case 1:
+                break;
             }
           }
-        }*/
 
+          if($countSelectOption == 2){
+            
+          }
+        }
 
-        if($selectOption[0] == 0 && $selectOption[1] != 1){
+        if($selectOption[0] == 1){
           array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0, 0, 0, 0);
           $result = array_combine($paramArrayKeys, $paramArray);
-        }elseif($selectOption[0] == 2){ 
-          array_push($paramArray, 0, 0, $selectedLineCount);
+        }elseif($selectOption[0] == 2){
+          array_push($paramArray, 0, 0, $selectedLineCount, 0, 0, 0, 0);
           $result = array_combine($paramArrayKeys, $paramArray);
-        }elseif($selectOption[0] == 1 && $selectOption[1] == 2){
-          array_push($paramArray, $selectedFirstDate, $selectedLastDate, $selectedLineCount);
-          $result = array_combine($paramArrayKeys, $paramArray);
-        }elseif($selectOption[0] == 3){
-          array_push($paramArray, 0, 0, 0, $selectedShift);
-          $result = array_combine($paramArrayKeys, $paramArray);
-        }elseif($selectOption[0] == 1 && $selectOption[1] == 2){}
+        }
         else{
           echo "Не выбрана ни одна из опций";
         }
@@ -111,7 +107,7 @@
 
        //print_r($paramArray);
         //print_r($selectOption);
-        //print_r($result);
+        print_r($result);
         if($result){
           //printElectricNote($link, $nameDataBaseTable, $result);
         }

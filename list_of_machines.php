@@ -3,23 +3,32 @@
 	require_once "engine/function.php";
 	mysqli_query($link, "SET NAMES 'utf8'");
 	
-	$array_name_machines_first_workshop = array('Медная волочилка','TTX-320', 'EvroDraw', 'ЭнергоМаш', 'Mario Frigerio', 'Сигара Quiens', 
-									'Планетарка Quiens', 'ВНИИКПМАШ','ЛПП-12', 'Протон', 'Фонарка Cortinovis','Сигара Cortinovis',
-									'Кран балка 5Т', 'Компрессор Atlas Copco 1', 'Компрессор EKO-75', 'Компрессор Atlas Copco 2');
+	$array_name_machines_first_workshop = array('Медная волочилка','TTX-320', 'Mario Frigerio', 
+																							'EvroDraw', 'ЭнергоМаш', 'Сигара Quiens', 
+																							'Планетарка Quiens', 'ВНИИКПМАШ','ЛПП-12', 'Медная волочилка II', 
+																							'Протон', 'Фонарка Cortinovis', 'Сигара Cortinovis',
+																							'Кран балка 5Т', 'Компрессор Atlas Copco 1', 
+																							'Компрессор EKO-75', 'Компрессор Atlas Copco 2', 
+																							'Градирня №1');
 	
-	$array_name_machines_second_workshop = array('Лентообмотчик HeFei', 'Лентообмотчик Cortinovis', 'EEl-40', 'Испытательные поля', 
-												'EEL-60', 'Drum Twister Cortinovis', 'Drum Twister Китай', 'Ванна сшивки', 
-												'Кран балка 5Т', 'Кран балка 10Т', 'Ворота №3' );
+	$array_name_machines_second_workshop = array('Лентообмотчик HeFei', 'Лентообмотчик Cortinovis', 
+																								'EEl-40', 'Испытательные поля', 
+																								'EEL-60', 'Drum Twister Cortinovis', 'Drum Twister Китай', 
+																								'Ванна сшивки', 'Кран балка 5Т', 'Кран балка 10Т', 
+																								'Ворота №3', 'Промежуточный бак' );
 												
-	$array_name_machines_third_workshop = array('Бугельная Cortinovis', 'Caballe', 'Rosendahl', 'Mario Frigerio', 'Сигара HeFei',
-												'Ванна сшивки', 'Кран балка 5Т эм-кат','Кран балка 5Т', 'Компрессор Atlas Copco 1', 
-												'Печь отжига');
+	$array_name_machines_third_workshop = array('Бугельная Cortinovis', 'Caballe', 'Rosendahl', 
+																							'Mario Frigerio', 'Сигара HeFei', 'Ванна сшивки', 
+																							'Кран балка 5Т эм-кат','Кран балка 5Т', 
+																							'Компрессор Atlas Copco 1', 'Печь отжига', 
+																							'Градирня №2', 'Промежуточный бак', 'Пресс MF', 'ЛПП-19');
 												
 	$array_name_machines_for_workshop = array('РМЦ', "Общее", "ОТК");
 
-	$array_name_machines_five_workshop = array("Бронерезка", "Перемотка 1", "Перемотка 2");
+	$array_name_machines_five_workshop = array("Бронерезка", "Перемотка 1 (около бронерезки)", "Перемотка 2");
 
-	$array_name_machines_seven_workshop = array("Ошланговка", "Протон", "Экран", "Наклонка");
+	$array_name_machines_seven_workshop = array("Ошланговка", "Протон", "Экранировка", "Наклонка", "Градирня №3", 
+																							"Промежуточный бак", 'Общее');
 	
 	
 	foreach($array_name_machines_first_workshop as $name_machines_first_workshop){

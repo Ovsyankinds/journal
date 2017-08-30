@@ -202,7 +202,7 @@
 	//require_once "menu.php"; // код меню (назад на главную, распечатать 
 						// журнал)
 	//require_once "/home/homeel/homeelectrical.ru/docs/menu.php";
-	require_once "form_input_note_electric.php"; //код для добавления записей в
+	require_once "journal_for_electric/form_input_note_electric.php"; //код для добавления записей в
 									//таблицу
 	//require_once "/home/homeel/homeelectrical.ru/docs/form_input_note.php";
 
