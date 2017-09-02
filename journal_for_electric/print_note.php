@@ -55,62 +55,22 @@
     <?php
       if( isset($_POST['printElectrictNote']) ){
 
-        $paramArrayKeys = ["firstDate", "lastDate", 
-                            "lineCount", "shift", "nameElectric", "numberWorkshop", "nameLine"];
-        $paramArray = array();
         $selectOption = $_POST['selectOption'];
-        $countSelectOption = count($selectOption);
 
         $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
         $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
         $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
         $selectedShift = trim(strip_tags( $_POST['shift'] ));
-        $selectedNameElectric = "aaa";
-        $selectedNumberWorkshop = 1;
-        $selectedLineName = "FFF";
+        $selectedShift = trim(strip_tags( $_POST['select_login_engineer'] ));
+        $selectedShift = trim(strip_tags( $_POST['select_login_engineer'] ));
+        $selectedShift = trim(strip_tags( $_POST['select_login_engineer'] ));
 
-        /*$array = array(1, 2, 3, 4, 5, 6);
-        $a = array_diff($array, $selectOption);*/
+        $arrayParamSelectOption = [];
+        array_push($arrayParamSelectOption, $selectedFirstDate, $selectedLastDate, $selectedLineCount,
+                                            $selectedShift, 0, 0, 0);
 
-        echo "<pre>";
-        print_r($selectOption);
-        echo "</pre>";
-
-        /*echo "<pre>";
-        print_r($a);
-        echo "</pre>";*/
-
-        foreach ($a as $row) {
-          if($countSelectOption == 1){
-            switch($row){
-              case 1:
-                break;
-            }
-          }
-
-          if($countSelectOption == 2){
-            
-          }
-        }
-
-        if($selectOption[0] == 1){
-          array_push($paramArray, $selectedFirstDate, $selectedLastDate, 0, 0, 0, 0, 0);
-          $result = array_combine($paramArrayKeys, $paramArray);
-        }elseif($selectOption[0] == 2){
-          array_push($paramArray, 0, 0, $selectedLineCount, 0, 0, 0, 0);
-          $result = array_combine($paramArrayKeys, $paramArray);
-        }
-        else{
-          echo "Не выбрана ни одна из опций";
-        }
-
-
-       //print_r($paramArray);
-        //print_r($selectOption);
-        print_r($result);
-        if($result){
-          //printElectricNote($link, $nameDataBaseTable, $result);
-        }
+        printElectricNote($link, $nameDataBaseTable, $selectOption, $arrayParamSelectOption);
+       
       }    
     ?>
 </table>

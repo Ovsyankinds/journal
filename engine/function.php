@@ -5,13 +5,49 @@
 	Дата создания 11.08.2017
 	$nameSelectTable - имя таблицы, откуда происходит выборка
 *****/
-	function printElectricNote($link, $nameSelectTable, $paramArray){
-		$selectedFirstDate = $paramArray['firstDate'];
+	function printElectricNote($link, $nameSelectTable, $paramArray, $arrayParamSelectOption){
+		/*$selectedFirstDate = $paramArray['firstDate'];
 		$selectedLastDate = $paramArray['lastDate'];
 		$lineCount = $paramArray['lineCount'];
 		$shift = $paramArray['shift'];
 		$nameElectric = $paramArray['nameElectric'];
 		$numberWokshop = $paramArray['numberWorkshop'];
+		$nameLine = $paramArray['nameLine'];*/
+
+		$newArray = [1,2,3,4,5,6];
+		$newArrayTwo = [0,0,0,0,0,0];
+		$newArrayThree = [0,0,0,0,0,0];
+
+		foreach ($paramArray as $valueOne) {
+			if(in_array($valueOne, $newArray)){
+				foreach ($newArray as $valueTwo) {
+					if($valueTwo == $valueOne){
+						$newArrayTwo[$valueTwo-1] = $valueOne;
+					}
+				}
+			}
+		}
+	
+		foreach($newArrayTwo as $valueOne){
+			if($valueOne != 0){
+				$newArrayTwo[$valueOne-1] = $arrayParamSelectOption[$valueOne-1];
+			}
+		}
+
+		echo "<pre>";
+        print_r($newArrayTwo);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($arrayParamSelectOption);
+        echo "</pre>";
+
+		$selectedFirstDate = $paramArrayTwo[0];
+		$selectedLastDate = $paramArrayTwo[1];
+		$lineCount = $paramArrayTwo[2];
+		$shift = $paramArrayTwo[3];
+		$nameElectric = $paramArrayTwo[4];
+		$numberWokshop = $paramArrayTwo[5];
 		$nameLine = $paramArray['nameLine'];
 
 		$startData = "2015-01-01";
