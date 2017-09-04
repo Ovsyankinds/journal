@@ -6,17 +6,11 @@
 	$nameSelectTable - имя таблицы, откуда происходит выборка
 *****/
 	function printElectricNote($link, $nameSelectTable, $paramArray, $arrayParamSelectOption){
-		/*$selectedFirstDate = $paramArray['firstDate'];
-		$selectedLastDate = $paramArray['lastDate'];
-		$lineCount = $paramArray['lineCount'];
-		$shift = $paramArray['shift'];
-		$nameElectric = $paramArray['nameElectric'];
-		$numberWokshop = $paramArray['numberWorkshop'];
-		$nameLine = $paramArray['nameLine'];*/
 
 		$newArray = [1,2,3,4,5,6];
 		$newArrayTwo = [0,0,0,0,0,0];
-		$newArrayThree = [0,0,0,0,0,0];
+		$newArrayThree = ['selectedDate', 'lineCount', 'shift', 'nameElectric', 
+												'numberWokshop', 'nameLine'];
 
 		foreach ($paramArray as $valueOne) {
 			if(in_array($valueOne, $newArray)){
@@ -28,89 +22,81 @@
 			}
 		}
 	
+		/*echo "<pre>";
+    print_r($newArrayTwo);
+    echo "</pre>";*/
+
 		foreach($newArrayTwo as $valueOne){
 			if($valueOne != 0){
 				$newArrayTwo[$valueOne-1] = $arrayParamSelectOption[$valueOne-1];
 			}
 		}
 
-		echo "<pre>";
-        print_r($newArrayTwo);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($arrayParamSelectOption);
-        echo "</pre>";
-
-		$selectedFirstDate = $paramArrayTwo[0];
-		$selectedLastDate = $paramArrayTwo[1];
-		$lineCount = $paramArrayTwo[2];
-		$shift = $paramArrayTwo[3];
-		$nameElectric = $paramArrayTwo[4];
-		$numberWokshop = $paramArrayTwo[5];
-		$nameLine = $paramArray['nameLine'];
+		$result = array_combine($newArrayThree, $newArrayTwo);
 
 		$startData = "2015-01-01";
 
-		if($selectedFirstDate != 0 && $selectedLastDate == 0 && $lineCount == 0){
-			//Если первая дата существует, вторая дата равна нулю и число линий равно 0
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
+		$arrayQuery = [];
+
+		$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
 						name_engineer, number_workshop,	name_machine, caller_FIO, 
 						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-						used_teh_mat_values FROM $nameSelectTable WHERE date_shift ='$selectedFirstDate'
-						ORDER BY id DESC"; //LIMIT $limits
+						used_teh_mat_values FROM $nameSelectTable ";
+		$arrayQuery = [$query];
 
-		}elseif($selectedFirstDate == 0 && $selectedLastDate != 0 && $lineCount == 0){
-			//Если первая дата не выбрана, вторая дата выбрана и число линий не выбрано
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-						name_engineer, number_workshop,	name_machine, caller_FIO, 
-						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-						used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$startData' and  date_shift <= '$selectedLastDate'
-						ORDER BY id DESC"; //LIMIT $limits
+		foreach($result as $key => $value){
+			if($value){
+				switch($key){
+					
+					case 'selectedDate':
+						 $finalDate = explode("/", $value);
+						 if($finalDate[0] != 0 && $finalDate[1] != 0){
+						 	$query = "WHERE date_shift >= '$finalDate[0]' and date_shift <= '$finalDate[1]'";
+						 }elseif($finalDate[0] !=0 && $finalDate[1] == 0){
+						 	$query = "WHERE date_shift ='$finalDate[0]'";
+						 }elseif($finalDate[0] ==0 && $finalDate[1] != 0){
+						 	$query = "WHERE date_shift >= '$startData' and  date_shift <= '$finalDate[1]'";
+						 }
+						 array_push($arrayQuery, $query);
+						break;
 
-		}elseif($selectedFirstDate != 0 && $selectedLastDate != 0 && $lineCount == 0){
-			//Если первая дата существует, вторая дата существует и число линий равно 0
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
-									and date_shift <= '$selectedLastDate'
-									ORDER BY id DESC"; //LIMIT $limits
+					case 'shift':
+						$query = " and shift = '$value'";
+						array_push($arrayQuery, $query);
+						break;
 
-		}elseif($lineCount != 0 && $selectedFirstDate == 0 && $selectedLastDate == 0){
-			//Если число линий не равно нулю, первая и вторая даты не выбраны
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable ORDER BY id DESC LIMIT $lineCount"; //LIMIT $limits
+					case 'lineCount':
+						$query = " ORDER BY id DESC LIMIT $value";
+						array_push($arrayQuery, $query);
+						break;
 
-		}elseif($lineCount != 0 && $selectedFirstDate != 0 && $selectedLastDate == 0){
-			//Если число линий не равно нулю, первая дата не равна нулю, а вторая дата не выбрана
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
-									ORDER BY id DESC LIMIT $lineCount";
 
-		}elseif($lineCount != 0 && $selectedFirstDate == 0 && $selectedLastDate != 0){
-			//Если число линий не равно нулю, первая дата не выбрана, а вторая дата выбрана
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$startData' and date_shift <= '$selectedLastDate'
-									ORDER BY id DESC LIMIT $lineCount";
+					case 'nameElectric':
+						echo "af";
 
-		}elseif($lineCount != 0 && $selectedFirstDate != 0 && $selectedLastDate != 0){
-			//Если число линий выбрано, и выбраны обе даты
-			$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $nameSelectTable WHERE date_shift >= '$selectedFirstDate'
-									and date_shift <= '$selectedLastDate' ORDER BY id ASC LIMIT $lineCount";
-
-		}else{ 
-			echo "Вы не указали дату";
+				}
+			}
 		}
+
+  	/*echo "<pre>";
+    print_r($arrayParamSelectOption).
+    echo "</pre>";
+
+		echo "<pre>";
+    print_r($newArrayTwo);
+    echo "</pre>";*/
+
+    echo "<pre>";
+    print_r($result);
+    echo "</pre>";
+
+    echo "<pre>";
+    print_r($arrayQuery);
+    echo "</pre>";
+
+    list($queryOne, $queryTwo, $queryThree, $queryFour) = $arrayQuery;
+
+    $query = $queryOne . $queryTwo . $queryFour. $queryThree;
 
 		$resultQuery = mysqli_query($link, $query);
 
