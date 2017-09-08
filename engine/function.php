@@ -1,6 +1,50 @@
 <?php
 	
 /*****
+	Функция для создания <select></select> с номерами цехов
+	Дата создания 08.09.2017
+*****/
+function selectNumberWorkshop($link, $idOrClass){
+	
+	$querySelectFromListOfMachines = "SELECT number_workshop FROM list_of_machines ORDER BY id ASC";
+	$resultSelectFromListOfMachines = mysqli_query($link, $querySelectFromListOfMachines);
+	$arrayNumberWorkshop = [];
+	while( $row = mysqli_fetch_array($resultSelectFromListOfMachines) ){
+			$arrayNumberWokshop[] = $row['number_workshop'];
+	}
+
+	$arrayNumberWokshop = array_unique($arrayNumberWokshop);
+	//print_r($arrayNumberWokshop);
+
+	echo "<select size = '1' name = 'selectNumberWorkshop' class = '$idOrCclass' id='selectNumberWorkshop'>";
+	foreach ($arrayNumberWokshop as $value) {
+		$numberWokshop = $value;
+		echo "<option value = '$numberWokshop'> $numberWokshop </option>";	
+	}
+		echo "</select>";
+}
+/*end*/
+
+/*****
+	Функция для создания <select></select> с названиями линий
+	Дата создания 08.09.2017
+*****/
+	function selectNoteNameLine($link){
+		$querySelectFromListOfMachinesDB = "SELECT name_machine, number_workshop FROM list_of_machines";
+		$resultSelectFromListOfMachinesDB = mysqli_query($link, $querySelectFromListOfMachinesDB);
+		echo "<select size = '1' name = 'selectNameLine' id = 'selectNameLine'>";
+		while( $row = mysqli_fetch_array(	$resultSelectFromListOfMachinesDB )){
+				$nameMachine = $row['name_machine'];
+				$numberWorkshop = $row['number_workshop'];
+				echo "<option disabled> Цех №" . $numberWorkshop . "</option>";	
+				echo "<option value = '$nameMachine'> $nameMachine </option>";		
+		}
+		echo "</select>";
+	}
+/*end*/
+
+
+/*****
 	Функция для отрисовки таблицы электриков с записями выбранными для распечатывания
 	Дата создания 11.08.2017
 	$nameSelectTable - имя таблицы, откуда происходит выборка
@@ -74,6 +118,10 @@
 					case 'nameElectric':
 						echo "af";
 
+					case 'nameLine':
+						$query = " WHERE name_machine = '$value'";
+						array_push($arrayQuery, $query);
+						break;
 				}
 			}
 		}
@@ -97,6 +145,8 @@
     list($queryOne, $queryTwo, $queryThree, $queryFour) = $arrayQuery;
 
     $query = $queryOne . $queryTwo . $queryFour. $queryThree;
+
+    echo $query;
 
 		$resultQuery = mysqli_query($link, $query);
 
@@ -560,7 +610,7 @@
 	
 	//----- функция по созданию выпадающего списка по зарегистрированному пользователю
 	//----- последнее изменение 04.08.2017
-		function select_login_engineer($link, $id_or_class, $id_status){
+	function select_login_engineer($link, $id_or_class, $id_status){
 			if($id_status){
 					$query_select_from_registration_DB = "SELECT sername FROM registered_users";	
 			}else{
@@ -570,7 +620,6 @@
 			$result_select_from_registration_DB = mysqli_query($link, $query_select_from_registration_DB);
 			echo "<select size = '1' name = 'select_login_engineer' 
 							class = '$id_or_class' id='select'>";
-						echo "<option value = ''> </option>";
 			while( $row = mysqli_fetch_array($result_select_from_registration_DB) ){
 					$engineer_name = $row['sername'];
 					echo "<option value = '$engineer_name'> $engineer_name </option>";	

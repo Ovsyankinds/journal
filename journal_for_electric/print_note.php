@@ -62,13 +62,13 @@
         $selectedFinalDate = $selectedFirstDate . "/" . $selectedLastDate;
         $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
         $selectedShift = trim(strip_tags( $_POST['shift'] ));
-        $nameElectric = trim(strip_tags( $_POST['select_login_engineer'] ));
-        $numberWorkshop = trim(strip_tags( $_POST['select_login_engineer'] ));
-        $nameLine = trim(strip_tags( $_POST['select_login_engineer'] ));
+        $selectedNameElectric = trim(strip_tags( $_POST['select_login_engineer'] ));
+        $selectedNumberWorkshop = trim(strip_tags( $_POST['selectNumberWorkshop'] ));
+        $selectedNameLine = trim(strip_tags( $_POST['selectNameLine'] ));
 
         $arrayParamSelectOption = [];
         array_push($arrayParamSelectOption, $selectedFinalDate, $selectedLineCount,
-                                            $selectedShift, 0, 0, 0);
+                                            $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedNameLine);
 
         printElectricNote($link, $nameDataBaseTable, $selectOption, $arrayParamSelectOption);
        

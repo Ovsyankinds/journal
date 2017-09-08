@@ -86,7 +86,7 @@
       <div class="col-md-5">
         <div class="form-group justify-content-center">
           <label for="electic-shift" class="control-label">Выбор по цеху</label>
-          <? select_login_engineer($link,"form-control", $_COOKIE['id_status']); ?>
+          <? selectNumberWorkshop($link,"form-control"); ?>
  
           <label>
             <input type="checkbox" name="selectOption[]" value="5" class="form-check-input"> Включить
@@ -99,7 +99,7 @@
      <div class="col-md-5">
         <div class="form-group justify-content-center">
           <label for="electic-shift" class="control-label">Выбор по линии</label>
-          <? select_login_engineer($link,"form-control", $_COOKIE['id_status']); ?>
+          <? selectNoteNameLine($link); ?>
        
           <label>
             <input type="checkbox" name="selectOption[]" value="6" class="form-check-input"> Включить
