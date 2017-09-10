@@ -51,10 +51,22 @@ function selectNumberWorkshop($link, $idOrClass){
 *****/
 	function printElectricNote($link, $nameSelectTable, $paramArray, $arrayParamSelectOption){
 
+
 		$newArray = [1,2,3,4,5,6];
 		$newArrayTwo = [0,0,0,0,0,0];
-		$newArrayThree = ['selectedDate', 'lineCount', 'shift', 'nameElectric', 
-												'numberWokshop', 'nameLine'];
+		$newArrayThree = ['selectedDate', 'nameLine', 'shift', 'nameElectric', 
+												'numberWokshop', 'lineCount'];
+		
+		
+		/*echo "<pre>";
+		echo "<p> Номер параметра, который выбрали </p>";
+    	print_r($paramArray);
+    	echo "</pre>";											
+
+    	echo "<p> Массив, который приходит в функцию </p>";
+		echo "<pre>";
+    	print_r($arrayParamSelectOption);
+    	echo "</pre>";	*/
 
 		foreach ($paramArray as $valueOne) {
 			if(in_array($valueOne, $newArray)){
@@ -65,10 +77,11 @@ function selectNumberWorkshop($link, $idOrClass){
 				}
 			}
 		}
-	
-		/*echo "<pre>";
-    print_r($newArrayTwo);
-    echo "</pre>";*/
+		
+		/*echo "<p> Массив параметров, которые выбрали </p>";
+		echo "<pre>";
+	    print_r($newArrayTwo);
+	    echo "</pre>";*/
 
 		foreach($newArrayTwo as $valueOne){
 			if($valueOne != 0){
@@ -77,6 +90,11 @@ function selectNumberWorkshop($link, $idOrClass){
 		}
 
 		$result = array_combine($newArrayThree, $newArrayTwo);
+
+		/*echo "<p> Массив </p>";
+		echo "<pre>";
+	    print_r($newArrayTwo);
+	    echo "</pre>";*/
 
 		$startData = "2015-01-01";
 
@@ -95,17 +113,17 @@ function selectNumberWorkshop($link, $idOrClass){
 					case 'selectedDate':
 						 $finalDate = explode("/", $value);
 						 if($finalDate[0] != 0 && $finalDate[1] != 0){
-						 	$query = "WHERE date_shift >= '$finalDate[0]' and date_shift <= '$finalDate[1]'";
+						 	$query = " date_shift >= '$finalDate[0]' and date_shift <= '$finalDate[1]'";
 						 }elseif($finalDate[0] !=0 && $finalDate[1] == 0){
-						 	$query = "WHERE date_shift ='$finalDate[0]'";
+						 	$query = " date_shift ='$finalDate[0]'";
 						 }elseif($finalDate[0] ==0 && $finalDate[1] != 0){
-						 	$query = "WHERE date_shift >= '$startData' and  date_shift <= '$finalDate[1]'";
+						 	$query = " date_shift >= '$startData' and  date_shift <= '$finalDate[1]'";
 						 }
 						 array_push($arrayQuery, $query);
 						break;
 
 					case 'shift':
-						$query = " and shift = '$value'";
+						$query = " shift = '$value'";
 						array_push($arrayQuery, $query);
 						break;
 
@@ -114,12 +132,18 @@ function selectNumberWorkshop($link, $idOrClass){
 						array_push($arrayQuery, $query);
 						break;
 
-
 					case 'nameElectric':
-						echo "af";
+						$query = " name_engineer = '$value'";
+						array_push($arrayQuery, $query);
+						break;
+
+					case 'numberWokshop':
+						$query = " number_workshop = '$value'";
+						array_push($arrayQuery, $query);
+						break;
 
 					case 'nameLine':
-						$query = " WHERE name_machine = '$value'";
+						$query = " name_machine = '$value'";
 						array_push($arrayQuery, $query);
 						break;
 				}
@@ -127,10 +151,10 @@ function selectNumberWorkshop($link, $idOrClass){
 		}
 
   	/*echo "<pre>";
-    print_r($arrayParamSelectOption).
-    echo "</pre>";
+    print_r($arrayParamSelectOption);
+    echo "</pre>";*/
 
-		echo "<pre>";
+	/*echo "<pre>";
     print_r($newArrayTwo);
     echo "</pre>";*/
 
@@ -142,15 +166,43 @@ function selectNumberWorkshop($link, $idOrClass){
     print_r($arrayQuery);
     echo "</pre>";
 
-    list($queryOne, $queryTwo, $queryThree, $queryFour) = $arrayQuery;
+    $arrayQueryResult = array_diff($arrayQuery, array('', NULL, false));
+    $queryBase = array_shift($arrayQueryResult);
+    
+    echo "<pre>";
+    print_r($arrayQueryResult);
+    echo "</pre>";
 
-    $query = $queryOne . $queryTwo . $queryFour. $queryThree;
+    if($result['lineCount'] && !$result['selectedDate'] && !$result['shift'] &&
+    	!$result['nameElectric'] && !$result['numberWokshop'] && !$result['nameLine']){
 
-    echo $query;
+    	$query = $queryBase . $arrayQuery[1];
+    }else{
+    	$query = $queryBase . "WHERE";
+	    $countArrayQuery = count($arrayQueryResult) - 1;
+	    foreach ($arrayQueryResult as $key => $value) {
+	    	if($countArrayQuery == $key){
+				$query .= $value;
+			}else{
+				$query .= $value . " and";
+			 }
+	    }
+    }
 
-		$resultQuery = mysqli_query($link, $query);
+    /*list($queryBase, $queryselectDate, $querySelectLine, $querySelectShift, $querySelectNameElectric, 
+    		$querySelectNumberWorkshop, $querySelectnameMachine) = $arrayQuery;*/
 
-		$numberOfRows = mysqli_num_rows($resultQuery);
+
+
+    /*$query = $queryBase . "WHERE" . $queryselectDate . " and" . $querySelectShift . " and" . 
+    		 $querySelectNameElectric . " and" . $querySelectNumberWorkshop .  " and" .
+    		 $querySelectnameMachine . $querySelectLine;*/
+
+    echo "<p>" . $query . "</p>";
+
+	$resultQuery = mysqli_query($link, $query);
+
+	$numberOfRows = mysqli_num_rows($resultQuery);
 
 		while($numberOfRows){
 			while( $row = mysqli_fetch_array($resultQuery) ){

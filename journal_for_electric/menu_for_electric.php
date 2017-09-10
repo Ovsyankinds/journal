@@ -45,7 +45,7 @@
           <input type="text" name="lineCount" class="form-control" id="line-count" placeholder="Введите число линий">
        
           <label>
-            <input type="checkbox" name="selectOption[]" value="2" class="form-check-input"> Включить
+            <input type="checkbox" name="selectOption[]" value="6" class="form-check-input"> Включить
           </label>
         </div>
       </div>
@@ -102,7 +102,7 @@
           <? selectNoteNameLine($link); ?>
        
           <label>
-            <input type="checkbox" name="selectOption[]" value="6" class="form-check-input"> Включить
+            <input type="checkbox" name="selectOption[]" value="2" class="form-check-input"> Включить
           </label>
         </div>
       </div>

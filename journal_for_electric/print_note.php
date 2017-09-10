@@ -67,8 +67,8 @@
         $selectedNameLine = trim(strip_tags( $_POST['selectNameLine'] ));
 
         $arrayParamSelectOption = [];
-        array_push($arrayParamSelectOption, $selectedFinalDate, $selectedLineCount,
-                                            $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedNameLine);
+        array_push($arrayParamSelectOption, $selectedFinalDate, $selectedNameLine,
+                    $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedLineCount);
 
         printElectricNote($link, $nameDataBaseTable, $selectOption, $arrayParamSelectOption);
        
