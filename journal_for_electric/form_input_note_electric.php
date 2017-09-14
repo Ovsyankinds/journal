@@ -78,7 +78,7 @@
 	<div class = "row justify-content-center" id="form-add-note">
 		<div class='col-md-5 alert alert-success text-center' role='alert'>
 			<?php 
-				echo 	"$message_number_workshop";
+				echo "$message_number_workshop";
 			?>
 		</div>
 	</div>

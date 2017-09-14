@@ -158,13 +158,13 @@ function selectNumberWorkshop($link, $idOrClass){
     print_r($newArrayTwo);
     echo "</pre>";*/
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($result);
-    echo "</pre>";
+    echo "</pre>";*/
 
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($arrayQuery);
-    echo "</pre>";
+    echo "</pre>";*/
 
     $arrayQueryResult = array_diff($arrayQuery, array('', NULL, false));
     $queryBase = array_shift($arrayQueryResult);
@@ -173,12 +173,20 @@ function selectNumberWorkshop($link, $idOrClass){
     print_r($arrayQueryResult);
     echo "</pre>";
 
+    $reverseArrayQueryResult = array_reverse($arrayQueryResult);
+    $stroke = substr($arrayQueryResult[count($arrayQueryResult) - 1], 1, 22);
+    $firstElemCountLine = array_shift($reverseArrayQueryResult);
+    //echo $stroke;
+
+   	$query = $queryBase . "WHERE";
     if($result['lineCount'] && !$result['selectedDate'] && !$result['shift'] &&
     	!$result['nameElectric'] && !$result['numberWokshop'] && !$result['nameLine']){
 
     	$query = $queryBase . $arrayQuery[1];
-    }else{
-    	$query = $queryBase . "WHERE";
+    }elseif($stroke === "ORDER BY id DESC LIMIT" || $stroke === "ORDER BY id ASC LIMIT"){
+	    $query .= implode(" and", $reverseArrayQueryResult) . $firstElemCountLine;
+	    //echo "There";
+	 }else{
 	    $countArrayQuery = count($arrayQueryResult) - 1;
 	    foreach ($arrayQueryResult as $key => $value) {
 	    	if($countArrayQuery == $key){
@@ -230,8 +238,7 @@ function selectNumberWorkshop($link, $idOrClass){
 							"<td><span>" . $repair_time = $row['repair_time'] . "</span></td>" .
 							"<td><span>" . $breakdown = $row['breakdown'] . "</span></td>" .
 							"<td><span>" . $removal_breakdown = $row['removal_breakdown'] . "</span></td>" . 
-							"<td><span>" . $used_teh_mat_values = $row['used_teh_mat_values'] . "</span></td>" .
-							"<td> <a href = 'change_note.php?change_id=$real_id'> Изменить запись </a></td>" . 
+							"<td><span>" . $used_teh_mat_values = $row['used_teh_mat_values'] . "</span></td>" . 
 					 "</tr>";
 						 
 					$numberOfRows--;

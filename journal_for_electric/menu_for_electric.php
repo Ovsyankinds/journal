@@ -41,7 +41,7 @@
     <div class="row justify-content-center">  <!--Строка для выбора по числу линий LC-->
       <div class="col-md-6">
         <div class="form-group justify-content-center">
-          <label for="first-data-shift">Выбор по числу линий</label>
+          <label for="first-data-shift">Выбор по числу записей</label>
           <input type="text" name="lineCount" class="form-control" id="line-count" placeholder="Введите число линий">
        
           <label>
