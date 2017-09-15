@@ -39,7 +39,7 @@
 			<button type="submit" class="login-button" name = "send"> Войти </button>
 		</p>
 
-		<p class="forgot-password"><a href = "registration.php"> Новый пользователь </a></p>
+		<p class="forgot-password"><a href = "registration.php"> Регистрация </a></p>
 	</form>
 
 	

@@ -47,5 +47,15 @@ a:hover {
 }
 
 .header-text{
-  margin-bottom: 45px;
+  margin-top: 20px;
+  margin-bottom: 25px;
 }
+
+/****
+Стили для лайблов, соданы 15.09.2017 mark-registration-label
+*****/
+.registration-label{
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+/*end mark-registration-label */
