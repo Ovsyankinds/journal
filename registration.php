@@ -17,108 +17,93 @@
 </head>
 
 <body>
-		
-		<h1 class="header-text text-center"> Форма регистрации </h1>
-		
-		<form name = "registration" method = "POST" action = "registration.php" class = "form-horizontal" > 
-			<div class="container">
-				<div class="row justify-content-center"> 
-					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label for="login" class="col-form-label registration-label">Логин:</label>
-							<input type="text" name="engineerLogin" class="form-control" id="login" placeholder="Введите Ваш логин" />
-						</div>
-						<div class="form-group col-md-6">
-								<label for="registration-position-engineer" 
-												class="col-form-label registration-label">Должность:</label>
-								<!-- <input type="text" name="position" id="position"> -->
-								<div class="col-md-12">
-									<div class="form-check form-check-inline">
-										<label class="form-check-label">
-										  <input type="radio" name="position"
-										  			 id="registration-position-engineer" value="engineer"> инженер ЭТ
-										</label>
-									</div>
+	
+	<div class="row justify-content-center">
+		<div class="col-md-4">
+			<h1 class="header-text"> Форма регистрации </h1>
+		</div>
+	</div>
+	<form name = "registration" method = "POST" action = "registration.php" class = "form-horizontal" > 
+		<div class="container">
+			<div class="form-group row text-right justify-content-center">
+				<label for="login" class="col-md-2 col-form-label registration-label">Логин:</label>
+				<div class="col-md-5">
+					<input type="text" name="engineerLogin" class="form-control" id="login" placeholder="Введите Ваш логин" />
+				</div>
+			</div>
+			<div class="form-group row justify-content-center">
+				<label for="registration-position-engineer" 
+										class="col-md-2 col-form-label  text-right registration-label">Должность:</label>
+				<div class="col-md-5 position">
+					<div class="form-check form-check-inline">
+						<label class="form-check-label">
+						  <input type="radio" name="position"
+						  			 id="registration-position-engineer" value="engineer"> инженер ЭТ
+						</label>
+					</div>
 
-									<div class="form-check form-check-inline">
-										<label class="radio-inline">
-										  <input type="radio" name="position" 
-										  			 id="registration-position-electric" value="electric"> электрик
-										</label>
-									</div>
+					<div class="form-check form-check-inline">
+						<label class="radio-inline">
+						  <input type="radio" name="position" 
+						  			 id="registration-position-electric" value="electric"> электрик
+						</label>
+					</div>
 
-									<div class="form-check form-check-inline">
-										<label class="radio-inline">
-										  <input type="radio" name="position"
-										  			 id="registration-position-technologist" value="technologist"> технолог
-										  <input type="hidden" name="idStatus" value="2">
-										</label>
-									</div>
+					<div class="form-check form-check-inline">
+						<label class="radio-inline">
+						  <input type="radio" name="position"
+						  			 id="registration-position-technologist" value="technologist"> технолог
+						  <input type="hidden" name="idStatus" value="2">
+						</label>
+					</div>
 
-									<div class="form-check form-check-inline">
-										<label class="radio-inline">
-										  <input type="radio" name="position" 
-										  			 id="registration-position-chief" value="chief"> начальник
-										  <input type="hidden" name="idStatus" value="3">
-										</label>
-									</div>
-								</div>
-						</div>
-						<div class="form-group col-md-3">
-							<label for="password" class="col-form-label registration-label">Пароль:</label>
-							<input type="password" name="engineerPassword" class="form-control" id="password" placeholder="Введите Ваш пароль">
-						</div>
-					</div>
-				</div>
-				
-				<div class="row justify-content-center"> 
-     			<div class="col-md-5">
-						<div class="form-group text-center">	
-							<label for="repeat-password" 
-											class="col-form-label registration-label"> Повторите пароль:</label>
-							<input type="password" name="repeat_engineer_password" class="form-control" id="repeat-password" placeholder="Повторите Ваш пароль">
-						</div>
-					</div>
-				</div>
-				
-				<div class="row justify-content-center"> 
-     			<div class="col-md-5">
-						<div class="form-group text-center">
-							<label for="sername" class="col-form-label registration-label">Фамилия:</label>
-							<input type="text" name="engineerSername" class="form-control" id="sername" placeholder="Введите Вашу фамилию">
-						</div>
-					</div>
-				</div>
-				
-				<div class="row justify-content-center"> 
-     			<div class="col-md-5">
-						<div class="form-group text-center">
-							<label for="name" class="col-form-label registration-label">Имя:</label>
-							<input type="text" name="engineerName" class="form-control" id="name" placeholder="Введите Ваше имя">
-						</div>
-					</div>
-				</div>
-			
-				<div class="row justify-content-center"> 
-     			<div class="col-md-5">
-						<div class="form-group text-center">
-							<label for="patronymic" class="col-form-label registration-label">Отчество:</label>
-							<input type="text" name="engineerPatronymic" class="form-control" id="patronymic" placeholder="Введите Ваше отчество">
-						</div>
-					</div>
-				</div>
-
-				<div class="row justify-content-center"> 
-     			<div class="col-md-5">
-						<div class="form-group text-center">
-							<button type="submit" class="btn btn-default" name = "send"> Зарегистрироваться </button>
-						</div>
+					<div class="form-check form-check-inline">
+						<label class="radio-inline">
+						  <input type="radio" name="position" 
+						  			 id="registration-position-chief" value="chief"> начальник
+						  <input type="hidden" name="idStatus" value="3">
+						</label>
 					</div>
 				</div>
 			</div>
-		</form>
-	</div>
-	
+			<div class="form-group row text-right justify-content-center">
+				<label for="password" class="col-md-2 col-form-label registration-label">Пароль:</label>
+				<div class="col-md-5">
+					<input type="password" name="engineerPassword" class="form-control" id="password" placeholder="Введите Ваш пароль">
+ 				</div>
+			</div>
+ 			<div class="form-group row justify-content-center">	
+				<label for="repeat-password" 
+								class="col-md-2 col-form-label registration-label"> Повторите пароль:</label>
+				<div class="col-md-5">
+					<input type="password" name="repeat_engineer_password" class="form-control" id="repeat-password" placeholder="Повторите Ваш пароль">
+				</div>
+			</div>
+			<div class="form-group row text-right justify-content-center">
+				<label for="sername" class="col-md-2 col-form-label registration-label">Фамилия:</label>
+				<div class="col-md-5">
+					<input type="text" name="engineerSername" class="form-control" id="sername" placeholder="Введите Вашу фамилию">
+				</div>
+			</div>
+			<div class="form-group row text-right justify-content-center">
+				<label for="name" class="col-md-2 col-form-label registration-label">Имя:</label>
+				<div class="col-md-5">
+					<input type="text" name="engineerName" class="form-control" id="name" placeholder="Введите Ваше имя">
+				</div>
+			</div>
+			<div class="form-group row text-right justify-content-center">
+				<label for="patronymic" class="col-md-2 col-form-label registration-label">Отчество:</label>
+				<div class="col-md-5">
+					<input type="text" name="engineerPatronymic" class="form-control" id="patronymic" placeholder="Введите Ваше отчество">
+				</div>
+			</div>
+			<div class="form-group row justify-content-center">
+				<div class="col-md-3">
+					<button type="submit" class="btn btn-primary" name = "send"> Зарегистрироваться </button>
+				</div>
+			</div>
+		</div>
+	</form>
 <?php
 	}
 	
