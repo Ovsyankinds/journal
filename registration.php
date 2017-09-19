@@ -153,7 +153,8 @@
 				or die("Не удается выполнить запрос 1 |||" . mysqli_error($link));
 
 				echo "Новый пользователь $engineerLogin создан </br>";
-				echo "Вернитесь на главную, чтобы войти под своим логином <a href = 'index.php'> На главную </a>"; 
+				//echo $_SERVER['DOCUMENT_ROOT'];
+				echo "Вернитесь на главную, чтобы войти под своим логином <a href = 'general.php'> На главную </a>"; 
 			}
 		}
 		else{

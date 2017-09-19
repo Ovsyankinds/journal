@@ -1,8 +1,10 @@
 <!-- меню для электриков-->
-
-<nav class="navbar sticky-top navbar-expand-md  navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <a class="navbar-brand" href="general.php">Главная</a>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a href="journal_of_breakdowns.php" class="nav-link">Журнал электронщиков</a>
@@ -15,6 +17,16 @@
           class="nav-link" id="print">Распечатать журнал </a> 
       </li>
     </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <span class="navbar-text">
+          Пользователь: <?=$_COOKIE['user_login'] ?>
+        </span>
+      </li>
+      <li class="nav-item">
+        <a href="../logout.php" class="nav-link">Выйти</a>
+      </li>
+      </ul>
   </div>
 </nav>
 
