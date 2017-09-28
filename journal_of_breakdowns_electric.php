@@ -23,22 +23,10 @@
 <body>
 
 	<?php
-		switch($_COOKIE['id_status']){
-			case 0: 
-				require_once "journal_for_electric/menu_for_electric.php";
-				break;
-			case 1:
-				require_once "journal_for_electric/menu_for_electric.php";
-				break;
-			
-			default:
-				require_once "menu.php";
-		}
 
+		require_once "journal_for_electric/menu_for_electric.php";
 		require_once "header.php"; //надпись журнала
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";
-
-		echo $marker;
 
 	?>	
 

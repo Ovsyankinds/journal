@@ -13,6 +13,9 @@
         <a href="#" class="nav-link">Задания для электриков</a>
       </li>
       <li class="nav-item">
+        <a href="journal_for_electric/instrument_readings.php" class="nav-link">Показания приборов учёта</a>
+      </li>
+      <li class="nav-item">
         <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" 
           class="nav-link" id="print">Распечатать журнал </a> 
       </li>

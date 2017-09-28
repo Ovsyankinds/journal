@@ -11,8 +11,21 @@
 			$change_used_teh_mat_values = "Не использовались";
 		}
 		$change_id = $_GET['change_id'];
+		$id_status = $_COOKIE['id_status'];
+
+			$id_status = $_COOKIE['id_status'];
+		switch($id_status){
+			case 0:
+				$dbUpdate = "journal_of_breakdowns_electric";
+				break;
+			case 1:
+				$dbUpdate = "journal_of_breakdowns";
+				break;
+			default:
+				$dbUpdate = "journal_of_breakdowns";
+		}
 		
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 									breakdown = '$change_breakdown',
 									removal_breakdown = '$change_removal_breakdown', 
 									used_teh_mat_values = '$change_used_teh_mat_values'
@@ -21,8 +34,7 @@
 									or die("Не удается выполнить запрос  |||" . mysqli_error($link));
 	}
 	
-	$journal_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . 
-														'journal_of_breakdowns.php';
+	$journal_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $dbUpdate . '.php';
 	$journal_breakdowns_url;
 					header('Location: ' . $journal_breakdowns_url);
 	

@@ -1,11 +1,14 @@
 <?php
-	echo $_COOKIE['user_login'];
+	
+	//Выбираем БД для использования в запросе для изменения записи
 	$change_id = $_GET['change_id'];
+
 	$query_change_note = "SELECT id, date_shift, shift, name_engineer, 
 												number_workshop, name_machine, caller_FIO, call_time, 
 												end_of_work, repair_time, breakdown, removal_breakdown, 
-												used_teh_mat_values FROM journal_of_breakdowns
-												WHERE id = '$change_id'";
+												used_teh_mat_values FROM $backUrl WHERE id = '$change_id'";
+
+	echo $query_change_note;
 							
 	$result_query_change_note = mysqli_query($link, $query_change_note)
 								or die("Не удается выполнить запрос  |||" . mysqli_error($link));
@@ -138,7 +141,7 @@
 			</td>
 									
 			<td> 
-				<?php select_login_engineer($link, 'elemFormChangeNote') ?>
+				<?php select_login_engineer($link, 'elemFormChangeNote', $id_status) ?>
 				<input hidden = 'true' name = 'select[]' value = 'name_engineer' />
 			</td>
 			
@@ -148,7 +151,11 @@
 					<option value = '1'> 1 </option>
 					<option value = '2'> 2 </option>
 					<option value = '3'> 3 </option>
+					<option value = '4'> 4 </option>
+					<option value = '5'> 5 </option>
+					<option value = '7'> 7 </option>
 				</select>
+				<? //selectNumberWorkshop($link,"elemFormChangeNote "); ?>
 				<input hidden = 'true' name = 'select[]' value = 'number_workshop' /> 
 			</td>
 			

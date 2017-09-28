@@ -4,8 +4,23 @@
 	require_once "engine/connectToDB.php";
 	
 	if( ($_COOKIE['user_login']) ){
-		$journal_of_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 
-									'journal_of_breakdowns.php';
+		if( isset($_COOKIE['id_status']) ){
+			$id_status = $_COOKIE['id_status'];
+		}
+
+		switch ($id_status) {
+			case 0:
+				$generalUrl = "journal_of_breakdowns_electric.php";
+				break;
+			case 1:
+				$generalUrl = "journal_of_breakdowns.php";
+				break;
+			default:
+				$generalUrl = "journal_of_breakdowns.php";
+				break;
+		}
+
+		$journal_of_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . $generalUrl;
 		header('Location: ' . $journal_of_breakdowns_url);
 	}
 	

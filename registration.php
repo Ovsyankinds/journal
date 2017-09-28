@@ -154,7 +154,7 @@
 
 				echo "Новый пользователь $engineerLogin создан </br>";
 				//echo $_SERVER['DOCUMENT_ROOT'];
-				echo "Вернитесь на главную, чтобы войти под своим логином <a href = 'general.php'> На главную </a>"; 
+				echo "Вернитесь на главную, чтобы войти под своим логином <a href = 'index.php'> На главную </a>"; 
 			}
 		}
 		else{

@@ -21,13 +21,25 @@
 	$call_time = $_GET['call_time'];
 	$end_of_work = $_GET['end_of_work'];
 	$repair_time = $_GET['repair_time'];
+
+	$id_status = $_COOKIE['id_status'];
+	switch($id_status){
+		case 0:
+			$dbUpdate = "journal_of_breakdowns_electric";
+			break;
+		case 1:
+			$dbUpdate = "journal_of_breakdowns";
+			break;
+		default:
+			$dbUpdate = "journal_of_breakdowns";
+	}
 	
 	if(!empty($_POST['date_shift']) && $_POST['select'][0] === 'date_shift'){
 		//$change_id = $_GET['change_id'];
 		$value = $_POST['date_shift'];
 		$select = $_POST['select'][0];
 		//echo $value, $select;
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -38,7 +50,7 @@
 		$value = $_POST['shift'];
 		//echo $value;
 		$select = $_POST['select'][1];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -48,7 +60,7 @@
 		//$change_id = $_GET['change_id'];
 		$value = $_POST['select_login_engineer'];
 		$select = $_POST['select'][2];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -58,7 +70,7 @@
 		//$change_id = $_GET['change_id'];
 		$value = $_POST['number_workshop'];
 		$select = $_POST['select'][3];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -68,7 +80,7 @@
 		//$change_id = $_GET['change_id'];
 		$value = $_POST['name_machine'];
 		$select = $_POST['select'][4];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -78,7 +90,7 @@
 		//$change_id = $_GET['change_id'];
 		$value = $_POST['caller_FIO'];
 		$select = $_POST['select'][5];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -93,7 +105,7 @@
 		$mktime_end_of_work = mktime($explode_end_of_work[0], $explode_end_of_work[1]) . "</br>";
 		$repair_time = date('H:i', ($mktime_end_of_work - $mktime_call_time) - 10800);
 		$select = $_POST['select'][6];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																	call_time = '$value',
 																	end_of_work = '$end_of_work',
 																	repair_time = '$repair_time'
@@ -109,7 +121,7 @@
 		$mktime_end_of_work = mktime($explode_end_of_work[0], $explode_end_of_work[1]) . "</br>";
 		$repair_time = date('H:i', ($mktime_end_of_work - $mktime_call_time) - 10800);
 		$select = $_POST['select'][7];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																	call_time = '$call_time',
 																	end_of_work = '$value',
 																	repair_time = '$repair_time'
@@ -120,7 +132,7 @@
 					$_POST['select'][8] === 'used_teh_mat_values'){
 		$value = $_POST['used_teh_mat_values'];
 		$select = $_POST['select'][8];
-		$query_change_note_to_DB = "UPDATE journal_of_breakdowns SET 
+		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
 																WHERE id = '$change_id'";
 
@@ -137,8 +149,7 @@
 	
 	//echo dirname($_SERVER['DOCUMENT_ROOT']);
 	//echo $_SERVER['HTTP_HOST'];
-	$journal_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . 
-						'journal_of_breakdowns.php';
+	$journal_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $dbUpdate . ".php";
 	//echo $journal_breakdowns_url;
 				header('Location: ' . $journal_breakdowns_url);
 	

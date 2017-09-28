@@ -132,15 +132,8 @@
 				if(input.checked){
 					switch(input.value){
 						case "1":
-							text = "Проверка видимого заземления на 3х полях, пробои фиксируются";
+							text = "Обход линий";
 							break;
-						case "2":
-							text = "Проверка видимого заземления на 3х полях, пробои фиксируются. Обход линий";
-							break;
-						case "3":
-							text = "Долил чернила в маркир";
-							break;
-						
 					}
 				input.checked = "";
 				textarea_removal_breakdown[0].innerHTML = text;
@@ -155,20 +148,8 @@
 					<div class="form-check form-check-inline">
 						<label class="form-check-label">
 							<input type = "checkbox" name = "checkbox_removal_breakdown[]"
-								value = "1" onclick = "checkbox(this)" class="form-check-input"/> Исп.поля
+								value = "1" onclick = "checkbox(this)" class="form-check-input"/> Обход линий
 						</label>
-					</div>
-					<div class="form-check form-check-inline">
-						<label class="form-check-label"> 
-							<input type = "checkbox" name = "checkbox_removal_breakdown[]"
-							value = "2" onclick = "checkbox(this)" class="form-check-input"/> Исп.поля+обход
-						</label> 
-					</div>
-					<div class="form-check form-check-inline">
-						<label class="form-check-label">
-							<input type = "checkbox" name = "checkbox_removal_breakdown[]" 
-							value = "3" onclick = "checkbox(this)" class="form-check-input"> Принтер
-						</label> 
 					</div>
 				</div>
 			

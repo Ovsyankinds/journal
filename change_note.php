@@ -5,7 +5,19 @@
 	//require_once "/home/homeel/homeelectrical.ru/docs/engine/function.php";
 	require_once "engine/function.php";
 	require_once "engine/connectToDB.php";
-	mysqli_query($link, "SET NAMES 'utf8'");
+	mysqli_query($link, "SET NAMES 'utf8'");;
+	
+	$id_status = $_COOKIE['id_status'];
+	switch($id_status){
+		case 0:
+			$backUrl = "journal_of_breakdowns_electric";
+			break;
+		case 1:
+			$backUrl = "journal_of_breakdowns";
+			break;
+		default:
+			$backUrl = "journal_of_breakdowns";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +38,7 @@
 	<div id = "top_menu_change_note">
 		<ul>
 			<li>
-				<a href = "journal_of_breakdowns.php"> Назад к журналу </a>
+				<a href = "<?=$backUrl;?>.php"> Назад к журналу </a>
 			</li>
 			<li>
 				<a href = "general.php"> Назад на главную страницу </a>
@@ -158,7 +170,7 @@
 			</textarea>
 		</p>
 	
-			<input type = "submit" value = "Тык" name = "change_note_submit">
+			<input type = "submit" value = "Редактировать" name = "change_note_submit">
 	</form>
 	
 <?php 
