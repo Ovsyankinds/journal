@@ -74,10 +74,11 @@
        
       }    
     ?>
-</table>
+    </table>
   </div>
 </div>
 
+<? if($_COOKIE['id_status'] == 1){?>
 <div class="row">
   <div class="col-md-12">
     <span class = "signature" id = "signature_pass"> Смену и инструмент сдал:  ______________________ </span>
@@ -90,6 +91,24 @@
     <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
   </div>
 </div>
+<?}?>
+
+<? if($_COOKIE['id_status'] == 0){?>
+<div class="row">
+    <span class = "signature" id = "signature_pass"> Смену сдал:  ______________________/______________________/электромонтер по ремонту и обслуживанию оборудования</span></br>
+    <p class="footer">ФИО</p>
+  <div class="col-md-12">
+    <span class = "signature" id = "signature_take"> Смену принял: ______________________/______________________/электромонтер по ремонту и обслуживанию оборудования</span></br>
+  </div>
+    <span class = "signature" id = "signature_nach"> Ответственный руководитель: ______________________/______________________</span>
+
+
+  <div class="col-md-12">
+    <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
+    <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
+  </div>
+</div>
+<?}?>
 
 <script>
   function print_(){

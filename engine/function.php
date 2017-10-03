@@ -484,9 +484,9 @@ function selectNumberWorkshop($link, $idOrClass){
     $arrayQueryResult = array_diff($arrayQuery, array('', NULL, false));
     $queryBase = array_shift($arrayQueryResult);
     
-    echo "<pre>";
+    /*echo "<pre>";
     print_r($arrayQueryResult);
-    echo "</pre>";
+    echo "</pre>";*/
 
     $reverseArrayQueryResult = array_reverse($arrayQueryResult);
     $stroke = substr($arrayQueryResult[count($arrayQueryResult) - 1], 1, 22);
@@ -521,7 +521,7 @@ function selectNumberWorkshop($link, $idOrClass){
     		 $querySelectNameElectric . " and" . $querySelectNumberWorkshop .  " and" .
     		 $querySelectnameMachine . $querySelectLine;*/
 
-    echo "<p>" . $query . "</p>";
+    //echo "<p>" . $query . "</p>";
 
 	$resultQuery = mysqli_query($link, $query);
 

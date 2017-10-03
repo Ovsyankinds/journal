@@ -10,10 +10,13 @@
         <a href="journal_of_breakdowns.php" class="nav-link">Журнал электронщиков</a>
       </li>
       <li class="nav-item">
+        <a href="journal_of_breakdowns_electric.php" class="nav-link">Журнал электриков</a>
+      </li>
+      <li class="nav-item">
         <a href="#" class="nav-link">Задания для электриков</a>
       </li>
       <li class="nav-item">
-        <a href="journal_for_electric/instrument_readings.php" class="nav-link">Показания приборов учёта</a>
+        <a href="journal_of_breakdowns_electric.php?page=instrument_readings" class="nav-link">Показания приборов учёта</a>
       </li>
       <li class="nav-item">
         <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" 

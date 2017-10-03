@@ -114,7 +114,6 @@
 				<input type = "time" name = "end_of_work" value = "00:00" class="form-control" /> 
 			</div>
 	</div>
-	
 	<div class="row">
 		<div class="form-group col-md-4">
 			<label for = "breakdown" class = "col-form-label label-form-input-note"> Ошибка или причина поломки </label>
@@ -166,7 +165,6 @@
 			</textarea>
 		</div>
 	</div>
-
 	<div class="row justify-content-center">
 		<div class="col-md-3">
 			<input type = "radio" checked name = "add_number_workshop" 
