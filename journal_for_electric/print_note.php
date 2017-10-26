@@ -66,7 +66,7 @@
         $selectedNumberWorkshop = trim(strip_tags( $_POST['selectNumberWorkshop'] ));
         $selectedNameLine = trim(strip_tags( $_POST['selectNameLine'] ));
 
-        $arrayParamSelectOption = [];
+        $arrayParamSelectOption = array();
         array_push($arrayParamSelectOption, $selectedFinalDate, $selectedNameLine,
                     $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedLineCount);
 

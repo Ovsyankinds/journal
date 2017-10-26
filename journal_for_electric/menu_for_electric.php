@@ -20,7 +20,7 @@
       </li>
       <li class="nav-item">
         <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" 
-          class="nav-link" id="print">Распечатать журнал </a> 
+          class="nav-link" id="print">Распечатать журнал</a> 
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

@@ -1,42 +1,32 @@
-
 	<div class="container">
 			<form name = "add_new_message_electric" method = "POST" 
 		action = "add_new_message_to_journal_electric.php" onsubmit = "valid_form_add_mess(this)">
 
 		<div class="row">
 			<div class=" form-group col-md-3">
-				<label for = "name_machine" class="col-form-label label-form-input-note">  Показания воды цех №1,2 </label>
-				<select size = "1" name = "name_machine" id = "name_machine" class="form-control"> 
-					<?php
-						while($row_two = mysqli_fetch_array($result_query_select_name_machine)){
-							$name_machine = $row_two['name_machine'];
-							echo "<option value = '$name_machine'>" . $name_machine . "</option>";
-						}
-					?>
-				</select> 
+				<label for = "value-water-workshop12" class="col-form-label label-form-input-note">  Показания воды цех №1,2 </label>
+				<input type = "text" name = "value_water_workshop12" id = "value-water-workshop12" class = "form-control">
 			</div>
 		
 			<div class="form-group col-md-3">
-				<label for = "caller_FIO" class="col-form-label label-form-input-note"> Вода, УУ-А </label>
-				<input type = "text" name = "caller_FIO" id = "caller_FIO" value = "Мастер" class="form-control"/> 
+				<label for = "value-water-uua" class="col-form-label label-form-input-note"> Вода, УУ-А </label>
+				<input type = "text" name = "value_water_uua" id = "value-water-uua" class="form-control"/> 
 			</div>
 
 			<div class="form-group col-md-3">
-				<label for = "call_time" class="col-form-label label-form-input-note"> Вода, УУ-В </label>
-				<input type = "time" name = "call_time" value = "00:00" class="form-control" />
+				<label for = "value-water-uub" class="col-form-label label-form-input-note"> Вода, УУ-В </label>
+				<input type = "text" name = "value_water_uub" id="value-water-uub" class="form-control" />
 			</div>
 
 			<div class="form-group col-md-3">
-				<label for = "end_of_work" class="col-form-label label-form-input-note"> Вода, топочная </label>
-				<input type = "time" name = "end_of_work" value = "00:00" class="form-control" /> 
+				<label for = "value-water-topochnaya" class="col-form-label label-form-input-note"> Вода, топочная </label>
+				<input type = "text" name = "value_water_topochnaya" id = "value-water-topochnaya" class="form-control" /> 
 			</div>
 	</div>
 	<div class="row">
 		<div class="form-group col-md-4">
-			<label for = "breakdown" class = "col-form-label label-form-input-note"> Вода, подпитка цех №1,2</label>
-			<textarea cols = "45" rows = "10" wrap = "hard" name = "breakdown" id ="breakdown" 
-								onBlur = "foo(this.value)" class="form-control textarea-add-note"> 
-			</textarea> 
+				<label for = "value-water-podpit12" class="col-form-label label-form-input-note">  Вода, подпитка цех №1,2 </label>
+				<input type = "text" name = "value_water_podpit12" id = "value-water-podpit12" class="form-control" /> 
 		</div>
 		
 		<script>
@@ -91,6 +81,53 @@
 		</div>
 	</div>
 	</form>
+
+	<!-- Таблица для показаний воды -->
+		<table class="table table-responsive table-hover">
+ 			<thead>
+    		<tr>
+	      <th>#</th>
+	      <th>Дата</th>
+	      <th>Вода, цех №№1,2</th>
+	      <th>Вода, УУ-А</th>
+	      <th>Вода, УУ-В</th>
+	      <th>Вода, топочная</th>
+	      <th>Вода, подпитка цех №№1,2</th>
+	      <th>Вода, градирня цех №3 </th> 
+				<th>Вода, бойлерная цех №3</th>
+				<th>ГАЗ, цех №№1,2</th>
+				<th>ГАЗ, топочная цех №№1,2</th>
+				<th>Изменение записи</th>
+   		 </tr>
+  		</thead>
+
+  		<tbody>
+		    <tr>
+		      <th scope="row">1</th>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		      <td>1</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">2</th>
+		      <td>2</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">3</th>
+		    		<td>3</td>
+		    </tr>
+ 			 </tbody>
+		</table>
+
+		<!--
 		<div class="table-responsive">
 			<table id = "table-for-electric">
 				<tr>
@@ -144,4 +181,5 @@
 				</tr>
 			</table>
 		</div>
+		-->
 	</div>

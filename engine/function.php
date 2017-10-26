@@ -323,7 +323,7 @@ function selectNumberWorkshop($link, $idOrClass){
 	
 	$querySelectFromListOfMachines = "SELECT number_workshop FROM list_of_machines ORDER BY id ASC";
 	$resultSelectFromListOfMachines = mysqli_query($link, $querySelectFromListOfMachines);
-	$arrayNumberWorkshop = [];
+	$arrayNumberWorkshop = array();
 	while( $row = mysqli_fetch_array($resultSelectFromListOfMachines) ){
 			$arrayNumberWokshop[] = $row['number_workshop'];
 	}
@@ -367,10 +367,10 @@ function selectNumberWorkshop($link, $idOrClass){
 	function printElectricNote($link, $nameSelectTable, $paramArray, $arrayParamSelectOption){
 
 
-		$newArray = [1,2,3,4,5,6];
-		$newArrayTwo = [0,0,0,0,0,0];
-		$newArrayThree = ['selectedDate', 'nameLine', 'shift', 'nameElectric', 
-												'numberWokshop', 'lineCount'];
+		$newArray = array(1,2,3,4,5,6);
+		$newArrayTwo = array(0,0,0,0,0,0);
+		$newArrayThree = array('selectedDate', 'nameLine', 'shift', 'nameElectric', 
+												'numberWokshop', 'lineCount');
 		
 		
 		/*echo "<pre>";
@@ -413,13 +413,13 @@ function selectNumberWorkshop($link, $idOrClass){
 
 		$startData = "2015-01-01";
 
-		$arrayQuery = [];
+		$arrayQuery = array();
 
 		$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
 						name_engineer, number_workshop,	name_machine, caller_FIO, 
 						call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
 						used_teh_mat_values FROM $nameSelectTable ";
-		$arrayQuery = [$query];
+		$arrayQuery = array($query);
 
 		foreach($result as $key => $value){
 			if($value){
