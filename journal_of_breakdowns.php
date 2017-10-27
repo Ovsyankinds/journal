@@ -17,6 +17,7 @@
 	<title> Главная страница журнала </title>
 	<meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
 	<link rel = "stylesheet" href = "css/journal_of_breakdowns.css">
+	<!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" type="text/css" href="/JS/jquery.datetimepicker.css" />
 </head>
 
@@ -27,7 +28,13 @@
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";
 	?>
 	
-		<a href = "journal_change.php"> Изменения в журнале </a>
+		<!-- <a href = "journal_change.php"> Изменения в журнале </a> -->
+
+		<div class="alert alert-primary" role="alert">
+ 	 		Добавлен журнал для электриков, который пока работает-не работает. Чтоб не было проблем с печатью
+ 	 		 журнала элеткронщиков - почистить кеш барузера от изображений и других файлов (ctrl+H и чистим кэш браузера,
+ 	 		 остальное не трогаем), также необходимо перезайти под своим логином
+		</div>
 	
 	<?php
 		require_once "engineer_job.php"; //код для добавленя надписей по заданиям
@@ -53,6 +60,10 @@
 	?>
 	
 	<script src = "/JS/js.js"></script>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/js/bootstrap.min.js"></script>
 		
 </body>
 </html>
