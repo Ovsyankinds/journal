@@ -1,12 +1,38 @@
 <?php
 
+/*****
+	Функция добавления данных в базу данны
+	Дата создания 30.10.2017
+*****/
+	/*function(){
+
+	}*/
+/*end*/
+
+
+/*****
+	Функция проверки введенных данных в форму
+	Дата создания 30.10.2017
+*****/
+	function check_value_instrument_readings($array_var){
+		$result = array();
+		foreach ($array_var as $value) {
+			if($value){
+				$result[] = (integer) trim(strip_tags($value));
+			}else{
+				return "Error";
+			}
+		}
+
+		return $result;
+	}
+/*end*/
+
 /******
 	Функция для создания таблицы показаний приборов учета
 	Дата создания 28.09.2017
 *****/
-	function note_of_readings($link, $name_select_table, $selection_note, $journal_print, $limits, 
-								$name_engineer_shift, $select_date_shift, 
-								$select_date_shift_two, $name_machine){ 
+	function note_of_readings($link, $name_table){ 
 		
 		//require_once '/home/homeel/homeelectrical.ru/docs/engine/connectToDB.php';
 		/*require_once $_SERVER['DOCUMENT_ROOT'] . '/engine/connectToDB.php';
@@ -21,294 +47,42 @@
 		global $used_teh_mat_values;*/
 						
 		
-		switch($selection_note){
-
-			case 0:
-				$user_login =  $_COOKIE['user_login']; //кука, содержащая в себе логин вошедшего инженера ЭТ
-				
-				//----- блок кода с выборкой из таблицы по логину сменного инженера ЭТ и по дате или по 
-				//----- 
+		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_uua, value_water_uub, value_water_topochnaya, value_water_podpitka_1_2, value_water_gradirnya_3, value_water_boylernaya_3 FROM $name_table ORDER BY id DESC";
 		
-				if(!empty($name_machine) ){// выборка по наименованию линии
-					$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') 
-							as date_shift, shift, 
-							name_engineer, number_workshop,	name_machine, caller_FIO, 
-							call_time, end_of_work,	repair_time, breakdown, 
-							removal_breakdown, 
-							used_teh_mat_values FROM $name_select_table WHERE 
-							name_machine = '$name_machine'
-							ORDER BY id DESC"; //LIMIT $limits
-				}	
-				
-				if(!empty($name_engineer_shift) && $select_date_shift 
-					&& $select_date_shift_two && !$name_machine){
-					$query_select_from_registration = "SELECT sername FROM registered_users";
-					$result_select_from_registration = mysqli_query($link, $query_select_from_registration);
-					
-					while( $row = mysqli_fetch_array($result_select_from_registration) ){
-						$registered_user_name = $row['sername'];
-						if($name_engineer_shift === $registered_user_name){
-							$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM $name_select_table WHERE 
-									name_engineer = '$name_engineer_shift' and date_shift >= '$select_date_shift'
-									and date_shift <= '$select_date_shift_two'
-									ORDER BY id DESC"; //LIMIT $limits
-						}
-					}
-				}
-				
-				if($name_engineer_shift && !$select_date_shift && !$select_date_shift_two && !$name_machine){
-					$query_select_from_registration = "SELECT sername FROM registered_users";
-					$result_select_from_registration = mysqli_query($link, $query_select_from_registration);
-					
-					while( $row = mysqli_fetch_array($result_select_from_registration) ){
-						$registered_user_name = $row['sername'];
-						if($name_engineer_shift === $registered_user_name){
-							$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM  $name_select_table WHERE 
-									name_engineer = '$name_engineer_shift' ORDER BY id DESC";
-						}
-					}
-				}
-				
-				if(!($name_engineer_shift) && $select_date_shift && $select_date_shift_two && !$name_machine){
-					$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') as date_shift, shift, 
-									name_engineer, number_workshop,	name_machine, caller_FIO, 
-									call_time, end_of_work,	repair_time, breakdown, removal_breakdown, 
-									used_teh_mat_values FROM  $name_select_table WHERE 
-									date_shift >= '$select_date_shift' 
-									and date_shift <= '$select_date_shift_two'
-									ORDER BY id DESC";
-				}
-				
-				if($limits && !$name_engineer_shift && 
-					!$select_date_shift && !$select_date_shift_two && !$name_machine){
-					
-					//если используем только поле "Введите число просматриваемых 
-					// записей" попадаем в эту конструкцию if					
-					
-					if(count($limits) != 1){// если в массиве не одна ячейка
-						//значит используется поиск по отрезку от значения и 
-						//до значения
-											
-						//$name_select_table = "journal_of_breakdowns"; //название таблицы - параметр для функции select_elem_from_DB
-						$elem_one = "id"; //название поля в таблице - параметр для функции select_elem_from_DB
-						$array_id_DB = select_elem_from_DB($link, 
-							$name_select_table, $elem_one,
-							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-							
-						$id = mysqli_num_rows($array_id_DB); //узнаем сколько строк в таблице
-						$array_sum_id = array(); //массив для сопоставления реального id, который
-						//находится в таблице с номером id, который вводит пользователь в 
-						//поля поиска
-						
-						while($row = mysqli_fetch_array($array_id_DB)){
-							$array_sum_id["$id"] = $row['id'];
-							// получается, что в массиве первая запись 
-							// "последнее значене массива" => "реальное значение id"
-							// вторая запись "предпоследнее значене массива" => 
-							// "реальное значение id" и так далее
-							--$id;
-						}
-						
-						//код для просмотра массива
-						/*echo "<pre>";
-						echo print_r($array_sum_id);
-						echo "</pre>";*/
-						
-						foreach($array_sum_id as $key => $real_id){
-							//если ключ в массиве равен введенному в первое поле
-							//значению, то присваиваем реальный id переменной
-							//$first_id
-							if($key == $limits[0]){
-								$first_id = $real_id;
-							}
-							
-							//если ключ в массиве равен введенному во второе поле
-							//значению, то присваиваем реальный id переменной
-							//$second_id
-							if($key == $limits[1]){
-								$second_id = $real_id;
-							}
-						}
-						
-						//echo $first_id . "</br>";
-						//echo $second_id . "</br>";
-						
-						//запрос для выборки из таблицы по диапазону введеных значений
-						//номеров полей (id)
-						$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') 
-								as date_shift, shift, name_engineer, number_workshop, 
-								name_machine, caller_FIO, call_time, end_of_work,
-								repair_time, breakdown, removal_breakdown, 
-								used_teh_mat_values FROM $name_select_table
-								WHERE id <=  '$first_id' and id >= '$second_id' 
-								ORDER BY id DESC";
-					}
-					
-					//если число ячеек в массиве равно одной, то делаем запрос
-					//выбирая из массива $limits первый элемент
-					if(count($limits) == 1){
-					$query = "SELECT id, DATE_FORMAT(date_shift, '%d.%m.%y') 
-								as date_shift, shift, name_engineer, 
-								number_workshop, name_machine, caller_FIO, 
-								call_time, end_of_work,
-								repair_time, breakdown, removal_breakdown, 
-								used_teh_mat_values FROM $name_select_table 
-								ORDER BY id DESC LIMIT $limits[0]";
-					}
-								
-				}
-				
-				
-				//----- конец блока кода с выборкой из таблицы по логину сменного инженера ЭТ и по дате						
-				break;
-			
-			case 1:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							$name_select_table ORDER BY id DESC LIMIT $limits";
-				break;
-				
-			case 2:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							$name_select_table ORDER BY id ASC LIMIT $limits";
-				break;
-			
-			case 3:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM 
-							$name_select_table ORDER BY date_shift DESC LIMIT $limits";
-				break;
-			
-			case 4:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							$name_select_table ORDER BY date_shift ASC LIMIT $limits";
-				break;
-			
-			case 5:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							'$name_select_table'ORDER BY shift DESC LIMIT $limits";
-				break;
-				
-			case 6:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							$name_select_table ORDER BY shift ASC LIMIT $limits";
-				break;
-				
-			case 7:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							$name_select_table ORDER BY number_workshop DESC LIMIT $limits";
-				break;
-			
-			case 8:
-				$query = "SELECT id, date_shift, shift, name_engineer, number_workshop, name_machine, caller_FIO, call_time, end_of_work,
-							repair_time, breakdown, removal_breakdown, used_teh_mat_values FROM  
-							name_select_table ORDER BY number_workshop ASC LIMIT $limits";
-				break;
-		}
-		
-		
-		$result_mysql = mysqli_query($link, $query)
+		$resultMysql = mysqli_query($link, $query)
 			or die("Не удается выполнить запрос выборки из БД " . mysqli_error($link));
 		
-		$array_id = array(); //массив для id с таблицы БД journal_of_breakdowns, так же сюда будут записываться	
-							//number_id - для номеров в таблице на странице journal_of_breakdowns
+		$array_id = array(); 
 		
-		$count_note = mysqli_num_rows($result_mysql);
+		//$count_note = mysqli_num_rows($result_mysql);
 		
-		if($selection_note == 0 || $selection_note == 1 || $selection_note == 3 || $selection_note == 4 || $selection_note == 5
-			|| $selection_note == 6 || $selection_note == 7 || $selection_note == 8){
+		$number_id = 1; // инициализация номера для таблицы на странице journal_of_breakdowns
+		while( $row = mysqli_fetch_array($resultMysql) ){ //пробегаемся по таблице journal_of_breakdowns в БД и выводим значения 
 			
-			$number_id = 1; // инициализация номера для таблицы на странице journal_of_breakdowns
-			while( $row = mysqli_fetch_array($result_mysql) ){ //пробегаемся по таблице journal_of_breakdowns в БД и выводим значения 
-				
-				//начало кода выделения цветом строки таблицы
-				if($number_id%2 !=0){
-					$background_tr = "#5FAFFF";
-				}
-				else{
-					$background_tr = "#FF6969";
-				}//конец кода выделения цветом строки таблицы
-				
-				$real_id = $row['id'];
-				echo "<tr style = 'background: $background_tr'>" .
-						"<td><p>" . $number_id . "</p></td>" .
-						"<td id = 'data_shift'><p>" . $date_shift = $row['date_shift'] . "</p></td>" .
-						"<td><p>" . $shift = $row['shift'] . "</p></td>" .
-						"<td><p>" . $name_engineer = $row['name_engineer'] . "</p></td>" .
-						"<td><p>" . $number_workshop = $row['number_workshop'] . "</p></td>" .
-						"<td><p>" . $name_machine = $row['name_machine'] . "</p></td>" .
-						"<td><p>" . $caller_FIO = $row['caller_FIO'] . "</p></td>" .
-						"<td><p>" . $call_time = $row['call_time'] . "</p></td>" .
-						"<td><p>" . $end_of_work = $row['end_of_work'] . "</p></td>" .
-						"<td><p>" . $repair_time = $row['repair_time'] . "</p></td>" .
-						"<td><p>" . $breakdown = $row['breakdown'] . "</p></td>" .
-						"<td><p id = 'removal_breakdown'>" . $removal_breakdown = $row['removal_breakdown'] . "</p></td>" .
-						"<td><p id = 'used_teh_mat_values'>" . $used_teh_mat_values = $row['used_teh_mat_values'] . "</p></td>";
-						
-						if(!$journal_print){						
-							echo "<td> <p id = 'change_note'> <a href = '/change_note.php?change_id=$real_id'> Изменить запись </a></p></td>";
-						}
-						
-				echo "</tr>";
-					 
-				array_push($array_id, $row['id']);
-				array_push($array_id, $number_id);
-				$number_id++; // в зависимости от количества записей в таблице journal_of_breakdowns В БД будет такое же количество индексов
-								// в таблице на странице journal_of_breakdowns.php
-			}
-		}
-		
-		if($selection_note == 2){
-			while($count_note){
-				while( $row = mysqli_fetch_array($result_mysql) ){
-					$number_id = $count_note;
-					
-					//начало кода выделения цветом строки таблицы
-					if($number_id%2 !=0){
-						$background_tr = "#5FAFFF";
-					}
-					else{
-						$background_tr = "#FF6969";
-					}//конец кода выделения цветом строки таблицы
-					
-					$real_id = $row['id'];
-					echo "<tr style = 'background: $background_tr'>" .
-								"<td><span>" . $number_id . "</span></td>" .
-								"<td><span>" . $date_shift = $row['date_shift'] . "</span></td>" .
-								"<td><span>" . $shift = $row['shift'] . "</span></td>" .
-								"<td><span>" . $name_engineer = $row['name_engineer'] . "</span></td>" .
-								"<td><span>" . $number_workshop = $row['number_workshop'] . "</span></td>" .
-								"<td><span>" . $name_machine = $row['name_machine'] . "</span></td>" .
-								"<td><span>" . $caller_FIO = $row['caller_FIO'] . "</span></td>" .
-								"<td><span>" . $call_time = $row['call_time'] . "</span></td>" .
-								"<td><span>" . $end_of_work = $row['end_of_work'] . "</span></td>" .
-								"<td><span>" . $repair_time = $row['repair_time'] . "</span></td>" .
-								"<td><span>" . $breakdown = $row['breakdown'] . "</span></td>" .
-								"<td><span>" . $removal_breakdown = $row['removal_breakdown'] . "</span></td>" . 
-								"<td><span>" . $used_teh_mat_values = $row['used_teh_mat_values'] . "</span></td>" .
-								"<td> <a href = 'change_note.php?change_id=$real_id'> Изменить запись </a></td>" . 
-						 "</tr>";
-							 
-						array_push($array_id, $row['id']);
-						array_push($array_id, $number_id);
-						$count_note--;
-				}
-			}
+			$real_id = $row['id'];
+			echo "<tr>" .
+				"<th scope='row'>" . $number_id . "</th>" .
+				"<td>" 										. $row['data'] 										. "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_workshop_1_2'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_uua'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_uub'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_topochnaya'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_podpitka_1_2'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_gradirnya_3'] . "</td>" . "</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_boylernaya_3'] . "</td>" .	"</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_gaz_1_2'] . "</td>" .	"</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_water_topochnaya_1_2'] . "</td>" .	"</td>" .
+				"<td><a href='#''>Изменение записи</td>";
+			echo "</tr>";
+				 
+			array_push($array_id, $row['id']);
+			array_push($array_id, $number_id);
+			$number_id++; // в зависимости от количества записей в таблице journal_of_breakdowns В БД будет такое же количество индексов
+							// в таблице на странице journal_of_breakdowns.php
 		}
 		
 		return $array_id; //возвращаем массив содержащий в себе [$row['id'], $number_id, $row['id'], $number_id, ..]
-						// чередующиеся индексы из таблицы БД и счетчика записей для таблицы на странице journal_of_breakdowns.php
+						// чередующиеся индексы из таблицы БД и счетчика записей для таблицы на странице journal_of_breakdowns.php*/
 	}
 		
 
@@ -562,8 +336,6 @@ function selectNumberWorkshop($link, $idOrClass){
 	}
 
 /*end*/
-
-
 
 
 	function check_variable($checked_var_one, $checked_var_two){ // проверка введенных данных
