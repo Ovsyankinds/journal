@@ -47,7 +47,7 @@
 		global $used_teh_mat_values;*/
 						
 		
-		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_uua, value_water_uub, value_water_topochnaya, value_water_podpitka_1_2, value_water_gradirnya_3, value_water_boylernaya_3 FROM $name_table ORDER BY id DESC";
+		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_workshop_1_2_sum, value_water_uua, value_water_uub, value_water_topochnaya, value_water_podpitka_1_2, value_water_gradirnya_3, value_water_boylernaya_3, value_gaz_1_2, value_gaz_topochnaya_1_2 FROM $name_table ORDER BY id DESC";
 		
 		$resultMysql = mysqli_query($link, $query)
 			or die("Не удается выполнить запрос выборки из БД " . mysqli_error($link));
@@ -63,7 +63,7 @@
 			echo "<tr>" .
 				"<th scope='row'>" . $number_id . "</th>" .
 				"<td>" 										. $row['data'] 										. "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_workshop_1_2'] . "</td>" . "</td>" .
+				"<td>" . $row['value_water_workshop_1_2_sum'] . "<td>" . $row['value_water_workshop_1_2'] . "</td>" . "</td>" .
 				"<td>" . "Water" . "<td>" . $row['value_water_uua'] . "</td>" . "</td>" .
 				"<td>" . "Water" . "<td>" . $row['value_water_uub'] . "</td>" . "</td>" .
 				"<td>" . "Water" . "<td>" . $row['value_water_topochnaya'] . "</td>" . "</td>" .
@@ -71,7 +71,7 @@
 				"<td>" . "Water" . "<td>" . $row['value_water_gradirnya_3'] . "</td>" . "</td>" .
 				"<td>" . "Water" . "<td>" . $row['value_water_boylernaya_3'] . "</td>" .	"</td>" .
 				"<td>" . "Water" . "<td>" . $row['value_gaz_1_2'] . "</td>" .	"</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_topochnaya_1_2'] . "</td>" .	"</td>" .
+				"<td>" . "Water" . "<td>" . $row['value_gaz_topochnaya_1_2'] . "</td>" .	"</td>" .
 				"<td><a href='#''>Изменение записи</td>";
 			echo "</tr>";
 				 

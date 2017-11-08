@@ -101,12 +101,51 @@
 		
 			<div class="form-group col-md-3">
 				<label for = "caller_FIO" class="col-form-label label-form-input-note"> Вызов сделал </label>
-				<input type = "text" name = "caller_FIO" id = "caller_FIO" value = "Мастер" class="form-control"/> 
+				<div class="form-group checkbox-for-auto-added">
+					<div class="form-check form-check-inline">
+						<label class="form-check-label">
+							<input type = "checkbox" name = "checkbox_caller[]"
+								value = "1" onclick = "checkboxCaller(this)" class="form-check-input"/> Мастер
+						</label>
+						<label class="form-check-label">
+							<input type = "checkbox" name = "checkbox_caller[]"
+								value = "2" onclick = "checkboxCaller(this)" class="form-check-input"/> Оператор
+						</label>
+						<label class="form-check-label">
+							<input type = "checkbox" name = "checkbox_caller[]"
+								value = "3" onclick = "checkboxCaller(this)" class="form-check-input"/>  Слесарь
+						</label>
+					</div>
+				</div>
+				<input type = "text" name = "caller_FIO" id = "caller_FIO" class="form-control"/> 
 			</div>
+
+			<script>
+				var inputCaller = document.getElementsByName('caller_FIO');
+				var text = "";
+				function checkboxCaller(input){
+					//inputCaller[0].value = 0;
+					if(input.checked){
+						alert(input.value);
+						alert(inputCaller[0])
+						switch(input.value){
+							case "1":
+								text = "Мастер";
+								break;
+							case "2":
+								text = "Оператор";
+								break;
+						}
+					input.checked = "";
+					inputCaller[0].value = text;
+					}
+				}
+			</script>
 
 			<div class="form-group col-md-3">
 				<label for = "call_time" class="col-form-label label-form-input-note"> Время вызова </label>
-				<input type = "time" name = "call_time" value = "00:00" class="form-control" />
+				<input type = "time" name = "call_time" value = "00:00" class="form-control"
+								onclick = "checkbox(this)"/>
 			</div>
 
 			<div class="form-group col-md-3">
