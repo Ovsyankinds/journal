@@ -1,14 +1,66 @@
 <?php
 
 /*****
-	Функция добавления данных в базу данны
-	Дата создания 30.10.2017
+	Функция для запроса с БД одного поля по параметрам
+	Дата создания 18.11.2017
+	Используется в изменении записей в instrument_readings
 *****/
-	/*function(){
+	function get_note_from_BD_param($link, $name_table, $param){
 
-	}*/
+		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_workshop_1_2_sum, value_water_uua, value_water_uua_sum, 
+			value_water_uub, value_water_uub_sum, value_water_topochnaya, value_water_topochnaya_sum, 
+			value_water_podpitka_1_2, value_water_podpitka_1_2_sum, value_water_gradirnya_3,
+			value_water_gradirnya_3_sum, value_water_boylernaya_3, 
+			value_water_boylernaya_3_sum, value_gaz_1_2, value_gaz_1_2_sum, value_gaz_topochnaya_1_2,
+			value_gaz_topochnaya_1_2_sum FROM $name_table WHERE id = $param";
+		
+		$resultMysql = mysqli_query($link, $query)
+			or die("Не удается выполнить запрос выборки из БД " . mysqli_error($link));
+		
+		while( $row = mysqli_fetch_array($resultMysql) ){ //пробегаемся по таблице journal_of_breakdowns в БД и выводим значения 
+			echo "<tr>" .
+				"<th scope='row'>" . 1 . "</th>" .
+				"<td>" 										. $row['data'] 										. "</td>" .
+				
+				"<td class='td-border'>" .  $row['value_water_workshop_1_2'] .
+						"<td>" . ($row['value_water_workshop_1_2'] - $row['value_water_workshop_1_2_sum']) . "</td>" .
+			 	"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_uua'] . 
+					"<td>" . ($row['value_water_uua'] - $row['value_water_uua_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_uub'] . 
+					"<td>" . ($row['value_water_uub'] - $row['value_water_uub_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" .  $row['value_water_topochnaya'] . 
+					"<td>" . ($row['value_water_topochnaya'] - $row['value_water_topochnaya_sum'])  . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_podpitka_1_2'] . 
+					"<td>" . ($row['value_water_podpitka_1_2'] - $row['value_water_podpitka_1_2_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" .  $row['value_water_gradirnya_3']. 
+					"<td>" . ($row['value_water_gradirnya_3'] - $row['value_water_gradirnya_3_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_boylernaya_3'] . 
+					"<td>" . ($row['value_water_boylernaya_3'] - $row['value_water_boylernaya_3_sum']) . "</td>" .	
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_gaz_1_2'] . 
+					"<td>" . ($row['value_gaz_1_2'] - $row['value_gaz_1_2_sum']) . "</td>" .	
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_gaz_topochnaya_1_2'] . 
+					"<td>" . ($row['value_gaz_topochnaya_1_2'] - $row['value_gaz_topochnaya_1_2_sum']) . "</td>" .	
+				"</td>" .
+			"</tr>";
+		}
+	}
 /*end*/
-
 
 /*****
 	Функция проверки введенных данных в форму
@@ -47,7 +99,12 @@
 		global $used_teh_mat_values;*/
 						
 		
-		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_workshop_1_2_sum, value_water_uua, value_water_uub, value_water_topochnaya, value_water_podpitka_1_2, value_water_gradirnya_3, value_water_boylernaya_3, value_gaz_1_2, value_gaz_topochnaya_1_2 FROM $name_table ORDER BY id DESC";
+		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_workshop_1_2_sum, value_water_uua, value_water_uua_sum, 
+			value_water_uub, value_water_uub_sum, value_water_topochnaya, value_water_topochnaya_sum, 
+			value_water_podpitka_1_2, value_water_podpitka_1_2_sum, value_water_gradirnya_3,
+			value_water_gradirnya_3_sum, value_water_boylernaya_3, 
+			value_water_boylernaya_3_sum, value_gaz_1_2, value_gaz_1_2_sum, value_gaz_topochnaya_1_2,
+			value_gaz_topochnaya_1_2_sum FROM $name_table ORDER BY id DESC";
 		
 		$resultMysql = mysqli_query($link, $query)
 			or die("Не удается выполнить запрос выборки из БД " . mysqli_error($link));
@@ -63,16 +120,44 @@
 			echo "<tr>" .
 				"<th scope='row'>" . $number_id . "</th>" .
 				"<td>" 										. $row['data'] 										. "</td>" .
-				"<td>" . $row['value_water_workshop_1_2_sum'] . "<td>" . $row['value_water_workshop_1_2'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_uua'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_uub'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_topochnaya'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_podpitka_1_2'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_gradirnya_3'] . "</td>" . "</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_water_boylernaya_3'] . "</td>" .	"</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_gaz_1_2'] . "</td>" .	"</td>" .
-				"<td>" . "Water" . "<td>" . $row['value_gaz_topochnaya_1_2'] . "</td>" .	"</td>" .
-				"<td><a href='#''>Изменение записи</td>";
+				
+				"<td class='td-border'>" .  $row['value_water_workshop_1_2'] .
+						"<td>" . ($row['value_water_workshop_1_2'] - $row['value_water_workshop_1_2_sum']) . "</td>" .
+			 	"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_uua'] . 
+					"<td>" . ($row['value_water_uua'] - $row['value_water_uua_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_uub'] . 
+					"<td>" . ($row['value_water_uub'] - $row['value_water_uub_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" .  $row['value_water_topochnaya'] . 
+					"<td>" . ($row['value_water_topochnaya'] - $row['value_water_topochnaya_sum'])  . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_podpitka_1_2'] . 
+					"<td>" . ($row['value_water_podpitka_1_2'] - $row['value_water_podpitka_1_2_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" .  $row['value_water_gradirnya_3']. 
+					"<td>" . ($row['value_water_gradirnya_3'] - $row['value_water_gradirnya_3_sum']) . "</td>" . 
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_water_boylernaya_3'] . 
+					"<td>" . ($row['value_water_boylernaya_3'] - $row['value_water_boylernaya_3_sum']) . "</td>" .	
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_gaz_1_2'] . 
+					"<td>" . ($row['value_gaz_1_2'] - $row['value_gaz_1_2_sum']) . "</td>" .	
+				"</td>" .
+
+				"<td class='td-border'>" . $row['value_gaz_topochnaya_1_2'] . 
+					"<td>" . ($row['value_gaz_topochnaya_1_2'] - $row['value_gaz_topochnaya_1_2_sum']) . "</td>" .	
+				"</td>" .
+
+				"<td><a href='journal_of_breakdowns_electric.php?page=change_note_instrument_readings&id=$real_id''>Изменение записи</td>";
 			echo "</tr>";
 				 
 			array_push($array_id, $row['id']);

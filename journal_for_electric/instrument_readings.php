@@ -77,12 +77,12 @@
 	</br></br>
 
 	<!-- Таблица для показаний воды -->
-		<table class="table table-responsive table-hover table-bordered">
+		<table class="table table-responsive table-hover table-bordered table-instrument-readings">
  			<thead>
     		<tr>
 	      <th>#</th>
 	      <th>Дата</th>
-	      <th colspan="2">Вода, цех №№1,2</th>
+	      <th colspan="2">Вода, цех №1,2</th>
 	      <th colspan="2">Вода, УУ-А</th>
 	      <th colspan="2">Вода, УУ-В</th>
 	      <th colspan="2">Вода, топочная</th>

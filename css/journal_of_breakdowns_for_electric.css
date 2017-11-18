@@ -161,6 +161,15 @@ th{
   margin-top: 10px;  
 }
 
+#form-add-new-message-for-electric .form-group .form-control-css{ 
+ height: 50px !important;
+ /*background-color: red;*/
+}
+
+/*#form-add-new-message-for-electric select, input{
+  margin-top: 25px;
+}*/
+
 /*mark-add-note*/
 
 /*стили для формы удаления записи из табилцы mark-delete-note*/
@@ -168,3 +177,22 @@ th{
   margin-top: 15px;
 }
 /*mark-delete-note*/
+
+/*стили для страницы добавления значений воды и газа*/
+
+/*стили для таблицы со значениями воды и газа*/
+.table-instrument-readings th {
+  border: 1px solid black !important;
+}
+
+.table-instrument-readings td{
+  border: 1px solid black !important;
+}
+
+.table-instrument-readings .td-border{
+  border-right: 1px solid #D0D0D0 !important; 
+}
+
+/*конец стилей таблицы со значениямт воды и газа*/
+
+/*конец стилей добавления значений воды и газа*/
