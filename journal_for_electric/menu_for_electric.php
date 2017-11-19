@@ -104,8 +104,7 @@
       <div class="col-md-5">
         <div class="form-group justify-content-center">
           <label for="electic-shift" class="control-label">Выбор по цеху</label>
-          <? selectNumberWorkshop($link,"form-control"); ?>
- 
+            <? selectNumberWorkshop($link,"form-control"); ?>
           <label>
             <input type="checkbox" name="selectOption[]" value="5" class="form-check-input"> Включить
           </label>
@@ -114,11 +113,10 @@
     </div>
 
     <div class="row justify-content-center">
-     <div class="col-md-5">
+     <div class="col-md-6">
         <div class="form-group justify-content-center">
           <label for="electic-shift" class="control-label">Выбор по линии</label>
-          <? selectNoteNameLine($link); ?>
-       
+            <? select_note_name_line($link, "form-control"); ?>
           <label>
             <input type="checkbox" name="selectOption[]" value="2" class="form-check-input"> Включить
           </label>

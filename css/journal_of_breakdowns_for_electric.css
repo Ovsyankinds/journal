@@ -44,7 +44,7 @@ th{
 }
 
 
-/*Стили для выпадающего списка для печати выбранных записей mark-2*/
+/*Стили для выпадающего списка для печати выбранных записей маркер-1*/
 
 /*.row{
   border: 1px solid red !important;
@@ -81,7 +81,7 @@ th{
   color: white;
 }
 
-/*Конец mark-2*/
+/*Конец маркер-1*/
 
 #header_journal_of_breakdowns{
   text-align: center;

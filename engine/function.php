@@ -178,7 +178,7 @@
 	Функция для создания <select></select> с номерами цехов
 	Дата создания 08.09.2017
 *****/
-function selectNumberWorkshop($link, $idOrClass){
+function selectNumberWorkshop($link, $id_or_class){
 	
 	$querySelectFromListOfMachines = "SELECT number_workshop FROM list_of_machines ORDER BY id ASC";
 	$resultSelectFromListOfMachines = mysqli_query($link, $querySelectFromListOfMachines);
@@ -190,7 +190,7 @@ function selectNumberWorkshop($link, $idOrClass){
 	$arrayNumberWokshop = array_unique($arrayNumberWokshop);
 	//print_r($arrayNumberWokshop);
 
-	echo "<select size = '1' name = 'selectNumberWorkshop' class = '$idOrCclass' id='selectNumberWorkshop'>";
+	echo "<select size = '1' name = 'selectNumberWorkshop' class = '$id_or_class' id='selectNumberWorkshop'>";
 	foreach ($arrayNumberWokshop as $value) {
 		$numberWokshop = $value;
 		echo "<option value = '$numberWokshop'> $numberWokshop </option>";	
@@ -203,10 +203,10 @@ function selectNumberWorkshop($link, $idOrClass){
 	Функция для создания <select></select> с названиями линий
 	Дата создания 08.09.2017
 *****/
-	function selectNoteNameLine($link){
+	function select_note_name_line($link, $id_or_class){
 		$querySelectFromListOfMachinesDB = "SELECT name_machine, number_workshop FROM list_of_machines";
 		$resultSelectFromListOfMachinesDB = mysqli_query($link, $querySelectFromListOfMachinesDB);
-		echo "<select size = '1' name = 'selectNameLine' id = 'selectNameLine'>";
+		echo "<select size = '1' name = 'selectNameLine' class = '$id_or_class' id = 'selectNameLine'>";
 		while( $row = mysqli_fetch_array(	$resultSelectFromListOfMachinesDB )){
 				$nameMachine = $row['name_machine'];
 				$numberWorkshop = $row['number_workshop'];
@@ -845,13 +845,12 @@ function selectNumberWorkshop($link, $idOrClass){
 			if($id_status){
 					$query_select_from_registration_DB = "SELECT sername FROM registered_users";	
 			}else{
-				$query_select_from_registration_DB = "SELECT sername FROM registered_users WHERE id_status = $id_status";
+				$query_select_from_registration_DB = "SELECT sername FROM registered_users WHERE 
+																							id_status = $id_status";
 			}
 
 			$result_select_from_registration_DB = mysqli_query($link, $query_select_from_registration_DB);
-			echo "<select size = '1' name = 'select_login_engineer' 
-							class = '$id_or_class' id='select'>
-							<option></option>";
+			echo "<select size = '1' name = 'select_login_engineer' class = '$id_or_class' id='select'>";
 			while( $row = mysqli_fetch_array($result_select_from_registration_DB) ){
 					$engineer_name = $row['sername'];
 					echo "<option value = '$engineer_name'> $engineer_name </option>";	

@@ -1,4 +1,4 @@
-<div class="container">
+</br></br></br>
     <!-- Таблица для показаний воды -->
     <table class="table table-responsive table-hover table-bordered table-instrument-readings">
       <thead>
@@ -21,5 +21,4 @@
           <? get_note_from_BD_param($link, "instrument_readings", $_GET["id"]);?>
       </tbody>
     </table>
-</div>
   
