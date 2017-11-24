@@ -1,24 +1,64 @@
-</br></br></br>
-    <!-- Таблица для показаний воды -->
-    <table class="table table-responsive table-hover table-bordered table-instrument-readings">
-      <thead>
-        <tr>
-        <th>#</th>
-        <th>Дата</th>
-        <th colspan="2">Вода, цех №1,2</th>
-        <th colspan="2">Вода, УУ-А</th>
-        <th colspan="2">Вода, УУ-В</th>
-        <th colspan="2">Вода, топочная</th>
-        <th colspan="2">Вода, подпитка цех №№1,2</th>
-        <th colspan="2">Вода, градирня цех №3 </th> 
-        <th colspan="2">Вода, бойлерная цех №3</th>
-        <th colspan="2">ГАЗ, цех №№1,2</th>
-        <th colspan="2">ГАЗ, топочная цех №№1,2</th>
-       </tr>
-      </thead>
+<?
+  require_once "../engine/connectToDB.php";
+  require_once "../engine/function.php";
 
-      <tbody>
-          <? get_note_from_BD_param($link, "instrument_readings", $_GET["id"]);?>
-      </tbody>
-    </table>
-  
+if( isset($_POST["submit_change_note_instrument_readings"]) ){
+    $array = array();
+
+    $value_water_workshop_1_2 = $_POST["value_water_workshop_1_2"];
+    $value_water_uua = $_POST["value_water_uua"];
+    $value_water_uub = $_POST["value_water_uub"];
+    $value_water_topochnaya = $_POST["value_water_topochnaya"];
+    $value_water_podpitka_1_2 = $_POST["value_water_podpitka_1_2"];
+    $value_water_gradirnya_3 = $_POST["value_water_gradirnya_3"];
+    $value_water_boylernaya_3 =  $_POST["value_water_boylernaya_3"];
+    $value_gaz_1_2 = $_POST["value_gaz_1_2"];
+    $value_gaz_topochnaya_1_2 = $_POST["value_gaz_topochnaya_1_2"];
+    $id_change_note_instrument_readings = $_POST['id_change_note_instrument_readings'];
+
+    //echo $id_change_note_instrument_readings;
+
+
+    //Добавляем все значения пришедшие из формы в массив для последующей проверки данных
+    array_push($array, $value_water_workshop_1_2, $value_water_uua, $value_water_uub,
+                        $value_water_topochnaya, $value_water_podpitka_1_2, $value_water_gradirnya_3,
+                        $value_water_boylernaya_3, $value_gaz_1_2, $value_gaz_topochnaya_1_2, 
+                        $id_change_note_instrument_readings);
+    //print_r($array);
+    $result = check_value_instrument_readings($array); //проверили пришедшие данные
+    print_r($result);
+
+    //разбиваем обратно в переменные параметры
+    list($value_water_workshop_1_2, $value_water_uua, $value_water_uub, $value_water_topochnaya,
+          $value_water_podpitka_1_2, $value_water_gradirnya_3, $value_water_boylernaya_3, 
+          $value_gaz_1_2, $value_gaz_topochnaya_1_2, $id_change_note_instrument_readingss) = $result;
+  }else{
+    echo "Не заполнили поля";
+  }
+
+  $array_db_row = return_BD_row($link, "instrument_readings", $id_change_note_instrument_readings);
+
+  $value_water_workshop_1_2 = $value_water_workshop_1_2 + $array_db_row[3];
+  $value_water_uua = $value_water_uua + $array_db_row[5]; 
+  $value_water_uub = $value_water_uub + $array_db_row[7]; 
+  $value_water_topochnaya = $value_water_topochnaya + $array_db_row[9]; 
+  $value_water_podpitka_1_2 = $value_water_podpitka_1_2 + $array_db_row[11];
+  $value_water_gradirnya_3 = $value_water_gradirnya_3 + $array_db_row[13];
+  $value_water_boylernaya_3 = $value_water_boylernaya_3 + $array_db_row[15];
+  $value_gaz_1_2 = $value_gaz_1_2 + $array_db_row[17];
+  $value_gaz_topochnaya_1_2 = $value_gaz_topochnaya_1_2 + $array_db_row[19];
+
+  //делаем обновление записи в БД
+  $querySelectValueInstrumentReadings = "UPDATE instrument_readings SET 
+    value_water_workshop_1_2 = $value_water_workshop_1_2, value_water_uua = $value_water_uua,
+    value_water_uub = $value_water_uub, value_water_topochnaya = $value_water_topochnaya, 
+    value_water_podpitka_1_2 = $value_water_podpitka_1_2, value_water_gradirnya_3 = $value_water_gradirnya_3, 
+    value_water_boylernaya_3 = $value_water_boylernaya_3, value_gaz_1_2 = $value_gaz_1_2,
+    value_gaz_topochnaya_1_2 = $value_gaz_topochnaya_1_2 WHERE id = $id_change_note_instrument_readings";
+
+  $resultQuerySelectValueInstrumentReadings = mysqli_query($link, $querySelectValueInstrumentReadings) 
+      or die("Не удается выполнить запрос |||" . mysqli_error($link));
+
+
+
+?>

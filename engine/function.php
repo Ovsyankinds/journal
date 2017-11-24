@@ -63,6 +63,27 @@
 /*end*/
 
 /*****
+	Функция для запроса из БД одной строки данных
+	Дата создания 24.11.2017
+	Используется в изменении записи в instrument_readings
+*****/
+	function return_BD_row($link, $name_table, $param){
+	
+		$query = "SELECT id, DATE_FORMAT(data, '%d.%m.%y') as data, value_water_workshop_1_2, value_water_workshop_1_2_sum, value_water_uua, value_water_uua_sum, 
+			value_water_uub, value_water_uub_sum, value_water_topochnaya, value_water_topochnaya_sum, 
+			value_water_podpitka_1_2, value_water_podpitka_1_2_sum, value_water_gradirnya_3,
+			value_water_gradirnya_3_sum, value_water_boylernaya_3, 
+			value_water_boylernaya_3_sum, value_gaz_1_2, value_gaz_1_2_sum, value_gaz_topochnaya_1_2,
+			value_gaz_topochnaya_1_2_sum FROM $name_table WHERE id = $param";
+
+		$resultMysql = mysqli_query($link, $query)
+		or die("Не удается выполнить запрос выборки из БД " . mysqli_error($link));
+
+		$row = mysqli_fetch_row($resultMysql);
+		return $row;
+	}
+
+/*****
 	Функция проверки введенных данных в форму
 	Дата создания 30.10.2017
 *****/
@@ -72,7 +93,7 @@
 			if($value){
 				$result[] = (integer) trim(strip_tags($value));
 			}else{
-				return "Error";
+				return "Данные введенные пользователем не прошли проверку </br>";
 			}
 		}
 
@@ -157,7 +178,7 @@
 					"<td>" . ($row['value_gaz_topochnaya_1_2'] - $row['value_gaz_topochnaya_1_2_sum']) . "</td>" .	
 				"</td>" .
 
-				"<td><a href='journal_of_breakdowns_electric.php?page=change_note_instrument_readings&id=$real_id''>Изменение записи</td>";
+				"<td><a href='journal_of_breakdowns_electric.php?page=change_note_instrument_readings_view&id=$real_id''>Изменение записи</td>";
 			echo "</tr>";
 				 
 			array_push($array_id, $row['id']);

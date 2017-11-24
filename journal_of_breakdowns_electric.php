@@ -30,8 +30,8 @@
 	<?php
 		if($_GET['page'] === "instrument_readings"){
 			require_once "journal_for_electric/instrument_readings.php";
-		}elseif($_GET['page'] === "change_note_instrument_readings"){
-			require_once "journal_for_electric/change_note_instrument_readings.php";
+		}elseif($_GET['page'] === "change_note_instrument_readings_view"){
+			require_once "journal_for_electric/change_note_instrument_readings_view.php";
 		}else{
 			require_once "header.php"; //надпись журнала
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";

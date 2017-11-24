@@ -444,7 +444,7 @@
 				
 				case 'call_time':
 					changeCallTime(tagSpan, changeId);
-					break;changeEndOfWork
+					break;
 				
 				case 'end_of_work':
 					changeEndOfWork(tagSpan, changeId);
@@ -456,5 +456,7 @@
 			}
 		}
 		
+
+
 		
 		
