@@ -123,6 +123,10 @@
 									<input type = "checkbox" name = "checkbox_caller[]"
 										value = "3" onclick = "checkboxCaller(this)" class="form-check-input"/>  Слесарь
 								</label>
+								<label class="form-check-label">
+									<input type = "checkbox" name = "checkbox_caller[]"
+										value = "4" onclick = "checkboxCaller(this)" class="form-check-input"/>  Электронщик
+								</label>
 							</div>
 						</div>
 				</div>
@@ -144,6 +148,9 @@
 								break;
 							case "3":
 								text = "Слесарь";
+								break;
+							case "4":
+								text = "Электронщик";
 								break;
 						}
 					input.checked = "";

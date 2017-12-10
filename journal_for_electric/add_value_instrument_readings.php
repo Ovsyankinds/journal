@@ -121,6 +121,8 @@
 		$result_add_value_instrument_readings = mysqli_query($link, $query_add_value_instrument_readings) 
 				or die("Не удается выполнить запрос по добавлению показаний в БД |||" . mysqli_error($link));
 		
-		/*$journal_of_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/journal_of_breakdowns_electric.php';
-			header('Location: ' . $journal_of_breakdowns_url);*/
+		//echo $_SERVER['HTTP_HOST'];
+
+		$journal_of_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/journal_of_breakdowns_electric.php?page=instrument_readings';
+			header('Location: ' . $journal_of_breakdowns_url);
 ?>

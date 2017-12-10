@@ -1,6 +1,59 @@
 <?php
 
 /*****
+	Функция создания select'a месяца и select'а года
+	Дата создания 27.11.2017
+	Используется в распечатке бланка для показаний
+*****/
+	function get_month_and_year(){
+		
+	}
+/*end*/
+
+
+/*****
+	Функция для представления бланка с показаниями
+*****/
+	function view_table_instrument_readings_blank(){
+		$cnt_day_in_month = date('t'); //количество дней в месяце
+		for($cnt = 1; $cnt <= $cnt_day_in_month; $cnt++){
+			$date = date('d.m.Y', mktime(0, 0, 0, date('n'), $cnt, date('Y')));
+			echo "<tr>" .
+				"<td>" 						 . 	$date  . 		"</td>" 	.
+				
+				"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			 					"<td class='td-border'>" .
+						"<td>" . "</td>" .
+			 	"</td>" .
+			"</tr>";
+		}
+	}
+/*end*/
+
+/*****
 	Функция для запроса с БД одного поля по параметрам
 	Дата создания 18.11.2017
 	Используется в изменении записей в instrument_readings

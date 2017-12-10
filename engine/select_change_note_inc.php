@@ -7,8 +7,6 @@
 												number_workshop, name_machine, caller_FIO, call_time, 
 												end_of_work, repair_time, breakdown, removal_breakdown, 
 												used_teh_mat_values FROM $backUrl WHERE id = '$change_id'";
-
-	echo $query_change_note;
 							
 	$result_query_change_note = mysqli_query($link, $query_change_note)
 								or die("Не удается выполнить запрос  |||" . mysqli_error($link));

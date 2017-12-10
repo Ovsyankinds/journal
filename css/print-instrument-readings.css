@@ -1,0 +1,33 @@
+#header-print-instrument-readings{
+	margin-bottom: 35px;
+}
+
+/*Стили для таблицы для распечатки бланка показаний*/
+.table-instrument-readings-print-blank{
+	margin: 10px auto;
+	width: 1200px !important;
+}
+
+.table-instrument-readings-print-blank th {
+	border: 1px solid black !important;
+	text-align: center;
+}
+
+.table-instrument-readings-print-blank td{
+	border: 1px solid black !important;
+	text-align: center;
+}
+
+.table-instrument-readings-print-blank .td-border{
+	border-right: 1px solid #D0D0D0 !important; 
+}
+
+.table-instrument-readings-print-blank td, th{
+	font-size: 11px;
+}
+
+.table-instrument-readings-print-blank td{
+	width: 150px;
+}
+
+/*конец*/

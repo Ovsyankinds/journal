@@ -4,17 +4,21 @@
   mysqli_query($link, "SET NAMES 'utf8'");
 ?>
 
-<!DOCTYPE>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+
 <head>
   <title> Главная страница журнала </title>
   <meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
-  <link rel = 'stylesheet' type = 'text/css' href = 'css/print.css' >
-  <link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link rel = "stylesheet" href = "/css/journal_of_breakdowns_for_electric.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/print_note_electric.css">
 </head>
-
 <body>
+
+  <div class="container-fluid">
 
   <?php
      $user_status = $_COOKIE['id_status'];
@@ -29,86 +33,115 @@
      }
   ?>
 
-<div class="container-fluid">
-
-<!-- таблица с заголовками и с стрелками для сортировки по столбцам -->
-
+  <!-- таблица с заголовками и с стрелками для сортировки по столбцам -->
   <div class="row">
-   <div class="table-responsive">
-    <table class="table">
-    <tr>
-      <td> <span class = "journal_header_table"> № </span> </td>
-      <td> <span class = "journal_header_table"> Д </span> </td>
-      <td> <span class = "journal_header_table"> См. </span> </td>
-      <td> <span class = "journal_header_table"> См.ИЭТ </span> </td>
-      <td> <span class = "journal_header_table"> №ц. </span> </td>
-      <td> <span class = "journal_header_table"> НЛ </span> </td>
-      <td> <span class = "journal_header_table"> В </span> </td>
-      <td> <span class = "journal_header_table"> ВВ</span> </td>
-      <td> <span class = "journal_header_table"> ОР </span> </td>
-      <td> <span class = "journal_header_table"> ВР </span> </td>
-      <td> <span class = "journal_header_table"> ПВ </span> </td>
-      <td> <span class = "journal_header_table"> УП </span> </td>
-      <td> <span class = "journal_header_table"> ИТМЦ </span> </td>
-    </tr>
-      
-    <?php
-      if( isset($_POST['printElectrictNote']) ){
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tr>
+            <td> <span class = "journal_header_table"> № </span> </td>
+            <td> <span class = "journal_header_table"> Д </span> </td>
+            <td> <span class = "journal_header_table"> См. </span> </td>
+            <td> <span class = "journal_header_table"> См.ИЭТ </span> </td>
+            <td> <span class = "journal_header_table"> №ц. </span> </td>
+            <td> <span class = "journal_header_table"> НЛ </span> </td>
+            <td> <span class = "journal_header_table"> В </span> </td>
+            <td> <span class = "journal_header_table"> ВВ</span> </td>
+            <td> <span class = "journal_header_table"> ОР </span> </td>
+            <td> <span class = "journal_header_table"> ВР </span> </td>
+            <td> <span class = "journal_header_table"> ПВ </span> </td>
+            <td> <span class = "journal_header_table"> УП </span> </td>
+            <td> <span class = "journal_header_table"> ИТМЦ </span> </td>
+          </tr>
+            
+          <?php
+            if( isset($_POST['printElectrictNote']) ){
 
-        $selectOption = $_POST['selectOption'];
+              $selectOption = $_POST['selectOption'];
 
-        $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
-        $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
-        $selectedFinalDate = $selectedFirstDate . "/" . $selectedLastDate;
-        $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
-        $selectedShift = trim(strip_tags( $_POST['shift'] ));
-        $selectedNameElectric = trim(strip_tags( $_POST['select_login_engineer'] ));
-        $selectedNumberWorkshop = trim(strip_tags( $_POST['selectNumberWorkshop'] ));
-        $selectedNameLine = trim(strip_tags( $_POST['selectNameLine'] ));
+              $selectedFirstDate = trim(strip_tags( $_POST['selectedFirstDate'] ));
+              $selectedLastDate = trim(strip_tags( $_POST['selectedLastDate'] ));
+              $selectedFinalDate = $selectedFirstDate . "/" . $selectedLastDate;
+              $selectedLineCount = trim(strip_tags( $_POST['lineCount'] ));
+              $selectedShift = trim(strip_tags( $_POST['shift'] ));
+              $selectedNameElectric = trim(strip_tags( $_POST['select_login_engineer'] ));
+              $selectedNumberWorkshop = trim(strip_tags( $_POST['selectNumberWorkshop'] ));
+              $selectedNameLine = trim(strip_tags( $_POST['selectNameLine'] ));
 
-        $arrayParamSelectOption = array();
-        array_push($arrayParamSelectOption, $selectedFinalDate, $selectedNameLine,
-                    $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedLineCount);
+              $arrayParamSelectOption = array();
+              array_push($arrayParamSelectOption, $selectedFinalDate, $selectedNameLine,
+                          $selectedShift, $selectedNameElectric, $selectedNumberWorkshop, $selectedLineCount);
 
-        printElectricNote($link, $nameDataBaseTable, $selectOption, $arrayParamSelectOption);
-       
-      }    
-    ?>
-    </table>
+              printElectricNote($link, $nameDataBaseTable, $selectOption, $arrayParamSelectOption);
+             
+            }    
+          ?>
+        </table>
+      </div>
+   </div>
   </div>
+
+  <? if($_COOKIE['id_status'] == 1){?>
+  <div class="row">
+    <div class="col-md-12">
+      <span class = "signature" id = "signature_pass"> Смену и инструмент сдал:  ______________________ </span>
+      <span class = "signature" id = "signature_take"> Смену и инструмент принял:______________________ </span>
+      <span class = "signature" id = "signature_nach"> Начальник отдела ПЭ       ______________________ </span>
+    </div>
+
+    <div class="col-md-12">
+      <input id = "submit" type = "submit" value = "Распечатать" class="form-control btn btn-secondary" onClick = "print_()">
+      <a href = "<?=$back_to_journal;?>" class="form-control btn btn-secondary" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
+    </div>
+  </div>
+  <?}?>
+
+  <? 
+    //Если пользователь электрик, то отрисовываем блок с подписями для электриков
+    if($_COOKIE['id_status'] == 0)
+  {?>
+    <div class="row text-left">
+      <div class="col-md-12">
+        <p> 
+          Смену сдал:&nbsp&nbsp&nbsp&nbsp&nbsp
+          ______________________/______________________/&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          электромонтер по ремонту и обслуживанию оборудования
+        </p>
+      </div>
+
+      </br>
+
+      <div class="col-md-12">
+        <p> 
+          Смену принял:&nbsp&nbsp&nbsp&nbsp&nbsp
+           ______________________/______________________/&nbsp&nbsp&nbsp&nbsp&nbsp
+           электромонтер по ремонту и обслуживанию оборудования
+        </p>
+      </div>
+
+      <div class="col-md-12">
+        <p> 
+          Ответственный руководитель:&nbsp&nbsp&nbsp&nbsp&nbsp
+          ______________________/______________________
+        </p>
+      </div>
+
+
+      <div class="col-md-12">
+        <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()" class="btn btn-secondary">
+        <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns" class="btn btn-secondary">
+           Назад к журналу
+        </a>
+      </div>
+    </div>
+  <?}?>
 </div>
 
-<? if($_COOKIE['id_status'] == 1){?>
-<div class="row">
-  <div class="col-md-12">
-    <span class = "signature" id = "signature_pass"> Смену и инструмент сдал:  ______________________ </span>
-    <span class = "signature" id = "signature_take"> Смену и инструмент принял:______________________ </span>
-    <span class = "signature" id = "signature_nach"> Начальник отдела ПЭ       ______________________ </span>
-  </div>
-
-  <div class="col-md-12">
-    <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
-    <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
-  </div>
-</div>
-<?}?>
-
-<? if($_COOKIE['id_status'] == 0){?>
-<div class="row">
-    <span class = "signature" id = "signature_pass"> Смену сдал:  ______________________/______________________/электромонтер по ремонту и обслуживанию оборудования</span></br>
-    <p class="footer">ФИО</p>
-  <div class="col-md-12">
-    <span class = "signature" id = "signature_take"> Смену принял: ______________________/______________________/электромонтер по ремонту и обслуживанию оборудования</span></br>
-  </div>
-    <span class = "signature" id = "signature_nach"> Ответственный руководитель: ______________________/______________________</span>
-
-
-  <div class="col-md-12">
-    <input id = "submit" type = "submit" value = "Распечатать" onClick = "print_()">
-    <a href = "<?=$back_to_journal;?>" id = "back_to_journal_of_breakdowns"> Назад к журналу </a>
-  </div>
-</div>
-<?}?>
+<script src = "../JS/js.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../JS/bootstrap.min.js"></script>
 
 <script>
   function print_(){
@@ -119,8 +152,6 @@
      window.print();
   }
 </script>
-
-</div>
 </body>
 
 </html>

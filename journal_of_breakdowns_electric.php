@@ -41,61 +41,61 @@
 		<div class="table-responsive">
 			<table id = "table-for-electric">
 				<tr>
-				<th> 
-					<span> Номер записи </span> 
-				</th>
+					<th> 
+						<span> Номер записи </span> 
+					</th>
 
-				<th>
-					<span> Дата </span> 
-				</th>
+					<th>
+						<span> Дата </span> 
+					</th>
 
-				<th>		
-					<span> Смена </span>
-				</th>
+					<th>		
+						<span> Смена </span>
+					</th>
 
-				<th>
-					<span> Сменный электрик </span>
-				</th>
+					<th>
+						<span> Сменный электрик </span>
+					</th>
 
-				<th>
-					<span> Номер цеха </span>
-				</th>
+					<th>
+						<span> Номер цеха </span>
+					</th>
 
-				<th>
-					<span> Название линии </span>
-				</th>
+					<th>
+						<span> Название линии </span>
+					</th>
 
-				<th>
-					<span> Вызов ФИО </span>
-				</th>
+					<th>
+						<span> Вызов ФИО </span>
+					</th>
 
-				<th>
-					<span> Время вызова </span> 
-				</th>
+					<th>
+						<span> Время вызова </span> 
+					</th>
 
-				<th>
-					<span> Окончание работы </span>
-				</th>
+					<th>
+						<span> Окончание работы </span>
+					</th>
 
-				<th>
-					<span> Время ремонта </span>
-				</th>
+					<th>
+						<span> Время ремонта </span>
+					</th>
 
-				<th>
-					<span> Причина вызова </span>
-				</th>
+					<th>
+						<span> Причина вызова </span>
+					</th>
 
-				<th>
-					<span> Устранение поломки </span>
-				</th>
+					<th>
+						<span> Устранение поломки </span>
+					</th>
 
-				<th>
-					<span> Используемые ТМЦ </span>
-				</th>
+					<th>
+						<span> Используемые ТМЦ </span>
+					</th>
 
-				<th>
-					<span> Изменение записи </span>
-				</th>
+					<th>
+						<span> Изменение записи </span>
+					</th>
 				</tr>
 
 				<?php
@@ -207,15 +207,17 @@
 
 		?>
 
-		<script src = "/JS/js.js"></script>
-
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="/JS/bootstrap.min.js"></script>
 	</div>
 	<?php }?>
 </div>
+
+<script src = "/JS/js.js"></script>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/JS/bootstrap.min.js"></script>
+
 
 </body>
 </html>

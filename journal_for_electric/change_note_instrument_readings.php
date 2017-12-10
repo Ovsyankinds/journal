@@ -26,7 +26,7 @@ if( isset($_POST["submit_change_note_instrument_readings"]) ){
                         $id_change_note_instrument_readings);
     //print_r($array);
     $result = check_value_instrument_readings($array); //проверили пришедшие данные
-    print_r($result);
+    //print_r($result);
 
     //разбиваем обратно в переменные параметры
     list($value_water_workshop_1_2, $value_water_uua, $value_water_uub, $value_water_topochnaya,
@@ -59,6 +59,7 @@ if( isset($_POST["submit_change_note_instrument_readings"]) ){
   $resultQuerySelectValueInstrumentReadings = mysqli_query($link, $querySelectValueInstrumentReadings) 
       or die("Не удается выполнить запрос |||" . mysqli_error($link));
 
-
+  $journal_of_breakdowns_url = 'http://' . $_SERVER['HTTP_HOST'] . '/journal_of_breakdowns_electric.php?page=instrument_readings';
+  header('Location: ' . $journal_of_breakdowns_url);   
 
 ?>
