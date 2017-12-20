@@ -33,6 +33,10 @@
 		default:
 			$dbUpdate = "journal_of_breakdowns";
 	}
+
+	/*echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";*/
 	
 	if(!empty($_POST['date_shift']) && $_POST['select'][0] === 'date_shift'){
 		//$change_id = $_GET['change_id'];
@@ -62,8 +66,7 @@
 		$select = $_POST['select'][2];
 		$query_change_note_to_DB = "UPDATE $dbUpdate SET 
 																$select = '$value'
-																WHERE id = '$change_id'";
-
+																WHERE id = '$change_id'";															
 	}
 	
 	elseif(!empty($_POST['number_workshop']) && $_POST['select'][3] === 'number_workshop'){
@@ -142,7 +145,9 @@
 						"change_note.php?change_id=$change_id&errors=$errors";
 				header('Location: ' . $change_note_url);
 	}
-		
+	
+	//echo $query_change_note_to_DB;
+
 	$result_query_change_note_to_DB  = mysqli_query($link, $query_change_note_to_DB)
 									or die("Не удается выполнить запрос  |||" . mysqli_error($link));
 	

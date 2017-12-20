@@ -134,12 +134,11 @@
 			require_once "engine/select_change_note_inc.php";
 	?>
 	</table>
-	
-	
+
 	<form name = "change_note" method = "POST" 
 				action = "/engine/change_note_inc.php?change_id=<?php echo $_GET['change_id'] ?>" 
 				id = "form_change_note">			
-			
+
 		<p class = "textarea_change_note">
 			
 			<label for = "breakdown" class = "label_breakdown"> 
@@ -170,7 +169,7 @@
 			</textarea>
 		</p>
 	
-			<input type = "submit" value = "Редактировать" name = "change_note_submit">
+			<input type = "submit" value = "Редактировать" name = "change_note_submit" id="change-note">
 	</form>
 	
 <?php 

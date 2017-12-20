@@ -9,12 +9,16 @@
 		$array_name_mashine_as_workshop_1 = sort_name_machine_as_workshop($link, 1);
 		$array_name_mashine_as_workshop_2 = sort_name_machine_as_workshop($link, 2);
 		$array_name_mashine_as_workshop_3 = sort_name_machine_as_workshop($link, 3);
+    $array_name_mashine_as_workshop_5 = sort_name_machine_as_workshop($link, 5);
+    $array_name_mashine_as_workshop_7 = sort_name_machine_as_workshop($link, 7);
 		
 		//print_r($array_name_mashine_as_workshop_3);
 
 		$count_1 = count($array_name_mashine_as_workshop_1);
 		$count_2 = count($array_name_mashine_as_workshop_2);
 		$count_3 = count($array_name_mashine_as_workshop_3);
+    $count_5 = count($array_name_mashine_as_workshop_5);
+    $count_7 = count($array_name_mashine_as_workshop_7);
 
 		if(!empty($_GET['name_machine'])){
 			$name_machine = $_GET['name_machine'];
@@ -106,7 +110,51 @@ BBB;
 
 ?>
 		        	</ul>
-      			</li>			
+      			</li>	
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Цех №5 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+            
+<?php
+
+for($a = 0; $a < $count_5; $a++){
+
+$array_name_mashine_5 = $array_name_mashine_as_workshop_5[$a];
+echo <<<BBB
+  <li>
+    <a href="machine_line.php?name_machine=$array_name_mashine_5">
+      $array_name_mashine_5
+    </a>
+  </li>
+BBB;
+}
+
+?>
+              </ul>
+            </li>
+
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Цех №7 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+            
+<?php
+
+for($b = 0; $b < $count_7; $b++){
+
+$array_name_mashine_7 = $array_name_mashine_as_workshop_7[$b];
+echo <<<BBB
+  <li>
+    <a href="machine_line.php?name_machine=$array_name_mashine_7">
+      $array_name_mashine_7
+    </a>
+  </li>
+BBB;
+}
+
+?>
+              </ul>
+            </li>
 		    </ul>
 	  </div>
 	</nav>
@@ -116,7 +164,7 @@ BBB;
 	<table id = "table_monitor_breakdowns">
 
 	<?php
-		note_of_journal($link, 0, 0, 0, 0, 0, 0, $name_machine);
+		note_of_journal($link, 'journal_of_breakdowns', 0, 0, 0, 0, 0, 0, $name_machine);
 	?>
 	</table>
 </div>

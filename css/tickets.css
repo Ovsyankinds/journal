@@ -36,198 +36,26 @@ th{
 	background: #D0D0D0;
 }
 
-th,td {
-	text-align: center;
-	vertical-align: top;
-	padding: 5px;
-	border-spacing: 10px;
-	margin: 1px 1px;
+@media (min-width: 1024px){ /*стили для топ-меню, чтоб на большом разрешении меню было от градицы до границы*/
+  .navbar-expand-md{
+    width: 1366px !important;
+    /*border: 1px solid red !important;*/
+  }
 }
 
-/* стили для wrap */
-#wrap{
-	width: 1024px;
-	background: #EEE9E9;
-	border: 1px solid #fff;
-	height: 550px;
-	margin: 25px auto;
+
+
+select, input[type="date"]{
+	height: 45px !important;
+	margin-bottom: 15px;
 }
 
-/*стили для верхнего меню*/
-#top_menu{
-	width: 250px;
-	height: 70px;
-	border: 3px solid #FFF;
-	margin: 25px auto;
-	background-color: #B0C4DE;
+input[type="submit"]{
+	height: 45px !important;
 }
 
-#top_menu ul{
-	width: 200px;
-	height: 45px;
+.message-for-ticket{
+	margin-top: 25px;
+	font-size: 24px !important;
 	/*border: 1px solid red;*/
-	margin: 10px auto;
 }
-
-#top_menu ul li{
-	margin: 10px 5px;
-	/*border: 1px solid red;*/
-	float: left;
-	padding: 5px 5px;
-}
-
-#top_menu ul li a{
-	color: #FFF;
-}
-/**/
-
-/* стили для формы добавления, изменения и удаления тикета */
-
-.form_ticket{
-	/*width: 591px;*/
-	height: 400px;
-	border: 3px solid #FFF;
-	float: left;
-	margin: 10px 20px;
-	text-align: center;
-	font-size: 25px;
-	padding: 0 25px;
-}
-
-#div_add_ticket_message{
-	float: left;
-	margin-right: 50px;
-}
-
-#div_change_ticket_message{
-	
-}
-
-.form_ticket form{
-	margin: 10px 0px;
-	/*border: 1px solid grey;*/
-}
-
-.form_ticket form p{
-	margin-bottom: 8px;
-	/*border: 1px solid grey;*/
-}
-
-.form_ticket textarea{
-	margin: 1px 0 15px 0;
-}
-
-
-/**/
-
-/* clear*/
-
-.clear{
-	clear: both;
-}
-
-/*стили для тикета*/
-#wrap_ticket_message{
-	width: 800px;
-	margin: 0 auto;
-}
-
-.ticket{
-	width: 700px;
-	margin: 5px auto;
-	overflow: hidden;
-	border: 1px solid grey;
-	float: left;
-	padding: 10px 10px;
-}
-
-.ticket ul{
-	font-size: 17px;
-	margin: 2px 2px;
-	clear: both;
-}
-
-.ticket ul li{
-	float: left;	
-}
-
-/* 1ый ul-список с номером тикета и датой добавления */
-.ticket ul:nth-child(1){
-	width: 400px;
-	margin: 0 auto;
-}
-/* 2ой ul-список с полями "От" и "Кому"*/
-.ticket ul:nth-child(2){
-	width: 400px;
-	margin: 0 auto;	
-}
-/* 3ий ul-список с полями "Дата завершения работ" и "Задание"*/
-.ticket ul:nth-child(3){
-	width: 400px;
-	margin: 0 auto;
-}
-/* стили для тегов li в первом ul-списке*/
-.ticket ul:nth-child(1) li{
-	padding: 8px 0;
-}
-/* стили для тегов li во втором ul-списке*/
-.ticket ul:nth-child(2) li{
-	padding: 8px 0;
-}
-/* стили для тегов li в третьем ul-списке*/
-.ticket ul:nth-child(3) li{
-	padding: 8px 0;
-}
-/* стили для первого тега li в первом ul-списке*/
-.ticket ul:nth-child(1) li:nth-child(1){
-	width: 150px;
-
-}
-/* стили для второго тега li в первом ul-списке*/
-.ticket ul:nth-child(1) li:nth-child(2){
-	width: 240px;
-
-}
-/* стили для первого тега li во втором ul-списке*/
-.ticket ul:nth-child(2) li:nth-child(1){
-	width: 150px;
-
-}
-/* стили для второго тега li во втором ul-списке*/
-.ticket ul:nth-child(2) li:nth-child(2){
-	width: 230px;
-
-}
-/* стили для первого тега li в третьем ul-списке*/
-.ticket ul:nth-child(3) li:nth-child(1){
-	width: 380px;
-
-}
-/* стили для второго тега li в третьем ul-списке*/
-.ticket ul:nth-child(3) li:nth-child(2){
-	width: 700px;
-	margin-left: -150px;
-}
-
-/* стили для заголовков тикета */
-.ticket ul li span{
-	font-size: 20px;
-}
-
-.show_hidden_ticket_message{
-	float: right;
-	width: 10px;
-	border: 1px solid white;
-	font-size: 20px;
-	margin: 5px 5px;
-}
-/**/
-
-
-
-
-
-
-
-
-

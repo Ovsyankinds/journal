@@ -17,19 +17,22 @@
 	<title> Главная страница журнала </title>
 	<meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
 	<link rel = "stylesheet" href = "css/journal_of_breakdowns.css">
-	<!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/header.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/JS/jquery.datetimepicker.css" />
 </head>
 
 <body>
 
+		<!-- <a href = "journal_change.php"> Изменения в журнале </a> -->
+	
 	<?php
 		require_once "header.php"; //надпись журнала
 		//require_once "/home/homeel/homeelectrical.ru/docs/header.php";
 	?>
-	
-		<!-- <a href = "journal_change.php"> Изменения в журнале </a> -->
-	
+
+	<div class="container-fluid">		
+
 	<?php
 		require_once "engineer_job.php"; //код для добавленя надписей по заданиям
 		//require_once "/home/homeel/homeelectrical.ru/docs/engineer_job.php";
@@ -52,6 +55,8 @@
 		require_once "delete_note.php"; //код для удаления запсей из таблицы
 		//require_once "/home/homeel/homeelectrical.ru/docs/delete_note.php";
 	?>
+
+	</div>
 	
 	<script src = "/JS/js.js"></script>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

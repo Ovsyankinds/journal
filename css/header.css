@@ -1,0 +1,11 @@
+/*Стили для топ-меню*/
+/*.navbar .sticky-top .navbar-expand-lg .navbar-dark .bg-dark{*/
+.navbar{
+	font-size: 14px;
+}
+
+#header_journal_of_breakdowns{
+	font-size: 17px;
+	margin-top: 25px;
+}
+/*конец стилей для топ-меню*/

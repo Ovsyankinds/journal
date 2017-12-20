@@ -821,7 +821,7 @@ function selectNumberWorkshop($link, $id_or_class){
 		$result_select_from_tickets_DB = mysqli_query($link, $query_select_from_tickets_DB);
 		$count_num_tickets = 1; //счетчик для вывода в выпадающем списке чисел по порядку, 
 								//т.к. в БД id могут идти не по порядку (удаление, к примеру сбивает id)
-		echo "<select size = '1' name = 'select_num_tickets' id = 'select_num_tickets'>";
+		//echo "<select size = '1' name = 'select_num_tickets' class='form-control' id = 'select_num_tickets'>";
 		echo "<option value = '0'> Не использовать </option>";		
 		while( $row = mysqli_fetch_array($result_select_from_tickets_DB) ){
 			$real_id_note_change = $row['id']; //реальный id тикета выбранный из БД
@@ -833,7 +833,7 @@ function selectNumberWorkshop($link, $id_or_class){
 			$count_num_tickets++;
 			
 		}
-		echo "</select>";
+		//echo "</select>";
 	}
 	//-----конец функции
 	
@@ -925,6 +925,7 @@ function selectNumberWorkshop($link, $id_or_class){
 
 			$result_select_from_registration_DB = mysqli_query($link, $query_select_from_registration_DB);
 			echo "<select size = '1' name = 'select_login_engineer' class = '$id_or_class' id='select'>";
+			echo "<option></option>";
 			while( $row = mysqli_fetch_array($result_select_from_registration_DB) ){
 					$engineer_name = $row['sername'];
 					echo "<option value = '$engineer_name'> $engineer_name </option>";	
@@ -1370,6 +1371,26 @@ function selectNumberWorkshop($link, $id_or_class){
 		}
 
 		if($param === 3){
+			$query_select_from_list_of_machines_DB = "SELECT name_machine FROM list_of_machines WHERE number_workshop = $param";
+			$result_select_from_list_of_machines_DB = mysqli_query($link, $query_select_from_list_of_machines_DB);
+			$result_array = array();
+
+			while( $row = mysqli_fetch_array($result_select_from_list_of_machines_DB) ){
+					$result_array[] = $row['name_machine'];
+			}
+		}
+
+			if($param === 5){
+			$query_select_from_list_of_machines_DB = "SELECT name_machine FROM list_of_machines WHERE number_workshop = $param";
+			$result_select_from_list_of_machines_DB = mysqli_query($link, $query_select_from_list_of_machines_DB);
+			$result_array = array();
+
+			while( $row = mysqli_fetch_array($result_select_from_list_of_machines_DB) ){
+					$result_array[] = $row['name_machine'];
+			}
+		}
+
+			if($param === 7){
 			$query_select_from_list_of_machines_DB = "SELECT name_machine FROM list_of_machines WHERE number_workshop = $param";
 			$result_select_from_list_of_machines_DB = mysqli_query($link, $query_select_from_list_of_machines_DB);
 			$result_array = array();

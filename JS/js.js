@@ -279,183 +279,191 @@
 	}
 	
 	
-	/*
-		Функции для таблицы в change_note.php для изменения одного из значений в таблице
-		кликая на значение, которое нужно изменить.
-	*/
-	function changeDateShift(){				
-		var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-		getClassTableTd[1].style.display = "block";
-		var getForm = document.getElementById('form');
-		getClassTableTd[1].focus();
-		getClassTableTd[1].onblur = function(){
-			getForm.submit();
-		}
+/*****
+	Функции для таблицы в change_note.php для изменения одного из значений в таблице
+	кликая на значение, которое нужно изменить.
+*****/
+function changeDateShift(tagSpan, changeId){				
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[1].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[1].focus();
+	//alert(tagSpan.innerHTML);
+
+	getClassTableTd[1].onblur = function(){
+		getForm.submit();
 	}
+}
 		
-		function changeShift(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[2].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[2].focus();
-			getClassTableTd[2].onblur = function(){
-				getForm.submit();
-			}
-		}
+function changeShift(tagSpan, changeId){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[2].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[2].focus();
+	
+	getClassTableTd[2].onblur = function(){
+		getForm.submit();
+	}
+}
+
+function changeNameEngineer(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[3].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[3].focus();
+	getClassTableTd[3].onblur = function(){
+		getForm.submit();
+	}
+}
 		
-		function changeNameEngineer(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[3].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[3].focus();
-			getClassTableTd[3].onblur = function(){
-				getForm.submit();
-			}	
-		}
+function changeNumberWorkshop(){
+	alert(1);
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[4].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[4].focus();
+	
+	getClassTableTd[4].onblur = function(){
+		getForm.submit();
+	}	
+}
 		
-		function changeNumberWorkshop(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[4].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[4].focus();
-			getClassTableTd[4].onblur = function(){
-				getForm.submit();
-			}	
-		}
+function changeNameMashine(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[5].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[5].focus();
+	
+	getClassTableTd[5].onblur = function(){
+		getForm.submit();
+	}
+}
+
+function changeCallerFIO(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[6].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[6].focus();
+	
+	getClassTableTd[6].onblur = function(){
+		getForm.submit();
+	}	
+}
+
+function changeCallTime(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[7].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[7].focus();
+	
+	getClassTableTd[7].onblur = function(){
+		getForm.submit();
+	}
+}
 		
-		function changeNameMashine(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[5].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[5].focus();
-			getClassTableTd[5].onblur = function(){
-				getForm.submit();
-			}	
-		}
+function changeEndOfWork(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[8].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[8].focus();
+	
+	getClassTableTd[8].onblur = function(){
+		getForm.submit();
+	}	
+}
 		
-		function changeCallerFIO(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[6].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[6].focus();
-			getClassTableTd[6].onblur = function(){
-				getForm.submit();
-			}	
-		}
+/*function changeUsedTehMatValues(){
+	var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
+	getClassTableTd[12].style.display = "block";
+	var getForm = document.getElementById('form');
+	getClassTableTd[12].focus();
+	getClassTableTd[12].onblur = function(){
+		getForm.submit();
+	}											
+}*/
+
+function createForm(tagSpan, changeId){
+	var form = document.createElement('form');
+	form.name = 'change_note';
+	form.id = 'form';
+	form.method = 'post';
+	form.action = 'change_note.php?change_id=' + changeId;
+	tagSpan.appendChild(form);
+}
+
+function sendForm(tagSpan, changeId, hiddenTagId){
+	var getForm = document.getElementById('login_engineer_form');
+	hiddenTagId.focus();
+	hiddenTagId.onblur = function(){
+		//getForm.submit();
+	}
+}
 		
-		function changeCallTime(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[7].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[7].focus();
-			getClassTableTd[7].onblur = function(){
-				getForm.submit();
-			}	
-		}
+function createInput(tagSpan, inputId, inputValue, inputHiddenValue, changeId){
+	var input = document.createElement('input');
+	var inputHidden = document.createElement('input');
+	input.id = inputId;
+	input.name = 'inputParametrOne';
+	input.value = inputValue;
+	inputHidden.name = 'inputParametrTwo';
+	inputHidden.value = inputHiddenValue;
+	inputHidden.hidden = 'true';
+	var getForm = document.getElementById('form');
+	getForm.appendChild(input);
+	getForm.appendChild(inputHidden);
+	var getInput = document.getElementById(inputId);
+	getInput.focus();
+	getInput.onblur = function(){
+		//getForm.submit();
+	}
+}
 		
-		function changeEndOfWork(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[8].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[8].focus();
-			getClassTableTd[8].onblur = function(){
-				getForm.submit();
-			}	
-		}
-				
-		function changeUsedTehMatValues(){
-			var getClassTableTd = document.getElementsByClassName('elemFormChangeNote');
-			getClassTableTd[12].style.display = "block";
-			var getForm = document.getElementById('form');
-			getClassTableTd[12].focus();
-			getClassTableTd[12].onblur = function(){
-				getForm.submit();
-			}											
-		}
+function changeNote(tagSpan, changeId){ // главная функция, использующаяся 
+	// в select_change_note_inc.php как обработчик события onclick на нажатой
+	// ячейке таблицы для изменения значения ячейки
+	// параметр tagSpan - в onclick передается this
+
+	var tagSpanNameId = tagSpan.getAttribute('id'); // берем значение атрибута id на
+													//кликнутом элементе
+	switch(tagSpanNameId){ //выбираем на основании значения id'шника какую функцию
+												 // подккючать
+		case 'change_date_shift':
+			changeDateShift();
+			break;
 		
-		function createForm(tagSpan, changeId){
-			var form = document.createElement('form');
-			form.name = 'change_note';
-			form.id = 'form';
-			form.method = 'post';
-			form.action = 'change_note.php?change_id=' + changeId;
-			tagSpan.appendChild(form);
-		}
+		case 'change_shift':
+			changeShift();
+			break;
 		
-		function sendForm(tagSpan, changeId, hiddenTagId){
-			var getForm = document.getElementById('login_engineer_form');
-			hiddenTagId.focus();
-			hiddenTagId.onblur = function(){
-				getForm.submit();
-			}
-		}
+		case 'name_engineer':
+			changeNameEngineer();
+			break;
 		
-		function createInput(tagSpan, inputId, inputValue, inputHiddenValue, changeId){
-			var input = document.createElement('input');
-			var inputHidden = document.createElement('input');
-			input.id = inputId;
-			input.name = 'inputParametrOne';
-			input.value = inputValue;
-			inputHidden.name = 'inputParametrTwo';
-			inputHidden.value = inputHiddenValue;
-			inputHidden.hidden = 'true';
-			var getForm = document.getElementById('form');
-			getForm.appendChild(input);
-			getForm.appendChild(inputHidden);
-			var getInput = document.getElementById(inputId);
-			getInput.focus();
-			getInput.onblur = function(){
-				getForm.submit();
-			}
-		}
+		case 'number_workshop':
+			changeNumberWorkshop();
+			break;
+			
+		case 'name_machine':
+			changeNameMashine();
+			break;
+			
+		case 'caller_FIO':
+			changeCallerFIO();
+			break;
 		
-		function changeNote(tagSpan, changeId){ // главная функция, использующаяся 
-			// в select_change_note_inc.php как обработчик события onclick на нажатой
-			// ячейке таблицы для изменения значения ячейки
-			// параметр tagSpan - в onclick передается this
+		case 'call_time':
+			changeCallTime();
+			break;
 		
-			var tagSpanNameId = tagSpan.getAttribute('id'); // берем значение атрибута id на
-																											//кликнутом элементе
-			switch(tagSpanNameId){ //выбираем на основании значения id'шника какую функцию
-														 // подккючать
-				case 'change_date_shift':
-					changeDateShift(tagSpan, changeId);
-					break;
-				
-				case 'change_shift':
-					changeShift(tagSpan, changeId);
-					break;
-				
-				case 'name_engineer':
-					changeNameEngineer(tagSpan, changeId);
-					break;
-				
-				case 'number_workshop':
-					changeNumberWorkshop(tagSpan, changeId);
-					break;
-					
-				case 'name_machine':
-					changeNameMashine(tagSpan, changeId);
-					break;
-					
-				case 'caller_FIO':
-					changeCallerFIO(tagSpan, changeId);
-					break;
-				
-				case 'call_time':
-					changeCallTime(tagSpan, changeId);
-					break;
-				
-				case 'end_of_work':
-					changeEndOfWork(tagSpan, changeId);
-					break;
-								
-				case 'used_teh_mat_values':
-					changeUsedTehMatValues(tagSpan, changeId);
-					break;
-			}
-		}
-		
+		case 'end_of_work':
+			changeEndOfWork();
+			break;
+						
+		case 'used_teh_mat_values':
+			changeUsedTehMatValues();
+			break;
+	}
+}
 
 
 		

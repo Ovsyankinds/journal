@@ -53,14 +53,13 @@ th,td {
 	/*border: 1px solid red;*/
 }
 
-#header_journal_of_breakdowns{
+/*#header_journal_of_breakdowns{
 	text-align: center;
 	width: 200px;
-	/*border: 1px solid green;*/
 	margin: 25px auto;
 	text-shadow: grey 3px 3px 15px;
 	font: normal small-caps 35px/14px fantasy;
-}
+}*/
 
 #header_journal_of_breakdowns:first-letter{
 	color: #363636;
